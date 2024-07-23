@@ -4,6 +4,8 @@ let age = 25
 let isStudent = true;
 
 let isAdult = age > 18;
+console.log("Is adult?: " + isAdult);
+
 let isJohn = firstName === "John";
 
 function greet(firstName, lastName){
@@ -13,6 +15,8 @@ function greet(firstName, lastName){
 
     return `Hello, ${fullName}! Welcome to the IITC Bootcamp.`;
 }
+
+console.log(greet("Dorothy","Dorothy"));
 
 function checkAge(age){
     let result = "";
@@ -24,6 +28,7 @@ function checkAge(age){
 
     return result;
 }
+console.log(checkAge(3000));
 
 function getDayMessage(dayOfWeek){
     let message = "";
@@ -79,4 +84,30 @@ function formatName(name){
     if(name === "admin") return "Welcome, Admin!";
     else return `Hello, ${name}`;
 }
+console.log(formatName("Pikachu"));
 
+function checkDiscount(age, isMember){
+    if(age<18){
+        if(isMember) return "You get a 20% discount.";
+        else return "You get a 10% discount.";
+    }
+    else if(age >= 65){
+        if(isMember) return "You get a 30% discount.";
+        else return "You get a 20% discount.";
+    }
+    else{
+        if(isMember) return "You get a 10% discount.";
+        else return "No discount available.";
+    }
+}
+
+function validateLogin(username,password){
+    let storedUsername = "User1";
+    let storedPassword = "Password1";
+
+    if(username === storedUsername && password === storedPassword){
+        return "Login successful.";
+    }
+    else return "Invalid username or password.";
+}
+console.log(validateLogin("marak","afuna"));
