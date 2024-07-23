@@ -1,1 +1,9 @@
-Ctrl+? to wrap a code line in a comment.
+"Ctrl+?" to wrap a code line in a comment.
+
+"!" to create an html template
+
+"git add ." to stage all changes
+
+"git commit -m "message"" to commit the last stage with message
+
+"git push" push to the repository

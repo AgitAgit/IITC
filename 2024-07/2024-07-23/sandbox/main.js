@@ -4,8 +4,8 @@ function addStrings(string1, string2){
     return result;
 }
 
-let someName = addStrings("Ron", "Sherling");
+let someName = addStrings("", "");
 
-let otherName = addStrings("Amit","Kubani");
+let otherName = addStrings("","");
 
 console.log(someName);
