@@ -1,0 +1,2 @@
+-sign into GitHub with vscode
+-update the github password in my control paper
