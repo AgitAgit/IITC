@@ -111,3 +111,49 @@ function validateLogin(username,password){
     else return "Invalid username or password.";
 }
 console.log(validateLogin("marak","afuna"));
+
+function extractInitials(firstName, lastName){
+    let first = firstName.charAt(0).toUpperCase();
+    let last = lastName.charAt(0).toUpperCase();
+    return `${first}.${last}.`;
+}
+console.log(extractInitials("john","doe"));
+
+function maskEmail(email){
+    let cutEmail = email.split("@");
+    cutEmail[0] = "*****";
+    return `${cutEmail[0]}@${cutEmail[1]}`;
+}
+console.log(maskEmail("ab@gmail"));
+
+function  gradeCalculator(score){
+    if(score >= 90) return "A";
+    else if(score >= 80) return "B";
+    else if(score >= 70) return "C";
+    else if(score >= 60) return "D";
+    else return "F";
+}
+console.log(gradeCalculator(3000));
+
+function canVote(age, isCitizen){
+    if(age >= 18 && isCitizen) return "You are eligible to vote.";
+    else return "You are not eligible to vote.";
+}
+
+function convertToUpperCaseAndAddAge(name, age){
+    name = name.toUpperCase();
+    return `${name}${age}`;
+}
+console.log(convertToUpperCaseAndAddAge("Dorothy","3000"));
+
+function capitalize(word){
+    let firstChar = word.charAt(0).toUpperCase();
+    word = word.substring(1);
+    return `${firstChar}${word}`;
+}
+console.log(capitalize("bagel"));
+
+function containsSubstring(mainString, subString){
+    return mainString.includes(subString);
+}
+console.log(containsSubstring("Bagel","age"));
