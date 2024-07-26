@@ -7,3 +7,7 @@
 "git commit -m "message"" to commit the last stage with message
 
 "git push" push to the repository
+
+git config --global user.name "My Name"
+
+git config --global user.email "myemail@example.com"
