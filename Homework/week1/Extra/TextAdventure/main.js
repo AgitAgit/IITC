@@ -1,6 +1,3 @@
-import {place} from './assets';
-import {situation} from './assets';
-
 const topText = document.getElementById("topText");
 const mainText = document.getElementById("mainText");
 const enemyText = document.getElementById("enemyText");
@@ -21,11 +18,8 @@ bBtn.addEventListener('click', handleB);
 cBtn.addEventListener('click', handleC);
 dBtn.addEventListener('click', handleD);
 
-let currentSituation = new situation(village, null, null);
-
 //start from simple example. Generalizing is for later...
 //for the next version, make this more object oriented. For now, keep it functional oriented and small;
-
 
 let player = {
     name: "default",
@@ -34,16 +28,29 @@ let player = {
     score: 0,
     inventory: ["apple","dagger"]
 }
+//pre-made places:
+let place_swamp = new place("swamp","A treacherous, muddy stretch of land. Try to avoid getting bogged down!");
+let place_village = new place("village", "A calm, safe place...");
+//pre-made situations:
+let situation_startVillage = new situation(place_village, null, null, place_swamp, place_swamp, place_swamp, place_swamp);
+let situation_startSwamp = new situation(place_swamp, null, null, place_village, place_village, place_village, place_village);
 
-
-function initializeGame(){
-    player.name = prompt("Enter your name");
-    topText.textContent = `Name:${player.name} HP:${player.hp} ATK:${player.atk} Inventory:`
-    mainText.textContent = `Hello ${player.name}! Welcome to TextAdventure!`;
-    aText.textContent = `a. START`;
-    bText.textContent = `b. help`;
+function refreshState(){
+    mainText.textContent = currentSituation.place.text;
+    if(currentSituation.optionA.name) aText.textContent = `a. ${currentSituation.optionA.name}`;
+    if(currentSituation.optionB.name) bText.textContent = `b. ${currentSituation.optionB.name}`;
+    if(currentSituation.optionC.name) cText.textContent = `c. ${currentSituation.optionC.name}`;
+    if(currentSituation.optionD.name) dText.textContent = `d. ${currentSituation.optionD.name}`;
 }
 
+function initializeGame(){
+    //player.name = prompt("Enter your name");
+    topText.textContent = `Player:${player.name} HP:${player.hp} ATK:${player.atk} Inventory:`
+    let place_startPage = new place("start page",`Hello ${player.name}! Welcome to TextAdventure!`);
+    let situation_startSituations = new situation(place_startPage, null, null, place_startPage, place_startPage, place_swamp, place_swamp);
+    currentSituation = situation_startSituations;
+    refreshState();
+}
 
 function handleA(){
     handleChoice("a");
@@ -57,12 +64,17 @@ function handleC(){
 function handleD(){
     handleChoice("d");
 }
-function handleChoice(situation, choice){
-
+function handleChoice(choice){
+    if(choice === 'a') travel(currentSituation.optionA);
+    if(choice === 'b') travel(currentSituation.optionB);
+    if(choice === 'c') travel(currentSituation.optionC);
+    if(choice === 'd') travel(currentSituation.optionD);
+    refreshState();
 }
-let swamp = new place("swamp","A treacherous, muddy stretch of land. Try to avoid getting bogged down!",null,null,null,null);
-let village = new place("village", "A calm, safe place...", swamp, swamp, swamp, swamp);
+
+function travel(place){
+    currentSituation.place = place;
+}
 
 
 initializeGame();
-situation(village, null, null);
