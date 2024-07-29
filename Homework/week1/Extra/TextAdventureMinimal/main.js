@@ -17,10 +17,11 @@ let score = 0;
 let health = 100;
 let beenTo = [];
 let inventory = [];
+let gunSound = "default gun sound";
 let choiceA = null;
 let choiceB = null;
 
-const MAX_MOVES = 10;
+const MAX_MOVES = 15;
 
 function handleClickA(){
     choiceA();
@@ -50,10 +51,11 @@ function checkState(){
 
 function renderStats(){
     checkState();
-    stats.textContent = `| player:${player} | score:${score} | health:${health} | move count:${moves} | inventory:${inventory} |`;
+    stats.textContent = `| player:${player} | score:${score} | health:${health} | move count:${moves} | inventory:[${inventory}] |`;
 }
 
 function village(){
+    moves+=1;
     choiceA = forest;
     choiceB = swamp;
     mainText.textContent = `Hello ${player}! You are at the village. Click A to go to the forest. Click B to go to the swamp.`;
@@ -68,9 +70,9 @@ function forest(){
         alert("You have found wide sandals! \nThe forests floor is dry, but they might be helpful elsewere...");
         inventory.push("wide sandals");
     }
-    choiceA = village;
-    choiceB = deepForest;
-    mainText.textContent = "You are at the forests edge. It seems peacefule... Click A to return to the village. Click B to go further in.";
+    choiceA = deepForest;
+    choiceB = village;
+    mainText.textContent = "You are at the forests edge. It seems peaceful... Click A to go further in.  Click B to return to the village.";
     renderStats();
 }
 
@@ -80,8 +82,23 @@ function deepForest(){
         beenTo.push("deepForest");
         score += 10;
     }
-    mainText.textContent = "You have ventured into the deep forest. It's dark here, and there are some weird scratching sounds... Click A to return to the forest's edge. Click B to investigate.";
-    choiceA = forest;
+    mainText.textContent = "You have ventured into the deep forest. It's dark here, and there are some weird scratching sounds... Click A to investigate. Click B to return to the forests edge.";
+    choiceA = () =>{
+        if(! beenTo.includes("bearEncounter")){
+            alert("You have encountered a large bear!");
+            if(inventory.includes("shotgun")){
+                alert(`Luckily, you have a gun that sounds like "${gunSound}"! The bear was scared and ran away.`);
+                score += 100;
+                renderStats();
+            }
+            else{
+                alert("You are defensless against the bear... \nHe eats you.");
+                health = 0;
+                renderStats();
+            }
+        }
+    }
+    choiceB = forest;
     renderStats();
 }
 
@@ -111,7 +128,7 @@ function deepSwamp(){
         alert("You are not well equipped for the deep swamp... \nYou drowned.");
         health = 0;
     }
-    mainText.textContent = "You are at the deep swamp. A treacherous stretch of land... Click A to return to the swamps edge. Click B to go further in.";
+    mainText.textContent = "You are at the deep swamp. A treacherous stretch of land... Click A to return to the swamps edge. Click B to keep going.";
     choiceA = swamp;
     choiceB = abandonedBarn;
     renderStats();
@@ -122,21 +139,31 @@ function abandonedBarn(){
     if(!beenTo.includes("abandonedBarn")){
         beenTo.push("abandonedBarn");
         score += 10;
-        alert("You have found a double barrled shotgun");
-        inventory.push("shotgun");
     }
-    mainText.textContent = "You are at the deep swamp. A treacherous stretch of land... Click A to return to the swamps edge. Click B to go further in.";
-    choiceA = swamp;
-    choiceB = templeRuins;
+    mainText.textContent = "You have found an abandoned barn. Click A to return to the deep swamp. Click B to look inside.";
+    choiceA = deepSwamp;
+    choiceB = () => {
+        if(!beenTo.includes("inAbandonedBarn")){
+            beenTo.push("inAbandonedBarn");
+            score += 10;
+            alert("You have found a double barrled shotgun");
+            inventory.push("shotgun");
+        }
+        mainText.textContent = "There are holes in the roof and the wooden floor is mostly rotten... Click A or B to exit.";
+        choiceA = abandonedBarn;
+        choiceB = abandonedBarn;
+        renderStats();    
+    };
     renderStats();
 }
 
 function start(){
-    //player = prompt("Enter your name");
+    player = prompt("Enter your name");
+    gunSound = prompt("Enter the sound a gun should make");
     health = 100;
-    moves = 0;
+    moves = -1;
     score = 0;
-    beenTo = ["village"];
+    beenTo = [];
     inventory = ["apple"];
 
     village();
