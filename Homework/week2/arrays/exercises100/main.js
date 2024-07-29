@@ -65,3 +65,33 @@ for(let i = 0; i < colors.length; i++){
     colors[i] = colors[i].toUpperCase();
 }
 console.log(`colors afteer change: ${colors}`);
+
+//20.
+console.log(`seasons before swap: ${seasons}`);
+let temp = seasons[0];
+seasons[0] = seasons[seasons.length - 1];
+seasons[seasons.length - 1] = temp;
+console.log(`seasons after swap: ${seasons}`);
+
+//21.
+fruits.push("orange");
+
+//22.
+numbers.pop();
+
+//23.
+console.log(`colors: ${colors}`);
+colors.push("violet", "pink","blue");
+console.log(`colors: ${colors}`);
+
+//24.
+let numbers2 = [];
+for(let i = 1; i < 6; i++){
+    numbers2.push(i);
+}
+console.log(`numbers2: ${numbers2}`);
+
+//25.
+while(numbers2.length > 0){
+    console.log(`pop: ${numbers2.pop()}`);
+}
