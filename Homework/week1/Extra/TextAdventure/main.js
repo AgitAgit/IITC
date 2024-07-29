@@ -20,35 +20,26 @@ dBtn.addEventListener('click', handleD);
 
 //start from simple example. Generalizing is for later...
 //for the next version, make this more object oriented. For now, keep it functional oriented and small;
+let places = [];
+let start_menu = new place("start", "Hello!", null, ["village","swamp","village","swamp"]);
+
+places.push(start_menu);
 
 let player = {
     name: "default",
     hp: 100,
     atk: 1,
     score: 0,
-    inventory: ["apple","dagger"]
+    inventory: ["apple","dagger"],
+    place: start_menu,
+    state: neutral
 }
-//pre-made places:
-let place_swamp = new place("swamp","A treacherous, muddy stretch of land. Try to avoid getting bogged down!");
-let place_village = new place("village", "A calm, safe place...");
-//pre-made situations:
-let situation_startVillage = new situation(place_village, null, null, place_swamp, place_swamp, place_swamp, place_swamp);
-let situation_startSwamp = new situation(place_swamp, null, null, place_village, place_village, place_village, place_village);
 
 function refreshState(){
-    mainText.textContent = currentSituation.place.text;
-    if(currentSituation.optionA.name) aText.textContent = `a. ${currentSituation.optionA.name}`;
-    if(currentSituation.optionB.name) bText.textContent = `b. ${currentSituation.optionB.name}`;
-    if(currentSituation.optionC.name) cText.textContent = `c. ${currentSituation.optionC.name}`;
-    if(currentSituation.optionD.name) dText.textContent = `d. ${currentSituation.optionD.name}`;
+    mainText.textContent = player.place.fullDescription;
 }
 
 function initializeGame(){
-    //player.name = prompt("Enter your name");
-    topText.textContent = `Player:${player.name} HP:${player.hp} ATK:${player.atk} Inventory:`
-    let place_startPage = new place("start page",`Hello ${player.name}! Welcome to TextAdventure!`);
-    let situation_startSituations = new situation(place_startPage, null, null, place_startPage, place_startPage, place_swamp, place_swamp);
-    currentSituation = situation_startSituations;
     refreshState();
 }
 
@@ -65,15 +56,15 @@ function handleD(){
     handleChoice("d");
 }
 function handleChoice(choice){
-    if(choice === 'a') travel(currentSituation.optionA);
-    if(choice === 'b') travel(currentSituation.optionB);
-    if(choice === 'c') travel(currentSituation.optionC);
-    if(choice === 'd') travel(currentSituation.optionD);
+    if(choice === 'a') travel(player.place.closeBy[0]);
+    if(choice === 'b') travel(player.place.closeBy[1]);
+    if(choice === 'c') travel(player.place.closeBy[2]);
+    if(choice === 'd') travel(player.place.closeBy[3]);
     refreshState();
 }
 
 function travel(place){
-    currentSituation.place = place;
+    player.place = places.find(place => place.name = place);
 }
 
 

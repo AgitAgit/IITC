@@ -1,10 +1,12 @@
-function place(name, description){
+function place(name, description, state, closeBy){
     this.name = name;
     this.description = description;
-    this.text = `You have arrived at The ${name}. ${description}.`
+    this.fullDescription = `You have arrived at The ${name}. ${description}.`;
+    this.state = state; 
+    this.closeBy = closeBy;
 }
 
-function situation(place, enemy, loot, optionA, optionB, optionC, optionD){
+function place_state(enemy, loot){
     
     this.place = place;
     this.enemy = enemy;
