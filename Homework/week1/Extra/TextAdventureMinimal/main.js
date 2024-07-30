@@ -7,6 +7,8 @@ const stats = document.getElementById("stats");
 const mainText = document.getElementById("mainText");
 const btnA = document.getElementById("a");
 const btnB = document.getElementById("b");
+const leftText = document.getElementById("leftText");
+const rightText = document.getElementById("rightText");
 
 btnA.addEventListener('click', handleClickA);
 btnB.addEventListener('click', handleClickB);
@@ -35,17 +37,23 @@ function checkState(){
         score = 0;
         choiceA = start;
         choiceB = start;
-        mainText.textContent = `You died... Your score is:${score}. To start again, click A or B.`;
+        mainText.textContent = `You died... Your score is:${score}.`;
+        leftText.textContent = "restart";
+        rightText.textContent = "restart";
     }
     else if(score >= 100){
         choiceA = start;
         choiceB = start;
-        mainText.textContent = `You won! Your score is: ${score}. To start again, click A or B.`;
+        mainText.textContent = `You won! Your score is: ${score}.`;
+        leftText.textContent = "restart";
+        rightText.textContent = "restart";
     }
     else if(moves >= MAX_MOVES){
         choiceA = start;
         choiceB = start;
-        mainText.textContent = `You ran out of moves... Your score is: ${score}. To start again, click A or B.`;
+        mainText.textContent = `You ran out of moves... Your score is: ${score}.`;
+        leftText.textContent = "restart";
+        rightText.textContent = "restart";
     }
 }
 
@@ -58,7 +66,9 @@ function village(){
     moves+=1;
     choiceA = forest;
     choiceB = swamp;
-    mainText.textContent = `Hello ${player}! You are at the village. Click A to go to the forest. Click B to go to the swamp.`;
+    mainText.textContent = `Hello ${player}! You are at the village.`;
+    leftText.textContent = "forest";
+    rightText.textContent = "swamp";
     renderStats();
 }
 
@@ -67,12 +77,14 @@ function forest(){
     if(! beenTo.includes("forest")){
         beenTo.push("forest");
         score += 10;
-        alert("You have found wide sandals! \nThe forests floor is dry, but they might be helpful elsewere...");
+        alert("You have found wide sandals! \nThe forests floor is dry, but they might be helpful elsewhere...");
         inventory.push("wide sandals");
     }
     choiceA = deepForest;
     choiceB = village;
-    mainText.textContent = "You are at the forests edge. It seems peaceful... Click A to go further in.  Click B to return to the village.";
+    mainText.textContent = "You are at the forests edge. It seems peaceful...";
+    leftText.textContent = "deep forest";
+    rightText.textContent = "village";
     renderStats();
 }
 
@@ -82,7 +94,6 @@ function deepForest(){
         beenTo.push("deepForest");
         score += 10;
     }
-    mainText.textContent = "You have ventured into the deep forest. It's dark here, and there are some weird scratching sounds... Click A to investigate. Click B to return to the forests edge.";
     choiceA = () =>{
         if(! beenTo.includes("bearEncounter")){
             alert("You have encountered a large bear!");
@@ -92,13 +103,16 @@ function deepForest(){
                 renderStats();
             }
             else{
-                alert("You are defensless against the bear... \nHe eats you.");
+                alert("You are defenseless against the bear... \nHe eats you.");
                 health = 0;
                 renderStats();
             }
         }
     }
     choiceB = forest;
+    mainText.textContent = "You have ventured into the deep forest. It's dark here, and there are some weird scratching sounds...";
+    leftText.textContent = "investigate...";
+    rightText.textContent = "forest";
     renderStats();
 }
 
@@ -112,9 +126,11 @@ function swamp(){
         alert("You are not well equipped for this soggy ground... \nIt will cost you an extra move.");
         moves++;
     }
-    mainText.textContent = "You are at the swamps edge. Try not to get stuck! Click A to return to the village. Click B to go further in.";
+    mainText.textContent = "You are at the swamps edge. Try not to get stuck!";
     choiceA = village;
     choiceB = deepSwamp;
+    leftText.textContent = "village";
+    rightText.textContent = "deep swamp";
     renderStats();
 }
 
@@ -128,9 +144,11 @@ function deepSwamp(){
         alert("You are not well equipped for the deep swamp... \nYou drowned.");
         health = 0;
     }
-    mainText.textContent = "You are at the deep swamp. A treacherous stretch of land... Click A to return to the swamps edge. Click B to keep going.";
+    mainText.textContent = "You are at the deep swamp. A treacherous stretch of land...";
     choiceA = swamp;
     choiceB = abandonedBarn;
+    leftText.textContent = "swamp";
+    rightText.textContent = "keep going";
     renderStats();
 }
 
@@ -140,18 +158,22 @@ function abandonedBarn(){
         beenTo.push("abandonedBarn");
         score += 10;
     }
-    mainText.textContent = "You have found an abandoned barn. Click A to return to the deep swamp. Click B to look inside.";
+    mainText.textContent = "You have found an abandoned barn.";
+    leftText.textContent = "deep swamp";
+    rightText.textContent = "investigate barn";
     choiceA = deepSwamp;
     choiceB = () => {
         if(!beenTo.includes("inAbandonedBarn")){
             beenTo.push("inAbandonedBarn");
             score += 10;
-            alert("You have found a double barrled shotgun");
+            alert("You have found a double barreled shotgun");
             inventory.push("shotgun");
         }
-        mainText.textContent = "There are holes in the roof and the wooden floor is mostly rotten... Click A or B to exit.";
+        mainText.textContent = "There are holes in the roof and the wooden floor is mostly rotten...";
         choiceA = abandonedBarn;
         choiceB = abandonedBarn;
+        leftText.textContent = "exit barn";
+        rightText.textContent = "exit barn";
         renderStats();    
     };
     renderStats();
