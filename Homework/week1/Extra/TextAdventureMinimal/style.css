@@ -1,3 +1,40 @@
+.stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:24vh;
+    background-color: beige;
+}
+
+.mainText {
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    height:49vh;
+}
+
+.navigation {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    height: 24vh;
+    background-color: beige;
+}
+
 .navElement {
+    margin: 15px;    
     display: inline-block;
+}
+
+p {
+    padding: 5px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: brown;
+    background-color: white;
+}
+
+button {
+    color: red;
+    background-color: white;
 }
