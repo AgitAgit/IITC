@@ -1,0 +1,11 @@
+.container{
+    display:flex;
+    align-content:center;
+    justify-content: center;
+    height: 35vh;   
+}
+#txt{
+    display:flex;
+    align-content:center;
+    height: 30vh;
+}
