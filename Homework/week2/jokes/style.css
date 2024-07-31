@@ -1,0 +1,25 @@
+#headline{
+    text-align: center;
+}
+.mainContainer{
+    font-size: 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 25vh;
+}
+
+button{
+    font-size:20px;
+    height:40px;
+    background-color: darkgray;
+}
+p {
+    color:beige;
+    font-size:20px;
+    width:45vw;
+}
+body{
+    background-color: #333;
+}
+
