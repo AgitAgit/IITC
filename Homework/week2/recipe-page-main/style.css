@@ -1,0 +1,12 @@
+@font-face {
+    font-family: young-serif;
+    src: url('./assets/fonts/young-serif/YoungSerif-Regular.ttf') format('ttf');
+}
+h1,h2{
+    font-family:young-serif;
+    font-weight: 600;
+}
+
+body {
+    font-family: outfit;
+}
