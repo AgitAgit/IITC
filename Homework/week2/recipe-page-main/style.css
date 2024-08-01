@@ -1,12 +1,71 @@
 @font-face {
     font-family: young-serif;
-    src: url('./assets/fonts/young-serif/YoungSerif-Regular.ttf') format('ttf');
-}
-h1,h2{
-    font-family:young-serif;
-    font-weight: 600;
+    src: url(./assets/fonts/young-serif/YoungSerif-Regular.ttf);
 }
 
-body {
+@font-face {
     font-family: outfit;
+    src: url(./assets/fonts/outfit/Outfit-VariableFont_wght.ttf);
+}
+
+h1,h2{
+    margin:10px;
+    font-family:young-serif;
+}
+h2{
+    color:hsl(14, 45%, 36%);
+}
+h3{
+    margin:10px;
+    font-family: outfit;
+    color: hsl(332, 51%, 32%);
+}
+
+
+.tblR{
+    color:hsl(14, 45%, 36%);
+    font-weight: 600;
+}
+p, li, table{
+    margin:10px;
+    font-family: outfit;
+    color: hsl(30, 10%, 34%);
+}
+
+b{
+    color: hsl(30, 10%, 34%);
+}
+
+body{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: hsl(30, 18%, 87%);
+}
+
+.mainDiv{
+    border-radius: 25px;
+    height: 80%;
+    width: 60%;
+    background-color: white;
+
+}
+.prepTime{
+    background-color:hsl(330, 100%, 98%);
+}
+img{
+    border-radius: 25px;
+    width: 85%;
+}
+.imgDiv{
+    padding:20px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.txtDiv{
+    padding: 20px;
+    height: 80%;
+    width: 60%;
 }
