@@ -8,17 +8,34 @@
     src: url(./assets/fonts/outfit/Outfit-VariableFont_wght.ttf);
 }
 
+:root{
+--White: hsl(0, 0%, 100%);
+
+--Stone-100: hsl(30, 54%, 90%);
+--Stone-150: hsl(30, 18%, 87%);
+--Stone-600: hsl(30, 10%, 34%);
+--Stone-900: hsl(24, 5%, 18%);
+
+--Brown-800: hsl(14, 45%, 36%);
+
+--Rose-800: hsl(332, 51%, 32%);
+--Rose-50: hsl(330, 100%, 98%);
+}
+
+h1{
+    color:var(--Stone-900);
+}
 h1,h2{
     margin:10px;
     font-family:young-serif;
 }
 h2{
-    color:hsl(14, 45%, 36%);
+    color:var(--Brown-800)
 }
 h3{
     margin:10px;
     font-family: outfit;
-    color: hsl(332, 51%, 32%);
+    color:var(--Rose-800);
 }
 
 
@@ -29,18 +46,18 @@ h3{
 p, li, table{
     margin:10px;
     font-family: outfit;
-    color: hsl(30, 10%, 34%);
+    color:var(--Stone-600);
 }
 
 b{
-    color: hsl(30, 10%, 34%);
+    color:var(--Stone-600);
 }
 
 body{
     display:flex;
     flex-direction: column;
     align-items: center;
-    background-color: hsl(30, 18%, 87%);
+    background-color: hsl(30, 75%, 70%);
 }
 
 .mainDiv{
@@ -50,8 +67,12 @@ body{
     background-color: white;
 
 }
-.prepTime{
-    background-color:hsl(330, 100%, 98%);
+#prepTime{
+    display: flex;
+    flex-direction: column;
+    background-color:var(--Rose-50);
+    border-radius:15px;
+    width: 80%;
 }
 img{
     border-radius: 25px;
