@@ -19,3 +19,4 @@ countFreq("abbcccddddeeeffg");
 console.log(ob);
 countFreq("Helloooo!");
 console.log(ob);
+

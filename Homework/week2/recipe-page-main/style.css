@@ -22,42 +22,17 @@
 --Rose-50: hsl(330, 100%, 98%);
 }
 
-h1{
-    color:var(--Stone-900);
-}
-h1,h2{
-    margin:10px;
-    font-family:young-serif;
-}
-h2{
-    color:var(--Brown-800)
-}
-h3{
-    margin:10px;
-    font-family: outfit;
-    color:var(--Rose-800);
-}
-
-
-.tblR{
-    color:hsl(14, 45%, 36%);
-    font-weight: 600;
-}
-p, li, table{
-    margin:10px;
-    font-family: outfit;
-    color:var(--Stone-600);
-}
-
-b{
-    color:var(--Stone-600);
-}
-
 body{
     display:flex;
     flex-direction: column;
     align-items: center;
-    background-color: hsl(30, 75%, 70%);
+    background-color: var(--Stone-100);
+    
+    p, li, table{
+    padding-top:5px;
+    font-family: outfit;
+    color:var(--Stone-600);
+    }
 }
 
 .mainDiv{
@@ -67,26 +42,76 @@ body{
     background-color: white;
 
 }
-#prepTime{
-    display: flex;
-    flex-direction: column;
-    background-color:var(--Rose-50);
-    border-radius:15px;
-    width: 80%;
+
+.innerMainDiv{
+    margin: 5%;
 }
-img{
-    border-radius: 25px;
-    width: 85%;
+
+.secondaryDiv{
+    border-bottom: 1px solid var(--Stone-150);
 }
+
+ul, ol{
+    list-style-position: outside;
+    padding-left: 25px;
+    margin-block: 5px;
+}
+h1{
+    color:var(--Stone-900);
+}
+h1,h2{
+    font-family:young-serif;
+}
+h2{
+    color:var(--Brown-800)
+}
+
+
+
+
+b{
+    color:var(--Stone-600);
+}
+
 .imgDiv{
-    padding:20px;
     display:flex;
     flex-direction: column;
     align-items: center;
+    img{
+        border-radius: 25px;
+        width:100%;
+    }
 }
 
-.txtDiv{
-    padding: 20px;
-    height: 80%;
-    width: 60%;
+#prepTime{
+    background-color:var(--Rose-50);
+    border-radius:15px;
+    width: 80%;
+    padding: 10px;
+    
+    h3{
+        margin-block: 5px;
+        font-family: outfit;
+        color:var(--Rose-800);
+    }
+}
+
+#nutrition{
+    border-bottom:none;
+    .tblR{
+        color:hsl(14, 45%, 36%);
+        font-weight: 600;
+    }
+    table{
+        width: 100%;
+        border-collapse:collapse;
+    }
+    td{
+        padding-top:5px;
+        padding-bottom: 5px;
+        border-bottom: 1px solid var(--Stone-150);
+    }
+    tr:last-child > td {
+        border-bottom: none;
+    }
 }
