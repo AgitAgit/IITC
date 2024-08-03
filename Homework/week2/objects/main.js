@@ -51,3 +51,16 @@ todoList.displayTasks();
 todoList.completeTask("code");
 
 todoList.displayTasks();
+
+//20. quiz
+let question = {
+    text: "default question",
+    options: ["def op1", "def op2"],
+    correctAnswer: 0
+}
+let quiz = {
+    questions: [],
+    score: 0,
+    askQuestion: function (index){},
+    checkAnswer: function (index, answer){}
+}
