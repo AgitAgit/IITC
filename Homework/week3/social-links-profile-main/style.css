@@ -1,0 +1,58 @@
+@font-face {
+    font-family:Inter;
+    src:url(./assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
+}
+
+:root {
+    font-family:Inter;
+  color: var(--White);
+
+  --Green: hsl(75, 94%, 57%);
+
+  --White: hsl(0, 0%, 100%);
+
+  --Grey-700: hsl(0, 0%, 20%);
+  --Grey-800: hsl(0, 0%, 12%);
+  --Grey-900: hsl(0, 0%, 8%);
+}
+
+body {
+  background-color: var(--Grey-900);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0px;
+
+  #mainDiv {
+    background-color: var(--Grey-800);
+    display: flex;
+    align-content: center;
+    text-align: center;
+    flex-direction: column;
+    width: 30%;
+   
+    img{
+        width:30%;
+        margin:auto;
+        border-radius: 50%;
+    }
+
+    h1{
+
+    }
+    h3{
+        color: var(--Green);
+    }
+    p{
+
+    }
+    button {
+      background-color: var(--Grey-700);
+      color: var(--White);
+      border:none;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 15px;
+    }
+  }
+}
