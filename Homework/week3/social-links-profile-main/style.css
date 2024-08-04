@@ -1,10 +1,12 @@
 @font-face {
-    font-family:Inter;
-    src:url(./assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
+  font-family: Inter;
+  src: url(./assets/fonts/Inter-VariableFont_slnt\,wght.ttf);
 }
 
 :root {
-    font-family:Inter;
+    font-size: 14px;
+  font-family: Inter;
+
   color: var(--White);
 
   --Green: hsl(75, 94%, 57%);
@@ -19,37 +21,41 @@
 body {
   background-color: var(--Grey-900);
   display: flex;
-  align-items: center;
-  flex-direction: column;
+    justify-content: center;
+    align-items: center;
   margin: 0px;
+  height:100vh;
+  width:100vw;
 
-  #mainDiv {
+    #mainDiv {
     background-color: var(--Grey-800);
     display: flex;
+    justify-content:center;
     align-content: center;
     text-align: center;
     flex-direction: column;
-    width: 30%;
-   
-    img{
-        width:30%;
-        margin:auto;
-        border-radius: 50%;
+    height:80%;
+    aspect-ratio: 1/1.6;
+    border-radius:10px;
+
+    img {
+      width: 30%;
+      margin: auto;
+      border-radius: 50%;
     }
 
     h1{
 
     }
-    h3{
-        color: var(--Green);
+    h3 {
+      color: var(--Green);
     }
-    p{
-
+    p {
     }
     button {
       background-color: var(--Grey-700);
       color: var(--White);
-      border:none;
+      border: none;
       border-radius: 10px;
       padding: 15px;
       margin: 15px;
