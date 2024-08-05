@@ -102,9 +102,65 @@ let quiz = {
 }
 
 let choice = 0; 
-
+/*
 while(choice !== -1) {
     choice = parseInt(prompt(`Choose a question between 0 and ${quiz.questions.length - 1}`));
     quiz.askQuestion(choice);
 }
+*/
 
+
+//4.1
+let library = {
+    fantasy:["assassin's apprentice"],
+    cooking:[],
+    geography:["maps of some place"]
+}
+
+//4.2
+library.fantasy.push("fantasy book");
+
+//4.3
+function numberOfBooks(lib, genre){
+    return lib[genre].length;
+}
+
+//let genre = "geography";
+
+//console.log(`The number of books in the ${genre} genre is ${numberOfBooks(library,genre)}`);
+/*
+for(let key in library){
+    console.log(key);
+    console.log(library[key]);
+}
+*/
+
+let fruits = {apple: 5, banana: 3, orange: 2};
+let total = 0;
+let types = 0;
+
+for (let fruit in fruits) {
+    total += fruits[fruit];
+    types += 1;
+}
+
+console.log("Total fruits:", total);
+console.log("Kinds of fruit:", types);
+
+let alsoFruits = {}
+
+for(let fruit in fruits){
+    alsoFruits[fruit] = fruits[fruit];
+}
+
+console.log("fruits", fruits, "\nalso fruits", alsoFruits);
+
+//5.1
+let car = {
+    make: "ford",
+    model: "focus",
+    year: 1999
+}
+for(let key in car){
+    console.log(`${key} : ${car[key]}`);
+}
