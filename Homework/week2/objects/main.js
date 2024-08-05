@@ -164,3 +164,106 @@ let car = {
 for(let key in car){
     console.log(`${key} : ${car[key]}`);
 }
+
+//5.2
+let grades = {Alice: 90, Bob: 85, Charlie: 92};
+let sum = 0;
+let studentNum = 0;
+
+for(let student in grades){
+    sum += grades[student];
+    studentNum += 1;
+}
+console.log("average:",sum/studentNum);
+
+//5.3
+function obToUpper(obj){
+    let result = {};
+    for(let key in obj){
+        if(typeof obj[key] === 'string'){
+            result[key] = obj[key].toUpperCase();
+        }
+        else result[key] = obj[key];
+    }
+    return result;
+}
+
+console.log("car", car, "\nto upper car:", obToUpper(car));
+
+//5.4
+let library2 = {
+    book1 : {
+        name: "To kill a mockingbird",
+        isCheckedOut: true
+    },
+    book2 : {
+        name: "The grapes of wrath",
+        isCheckedOut: false
+    },
+    book3 : {
+        name: "1984",
+        isCheckedOut: true
+    }
+}
+
+for(let book in library2){
+    if(library2[book].isCheckedOut) {
+        console.log(`${library2[book].name} is checked out`);
+    }
+    else console.log(`${library2[book]['name']} is in stock`);
+}
+
+let productPrices = {
+    apple : 3,
+    tomato : 2,
+    potato : 1.5
+}
+
+for(let product in productPrices){
+    productPrices[product] *= 0.9;
+}
+console.log(productPrices);
+
+/*
+function deepCopy(obj){
+    if(typeof obj !== 'object' || obj === null){
+        return obj;
+    }
+
+    for(let key in obj){
+        if(obj.hasOwnProperty(key))
+    }
+}
+*/
+
+const origin = {
+    name:"origin name",
+    originProp : "stamstring",
+    originP2: "*_*"
+}
+
+const child = Object.create(origin);
+
+child.sound = "baaaa";
+
+function onlyChildProps(obj){
+    for(let key in obj){
+        if(obj.hasOwnProperty(key)){
+            console.log(`${key} : ${obj[key]}`);
+        }
+    }
+}
+function includePrototypeProps(obj){
+    for(let key in obj){
+        console.log(`${key} : ${obj[key]}`);
+    }
+}
+
+console.log("only child props:");
+
+onlyChildProps(child);
+
+console.log("with prototype props:");
+
+includePrototypeProps(child);
+
