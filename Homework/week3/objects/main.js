@@ -1,6 +1,6 @@
 "use strict";
 
-let person = {
+const person = {
   name: "John",
   age: 17,
   address: {
@@ -19,7 +19,7 @@ console.log("Updated Person:", person);
 
 /////////////////////////////////////////////////////
 
-let students = [
+const students = [
   { id: 1, name: "Alice", age: 20 },
   { id: 2, name: "Bob", age: 22 },
   { id: 3, name: "Charlie", age: 19 },
@@ -27,7 +27,7 @@ let students = [
 
 // TODO: Write a function to return an array of student names
 function getStudentNames(students) {
-  let result = [];
+  const result = [];
   /*
   for(const student of students){
     result.push(student.name);
@@ -38,7 +38,7 @@ function getStudentNames(students) {
   return result;
 }
 
-let names = getStudentNames(students);
+const names = getStudentNames(students);
 console.log("Student Names:", names);
 
 // TODO: Write a function to find a student by ID
@@ -50,7 +50,7 @@ function getStudentById(students, id) {
   }
 }
 
-let studentt = getStudentById(students, 2);
+const studentt = getStudentById(students, 2);
 console.log("Found Student:", studentt);
 
 // TODO: Write a function to add a new student to the array
@@ -63,7 +63,7 @@ console.log("Updated Students:", students);
 
 /////////////////////////////////////////////////////
 
-let product = {
+const product = {
   name: "Laptop",
   price: 1200,
   isAvailable: true,
@@ -80,23 +80,24 @@ console.log("Updated Product:", product);
 
 // TODO: Write a function to update the product's price
 function updatePrice(product, newPrice) {
-  // your code here
+  product.price = newPrice;
 }
 
-// updatePrice(product, 1500);
-// console.log("Updated Product:", product);
+updatePrice(product, 1500);
+console.log("Updated Product:", product);
 
 // TODO: Write a function to remove a category from the product
 function removeCategory(product, category) {
-  // your code here
+    const i = product.categories.indexOf(category);
+    product.categories.splice(i,1);
 }
 
-// removeCategory(product, "tech");
-// console.log("Updated Product:", product)
+removeCategory(product, "tech");
+console.log("Updated Product:", product)
 
 /////////////////////////////////////////////////////
 
-let products = [
+const products = [
   { name: "Laptop", price: 1000, sizes: ["M", "L"], isAvailable: true },
   { name: "Mouse", price: 2500, sizes: ["S", "M"], isAvailable: false },
   { name: "Keyboard", price: 52, sizes: ["L", "XL"], isAvailable: true },
@@ -104,38 +105,46 @@ let products = [
 
 // TODO: Write a function to find the most expensive product
 function findMostExpensiveProduct(products) {
-  // your code here
+  let max = -Infinity;
+  let currentMaxProd = products[0];
+  products.forEach(product => {
+    if(product.price > max){
+        max = product.price;
+        currentMaxProd = product;
+    }
+  });
+  return currentMaxProd;
 }
 
-// let expensiveProduct = findMostExpensiveProduct(products);
-// console.log("Most Expensive Product:", expensiveProduct);
+const expensiveProduct = findMostExpensiveProduct(products);
+console.log("Most Expensive Product:", expensiveProduct);
 
 // TODO: Write a function to return an array of only available product sizes
 function getAvailableSizes(products) {
   // your code here
 }
 
-// let sizes = getAvailableSizes(products);
+// const sizes = getAvailableSizes(products);
 // console.log("Available Sizes:", sizes);
 
 /////////////////////////////////////////////////////
 
-let student = {
+const student = {
   name: "Alice",
   age: 20,
 };
 
 // TODO: Write a function to add a new property to the student object
 function addProperty(student, key, value) {
-  // your code here
+  student[key] = value;
 }
 
-// addProperty(student, "grade", "A");
-// console.log("Updated Student:", student);
+addProperty(student, "grade", "A");
+console.log("Updated Student:", student);
 
 /////////////////////////////////////////////////////
 
-let school = {
+const school = {
   name: "Greenwood High",
   address: {
     city: "Springfield",
@@ -157,7 +166,7 @@ function updateStudentGrade(school, studentId, subject, newGrade) {
 
 /////////////////////////////////////////////////////
 
-let orders = [
+const orders = [
   { id: 1, product: "Laptop", status: "delivered" },
   { id: 2, product: "Mouse", status: "pending" },
   { id: 3, product: "Keyboard", status: "delivered" },
@@ -170,7 +179,7 @@ function getDeliveredOrders(orders) {
   // your code here
 }
 
-// let deliveredOrders = getDeliveredOrders(orders);
+// const deliveredOrders = getDeliveredOrders(orders);
 // console.log("Delivered Orders:", deliveredOrders);
 
 // TODO: Write a function to count the occurrences of each product in the orders
@@ -178,7 +187,7 @@ function countProductOccurrences(orders) {
   // your code here
 }
 
-// let productCounts = countProductOccurrences(orders);
+// const productCounts = countProductOccurrences(orders);
 // console.log("Product Counts:", productCounts);
 /*
   Output:
