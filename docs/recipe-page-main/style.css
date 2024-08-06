@@ -55,6 +55,9 @@ ul, ol{
     list-style-position: outside;
     padding-left: 25px;
     margin-block: 5px;
+    li{
+        padding: 6px;
+    }
 }
 h1{
     color:var(--Stone-900);
