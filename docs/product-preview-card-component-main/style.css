@@ -1,37 +1,62 @@
-@font-face{
-    font-family: Montserrat;
-    src: url("./assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
+@font-face {
+  font-family: Montserrat;
+  src: url("./assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
 }
 
 @font-face {
-    font-family:Fraunces;
-    src: url("./assets/fonts/Fraunces/Fraunces-VariableFont_SOFT\,WONK\,opsz\,wght.ttf");
+  font-family: Fraunces;
+  src: url("./assets/fonts/Fraunces/Fraunces-VariableFont_SOFT\,WONK\,opsz\,wght.ttf");
 }
 
-@media(max-width: 375px){
-
+@media (max-width: 375px) {
+  #desktopImg {
+    display: none;
+  }
 }
-@media(min-width: 376px){
-    #mobileImg{
-        display:none;
+
+@media (min-width: 376px) {
+  #mobileImg {
+    display: none;
+  }
+}
+
+:root {
+  --Dark-cyan: hsl(158, 36%, 37%);
+  --Cream: hsl(30, 38%, 92%);
+
+  --Very-dark-blue: hsl(212, 21%, 14%);
+  --Dark-grayish-blue: hsl(228, 12%, 48%);
+  --White: hsl(0, 0%, 100%);
+}
+body {
+    background-color: var(--Cream);
+
+  #mainDiv {
+    background-color: var(--White);
+    width: 30%;
+    border: 1px solid black;
+    border-radius: 15px;
+    img {
+      border-radius: 15px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+      width: 100%;
     }
-}
-
-:root{
-    --Dark-cyan: hsl(158, 36%, 37%);
-    --Cream: hsl(30, 38%, 92%);
-
-    --Very-dark-blue: hsl(212, 21%, 14%);
-    --Dark-grayish-blue: hsl(228, 12%, 48%);
-    --White: hsl(0, 0%, 100%);
-}
-
-#mainDiv{
-    #desktopImg{}
-    #mobileImg{}
-    #textDiv{
-        h1{
-            font-family: Fraunces;           
-        }
+    #textDiv {
+      font-family: Montserrat;
+      color: var(--Dark-grayish-blue);
+      h1 {
+        font-family: Fraunces;
+        color: var(--Very-dark-blue);
+      }
+      button {
+        color: var(--White);
+        background-color: var(--Dark-cyan);
+        border: none;
+        border-radius: 5px;
+        padding: 20px;
+        padding-inline: 70px;
+      }
     }
+  }
 }
