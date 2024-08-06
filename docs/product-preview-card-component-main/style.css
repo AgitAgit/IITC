@@ -1,11 +1,20 @@
 @font-face{
-    font-family:Montserrat;
+    font-family: Montserrat;
     src: url("./assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
 }
 
 @font-face {
     font-family:Fraunces;
     src: url("./assets/fonts/Fraunces/Fraunces-VariableFont_SOFT\,WONK\,opsz\,wght.ttf");
+}
+
+@media(max-width: 375px){
+
+}
+@media(min-width: 376px){
+    #mobileImg{
+        display:none;
+    }
 }
 
 :root{
@@ -15,4 +24,14 @@
     --Very-dark-blue: hsl(212, 21%, 14%);
     --Dark-grayish-blue: hsl(228, 12%, 48%);
     --White: hsl(0, 0%, 100%);
+}
+
+#mainDiv{
+    #desktopImg{}
+    #mobileImg{}
+    #textDiv{
+        h1{
+            font-family: Fraunces;           
+        }
+    }
 }

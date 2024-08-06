@@ -65,7 +65,8 @@ body {
       margin: 15px;
     }
     button:hover{
-      
+      background-color: var(--Green);
+      color: var(--Grey-900);
     }
   }
 }
