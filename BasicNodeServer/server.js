@@ -1,6 +1,10 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const app = express();
 const port = 3000;
+dotenv.config();
+const data = process.env.DUCK;
+
 
 app.get('/',(req, res) =>{
     res.send("Welcome to my basic Express server!");
@@ -27,6 +31,10 @@ app.get('/api/products/:id',(req,res)=>{
     const id = req.params.id;
     const product = products.find(product => product.id === parseInt(id));
     res.json(product);
+});
+
+app.get('/*',(req,res)=> {
+    res.send(data);
 });
 
 app.listen(port, ()=>{
