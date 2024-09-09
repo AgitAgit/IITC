@@ -180,7 +180,7 @@ function abandonedBarn(){
 }
 
 function start(){
-    //player = prompt("Enter your name");
+    player = prompt("Enter your name");
     //gunSound = prompt("Enter the sound a gun should make");
     health = 100;
     moves = -1;
