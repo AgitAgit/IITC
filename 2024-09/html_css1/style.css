@@ -1,7 +1,16 @@
+*{
+    
+}
+#mainDiv{
+    width:710px;
+    height:976px;
+    background-color: black;
+}
+
 .container{
     background-color: yellow;
     border: 2px solid blue;
-    margin:10px;
+    margin:2rem 0.5rem;
 }
 
 #div1{
@@ -25,11 +34,29 @@
     }
 }
 #div2{
+    padding: 1rem;
     .ball{
         display:inline-block;
-        border: 1px solid black;
         height:100px;
+        width:100px;
+        border-radius: 50%;
+    }
+    #ball1{
+        background-color: red;
+    }
+    #ball2{
+        background-color: blue;
+    }
+    #ball3{
+        background-color: green;
     }
 }
-#div3{}
-#div4{}
+#div3{
+
+}
+#div4{
+    height:400px;
+    width: 80%;
+    background-color: red;
+    margin:1rem auto 2rem
+}
