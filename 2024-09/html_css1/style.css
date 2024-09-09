@@ -1,0 +1,35 @@
+.container{
+    background-color: yellow;
+    border: 2px solid blue;
+    margin:10px;
+}
+
+#div1{
+    color:red;
+    padding:1rem;
+    
+    #p4{
+        margin-right:0;
+        padding-right:0;
+        color:black;
+    }
+    #p5{
+        margin-left:0;
+        padding-left:0;
+    }
+    #p3{
+        color:white;
+        background-color: gray;
+        padding:1rem;
+        border-radius: 7px;
+    }
+}
+#div2{
+    .ball{
+        display:inline-block;
+        border: 1px solid black;
+        height:100px;
+    }
+}
+#div3{}
+#div4{}
