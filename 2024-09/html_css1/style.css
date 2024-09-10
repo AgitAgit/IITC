@@ -1,10 +1,17 @@
 *{
-    
+    box-sizing:border-box;
+}
+body{
+    display:flex;
+    justify-content: center;
 }
 #mainDiv{
     width:710px;
+    min-width: 710px;
     height:976px;
-    background-color: black;
+    min-height:976px;
+    background-color: white;
+    border:1px solid black;
 }
 
 .container{
@@ -55,8 +62,38 @@
 
 }
 #div4{
+    position:relative;
     height:400px;
     width: 80%;
     background-color: red;
-    margin:1rem auto 2rem
+    margin:1rem auto 2rem;
+    .item{
+        width:fit-content;
+    }
+    #left{
+        /* position:absolute;
+        top:0px; */
+        color:white;
+        background-color:black;
+        padding:1rem;
+    }
+    #right{
+        margin-left:auto;
+        color:white;
+        background-color:black;
+        padding:1rem;
+    }
+    #middle{
+        /* position:absolute;
+        top: 50%;
+        left:50%;
+        transform: translate(-50%,-50%); */
+        margin:auto;
+        color:white;
+        background-color: black;
+        border-radius: 50%;
+        /* aspect-ratio: 2/1; */
+        padding:1rem;
+        box-shadow: 5px 10px 15px white;
+    }
 }
