@@ -1,0 +1,49 @@
+:root{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+
+    --Very-dark-blue: hsl(233, 47%, 7%); /*(main background)*/
+    --Dark-desaturated-blue : hsl(244, 38%, 16%); /* (card background) */
+    --Soft-violet : hsl(277, 64%, 61%); /* (accent) */
+
+    --White:hsl(0, 0%, 100%); /*(main heading, stats)*/
+    --Slightly-transparent-white: hsla(0, 0%, 100%, 0.75); /*(main paragraph)*/
+    --Slightly-transparent-white2: hsla(0, 0%, 100%, 0.6); /*(stat headings)*/
+}
+
+body{
+    background-color: var(--Very-dark-blue);
+}
+img{
+    display:block;
+    z-index:0;
+}
+.mainDiv{
+    background-color: var(--Dark-desaturated-blue);
+    color:var(--White);
+    display:flex;
+    flex-wrap:wrap-reverse;
+    .imgDiv{
+        display:flex;
+        flex-basis:0;
+        flex-grow:1;
+        background-color: hsla(277, 64%, 61%, 0.977);
+        z-index: index 2;
+    }
+    .textDiv{
+        flex-basis:0;
+        flex-grow:2;
+        .mainText{
+        }
+        .secondaryText{
+            color:(--Slightly-transparent-white);
+        }
+    }
+}
+.insights{
+    color:var(--Soft-violet);
+}
+.statHeading{
+    color:var(--Slightly-transparent-white2);
+}
