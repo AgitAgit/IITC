@@ -1,0 +1,26 @@
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+body{
+}
+p{
+    
+}
+#mainDiv{
+    display:flex;
+    background-color: wheat;
+    border:3px solid black;
+    height:60vh;
+}
+#p1{
+    background-color: red;
+}
+#p2{
+    background-color:green;
+    flex-grow:0;
+}
+#p3{
+    background-color:blue;
+}
