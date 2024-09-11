@@ -1,0 +1,30 @@
+*{
+    box-sizing:border-box;
+}
+.mainDiv{
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+}
+.headerDiv{
+    background-color: purple;
+    display:flex;
+    justify-content: space-around;
+    padding:1rem;
+}
+.bodyDiv{
+    display:flex;
+    /* flex-wrap:wrap; */
+    /* align-items: stretch; */
+    gap:1rem;
+}
+.pDiv{
+    padding:1rem;
+    background-color: purple;
+    flex-basis: 100px;
+    flex-grow: 1;
+}
+.ducks{
+    display:flex;
+    justify-content: space-around;
+}
