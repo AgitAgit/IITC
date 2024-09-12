@@ -16,27 +16,41 @@
 </head>
 <body>
   <div class="mainDiv">
-    
     <div class="textDiv">
-      <div class="mainText">
-        <h1>
-          Get <span class="insights">insights</span> that help your business grow.
+      <div class="innerTextDiv">
+        <div class="mainText">
+          <h1>
+            Get <span class="insights">insights</span> that help your business grow.
         </h1>
+        <div class="secondaryText">
+          Discover the benefits of data analytics and make better decisions regarding revenue, customer 
+          experience, and overall efficiency.
+        </div>
       </div>
-      <div class="secondaryText">Discover the benefits of data analytics and make better decisions regarding revenue, customer 
-        experience, and overall efficiency.
-      </div>
-      <div class="stats"><!--maybe add an animation where the stats increment up to their final status when the page loads-->
-        <span id="num1">10</span>k+ <span class="statHeading">companies</span>
-        <span id="num2">314</span> <span class="statHeading">templates</span>
-        <span id="num3">12</span>m+ <span class="statHeading">queries</span>
+        <div class="stats"><!--maybe add an animation where the stats increment up to their final status when the page loads-->
+          <div class="stat">
+            <h2><span id="num1">10</span><!--k+--></h2> <span class="statHeading">companies</span>
+          </div>
+          <div class="stat">
+            <h2><span id="num2">314</span></h2> <span class="statHeading">templates</span>
+          </div>
+          <div class="stat">
+            <h2><span id="num3">12</span><!--m+--></h2> <span class="statHeading">queries</span>
+          </div>
+        </div>
       </div>
     </div>
+
+    
     <div class="imgDiv">
       <div class="hueDiv"></div>
-      <img src="./images/image-header-mobile.jpg">
+      <img id="imgDesktop" src="./images/image-header-desktop.jpg">
+      <img id="imgMobile" src="./images/image-header-mobile.jpg">
     </div>
   </div>
+
+
+
   <script src="./main.js"></script>
   <link rel="stylesheet" href="./style.css">
 </body>
