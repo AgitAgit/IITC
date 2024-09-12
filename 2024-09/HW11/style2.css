@@ -16,6 +16,7 @@
 body > * {
     flex:1;
 }
+
 body{
     display: flex;
     justify-content: center;
@@ -31,6 +32,7 @@ body{
         text-align: center;
         overflow-x: hidden;
         background-color: var(--Dark-desaturated-blue);
+        max-width: 650px;
 
         .textDiv{
             .innerTextDiv{
@@ -43,6 +45,7 @@ body{
                         color:var(--Soft-violet);
                     }
                     .secondaryText{
+                        margin-top: 1rem;
                         color:var(--Slightly-transparent-white);
                     }
                 }
@@ -55,13 +58,96 @@ body{
                 }
             }
         }
+
         .imgDiv{
+            position: relative;
+            img{
+                display:block;
+            }
             #imgDesktop{
                 display:none;
+            }
+            #imgMobile{
+                display:block;
+            }
+            .hueDiv{
+                background-color: hsla(277, 73%, 50%, 0.678);
+                position:absolute;
+                top:0;
+                left:0;
+                right:0;
+                bottom: 0;
             }
         }
     }
 }
-@media(min-width:1024){
 
+@media(min-width:1024px){    
+    body{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--Very-dark-blue);
+        height:100vh;
+        .mainDiv{
+            background-color: var(--Dark-desaturated-blue);
+            color:var(--White);
+            display:flex;
+            flex-direction: row;
+            height:60%;
+            max-width: 1150px;
+            .textDiv{
+                display:flex;
+                align-items: center;
+                .innerTextDiv{
+                    height:100%;
+                    padding: 0rem 2rem;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
+                    .mainText{
+                        text-align: left;
+                        .insights{
+                            color:var(--Soft-violet);
+                        }
+                    }
+                    .secondaryText{
+                        color:(--Slightly-transparent-white);
+                    }
+                }
+                .stats{
+                    display: flex;
+                    justify-content: space-around;
+                    .stat{
+                        display:flex;
+                        flex-direction: column;
+                        .statHeading{
+                            color:var(--Slightly-transparent-white2);
+                        }
+                    }
+                }
+            }
+        }
+        .imgDiv{
+            position: relative;
+            display:flex;
+            align-items: center;
+            width:100%;
+            overflow: hidden;
+            .hueDiv{
+                background-color: hsla(277, 73%, 50%, 0.678);
+                position:absolute;
+                top:0;
+                left:0;
+                right:0;
+                bottom:0;
+            }
+
+            #imgDesktop{
+            }
+            #imgMobile{
+                display:none;
+            }
+        }
+    }
 }
