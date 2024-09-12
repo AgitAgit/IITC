@@ -15,7 +15,9 @@
     
 }
 
-
+body > *{
+    flex:1;
+}
 
 body{
     height:100vh;
@@ -55,13 +57,14 @@ body{
             }
         }
     }
-    
-    
     .imgDiv{
         position: relative;
         display:flex;
         flex-basis:0;
         flex-grow:1;
+        #imgMobile{
+            display:none;
+        }
         img{
             display:block;
         }
@@ -75,9 +78,22 @@ body{
         }
     }
 }
+@media(max-width: 800){
+    .mainDiv{
+        width:100%;
+        display:flex;
+        .textDiv{
 
+        }
 
-@media(min-width: 375px){
+        .imgDiv{
+            display:flex;
+            justify-content: center;
+        }
+    }
+}
+
+@media(min-width: 900px){
     .mainDiv{
         width:80%;
         border-radius: 1rem;
