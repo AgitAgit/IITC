@@ -1,23 +1,93 @@
+@font-face {
+    font-family: young-serif;
+    src: url(./assets/fonts/young-serif/YoungSerif-Regular.ttf);
+}
+
+@font-face {
+    font-family: outfit;
+    src: url(./assets/fonts/outfit/Outfit-VariableFont_wght.ttf);
+}
+:root{
+--White: hsl(0, 0%, 100%);
+
+--Stone-100: hsl(30, 54%, 90%);
+--Stone-150: hsl(30, 18%, 87%);
+--Stone-600: hsl(30, 10%, 34%);
+--Stone-900: hsl(24, 5%, 18%);
+
+--Brown-800: hsl(14, 45%, 36%);
+
+--Rose-800: hsl(332, 51%, 32%);
+--Rose-50: hsl(330, 100%, 98%);
+}
+
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
+    font-family: outfit;
+    font-weight: 400;
+    color:var(--Stone-600);
 }
-
+body{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
 .mainDiv{
-
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 425px;
+    width:100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
+
 .imgDiv{
-
+    width:100%;
+    aspect-ratio: 13/6;
 }
-.txtDiv{
+img{
+    width:100%;
+    aspect-ratio: 13/6;
+}
 
+.txtDiv{
+    padding:2rem;
+    display:flex;
+    flex-direction: column;
+    gap:2rem;
+}
+li{
+    padding:0.3rem;
+    margin-left: 1.2rem;
 }
 .introDiv{
-
+    
+}
+.heading{
+    font-family: young-serif;
+    color:var(--Brown-800);
+    margin-bottom: 1.5rem;
+}
+.miniHeading{
+    font-weight:600;
+}
+#mainHeading{
+    color:var(--Stone-900);
 }
 .preparationDiv{
+    background-color: var(--Rose-50);
+    padding:1rem;
+    border-radius: 1rem;
 
+}
+#prepHeading{
+    color:var(--Rose-800);
+    font-weight: 700;
+}
+.prepList{
 }
 .ingredientsDiv{
 
@@ -25,7 +95,43 @@
 .instructionsDiv{
 
 }
-.nutritionDiv{
-    
-}
+.nutritionDiv > *:not(:first-child){
 
+}
+table{
+    margin-top: 1.5rem;
+    border-collapse: collapse;
+    width:100%;
+}
+table td{
+    border-bottom:1px solid var(--Stone-600);
+    padding: 1rem 1rem 1rem;
+}
+table tr td:first-child{
+    font-weight: 600;
+}
+table tr td:last-child{
+    color: var(--Brown-800);
+    font-weight: 700;
+}
+@media(min-width:768px){
+    body{
+        background-color: var(--Stone-100);
+    }
+    .mainDiv{
+        border-radius: 1rem;
+        background-color: var(--White);
+        margin:5rem 0  5rem 0;
+        padding:2rem;
+        max-width: 648px;
+    }
+    .imgDiv{
+    }
+    .img{
+        border-radius:1rem;
+    }
+    .txtDiv{
+        margin:0;
+        padding:0;
+    }
+}
