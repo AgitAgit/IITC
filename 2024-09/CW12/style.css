@@ -63,6 +63,9 @@ li{
     padding:0.3rem;
     margin-left: 1.2rem;
 }
+li::marker{
+    color: var(--Brown-800);
+}
 .introDiv{
     
 }
