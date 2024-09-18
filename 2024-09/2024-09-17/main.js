@@ -31,6 +31,8 @@ const _box = document.getElementById('box');
 const _btnStyle = document.getElementById('changeStyle');
 _btnStyle.addEventListener('click', changeBox);
 
+//task5
+const _task5 = document.getElementById('task5');
 
 
 document.querySelectorAll('.text').forEach(element => {
@@ -100,9 +102,22 @@ function handleClearClick(){
     handleInputChange();
 }
 
+_box.style.height = '100px';
+_box.style.width = '100px';
 function changeBox(){
     const red = Math.random() * 255;
     const green = Math.random() * 255;
     const blue = Math.random() * 255;
     _box.style.borderColor = `rgb(${red},${green},${blue})`;
+    _box.style.height = `${parseInt(_box.style.height) * 2}px`;
+    _box.style.width = `${parseInt(_box.style.width) * 2}px`;
+}
+
+for(let i = 1; i < 6; i ++){
+    const btn = document.createElement('button');
+    btn.textContent = 'click me';
+    btn.addEventListener('click', function(){
+        alert(i);
+    });
+    _task5.appendChild(btn);
 }
