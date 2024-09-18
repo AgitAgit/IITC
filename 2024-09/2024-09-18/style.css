@@ -1,0 +1,39 @@
+*{
+    box-sizing: border-box;
+}
+.mainDiv{
+    display: flex;
+    justify-content: center;
+}
+
+.todo1{
+    display:flex;
+    flex-direction: column;
+    background-color: wheat;
+    width: 60%;
+    min-width:300px;
+    padding:1rem;
+}
+.inputDiv{
+    display:flex;
+    flex-wrap: wrap;
+    width:100%;
+    align-self: center;
+    justify-content: center;
+}
+#input1{
+        width:60%;
+        min-width:200px;
+        height: 25px;
+}
+#add1{
+    width:fit-content;
+}
+.todo1 li{
+    display:flex;
+    justify-content: space-between;
+    padding:0.4rem;
+}
+.done{
+    text-decoration: line-through;
+}
