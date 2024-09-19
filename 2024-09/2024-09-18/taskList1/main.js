@@ -20,11 +20,6 @@ function addItem(){
 
     if(li.textContent !== ''){
         list1.appendChild(li);
-        counter++;
-        localStorage.setItem('counter',counter);
-        items.push({'id':counter, 'item':li.textContent, 'done':false});
-        localStorage.setItem(`items`, JSON.stringify(items));
-        console.log(items);
     }
 }
 
@@ -35,24 +30,3 @@ addItem();
 input1.value = 'item3';
 addItem();
 
-function createItem(text, done){
-    const li = document.createElement('li');
-    li.addEventListener('click',()=>{
-        li.classList.toggle('done');
-    });
-    li.textContent = text;
-    (done === true ? li.classList.add('done'):li.classList.remove('done'));
-    
-    const deleteBtn = document.createElement('button');
-    deleteBtn.textContent = '🗑️';
-    deleteBtn.addEventListener('click', function(event){
-        event.target.parentElement.remove();
-    });
-    li.appendChild(deleteBtn);
-
-    return li;
-}
-
-function addItem(li){
-    list1.appendChild(li);
-}
