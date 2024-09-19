@@ -1,0 +1,2 @@
+//I need to hold item data for storage and state management and I need to reflect that in my html.
+//Perhaps incorporate the editing of inner html to use string with html syntax to clarify the list items creation.

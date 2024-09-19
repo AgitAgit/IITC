@@ -1,8 +1,6 @@
 const input1 = document.getElementById('input1');
 const add1 = document.getElementById('add1');
 const list1 = document.getElementById('list1');
-const items = JSON.parse(localStorage.getItem('items')) || [];
-let counter = parseInt(localStorage.getItem('counter')) || 0;
 add1.addEventListener('click', addItem);
 
 function addItem(){
@@ -36,13 +34,6 @@ input1.value = 'item2';
 addItem();
 input1.value = 'item3';
 addItem();
-
-function onStart(){
-    items.forEach((item)=>{
-        //list1.appendChild(item.item);
-    })
-}
-onStart();
 
 function createItem(text, done){
     const li = document.createElement('li');
