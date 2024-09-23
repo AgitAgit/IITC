@@ -11,6 +11,7 @@ const exampleItem = {
     'isDone':false,
     'isDeleted':false
 }
+
 const exampleItem2 = {
     'id':-2,
     'text':'item2',
@@ -18,15 +19,15 @@ const exampleItem2 = {
     'isDeleted':false
 }
 
-function createItem(id, text, isDone, isDeleted){
+// function createItem(id, text, isDone, isDeleted){
 
-}
-function addItem(item){
+// }
+// function addItem(item){
 
-}
-function deleteItem(){
+// }
+// function deleteItem(e){
 
-}
+// }
 function editItem(){
 
 }
@@ -43,8 +44,8 @@ function cleanList(){
 }
 
 function renderItems(){
-
     items.forEach(item => {
-        addLi(item.id, item.text, item.isDone, item.isDeleted)
+        // addLi(item.id, item.text, item.isDone, item.isDeleted)
+        const li = document.createElement('li');
     })
 }
