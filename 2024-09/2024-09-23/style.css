@@ -1,0 +1,42 @@
+:root{
+    --gap:1rem;
+}
+*{
+    box-sizing:border-box;
+}
+.grid{
+    display: grid;
+    aspect-ratio: 1/1;
+    grid-template-columns: repeat(3,auto);
+    background-color:aqua;
+    gap:var(--gap);
+    padding:var(--gap);
+}
+
+.grid-item{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid grey;
+    background-color: wheat;
+}
+
+.grid-item-{
+    
+}
+
+.grid-item-1{
+    
+}
+
+.grid-item-2{
+    grid-column:span 2;
+}
+
+
+.grid-item-6{
+    grid-row: span 2;
+}
+.grid-item-9{
+    grid-column: span 2/-1;
+}
