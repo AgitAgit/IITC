@@ -1,0 +1,72 @@
+*{
+    box-sizing:border-box;
+}
+:root{
+    --item-background: hsl(0, 80%, 63%);
+    --daniel-background:#733fc8;
+    --background:#edf2f8;
+    --jonathan-background:#49556b;
+    --patrick-background:#18202d;
+
+}
+
+img{
+    border-radius: 50%;
+    border:2px solid lightgray;
+    height:75%;
+}
+.profileDiv{
+    display:flex;
+    align-items: center;
+    height:4rem;
+}
+.imgDiv{
+
+}
+.profileTextDiv{
+    margin-left:1rem;
+}
+.boldDiv{
+
+}
+.textDiv{
+
+}
+
+.grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:1rem;
+}
+
+.grid-item{
+    background-color: var(--item-background);
+    border:1px solid black;
+    border-radius: 0.5rem;
+    padding:2rem;
+    display: flex;
+    flex-direction: column;
+    gap:1rem;
+}
+
+.daniel{
+    grid-column: span 2;
+    grid-row: span 1/ span 1;
+}
+
+.jonathan{
+    grid-column: span 1;
+}
+
+.jeanette{
+    grid-column: span 1;
+}
+
+.patrick{
+    grid-column: span 2;
+}
+
+.kira{
+    grid-column-end:-1;
+    grid-row: 1/span 2;
+}
