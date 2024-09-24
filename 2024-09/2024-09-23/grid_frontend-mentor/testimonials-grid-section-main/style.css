@@ -1,5 +1,11 @@
 *{
     box-sizing:border-box;
+    font-family: Barlow-Semi-Condensed;
+}
+
+@font-face {
+    font-family: Barlow-Semi-condensed;
+    src: url(./fonts/Barlow_Semi_Condensed/BarlowSemiCondensed-Black.ttf);
 }
 :root{
     --text-light:white;
@@ -20,28 +26,22 @@ img{
     border:2px solid lightgray;
     height:75%;
 }
-/* .quote{
-    border-radius: 0;
-    border:none;
-    opacity:50%;
-    z-index: 0;
-} */
 .profileDiv{
     display:flex;
     align-items: center;
     height:4rem;
 }
 .imgDiv{
-
+    
 }
 .profileTextDiv{
     margin-left:1rem;
 }
 .boldDiv{
-
+    
 }
 .textDiv{
-
+    
 }
 
 .grid{
@@ -68,14 +68,28 @@ img{
 .lightDiv{
     color:var(--text-dark-grey)
 }
-.outerDaniel{
-    /* z-index: -1; */
-}
+
+
 .daniel{
     background-color: var(--daniel-background);
     grid-column: span 2;
     grid-row: span 1/ span 1;
-    /* z-index: 1; */
+    z-index: 0;
+    position:relative;
+}
+.quote{
+    position:absolute;
+    border-radius: 0;
+    border:none;
+    opacity:70%;
+    z-index: 0;
+    height:8.5rem;
+    top:0;
+    left:50%;
+}
+
+.daniel .boldDiv{
+    z-index: 1;
 }
 
 .jonathan{
