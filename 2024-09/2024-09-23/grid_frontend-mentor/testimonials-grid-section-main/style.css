@@ -1,11 +1,15 @@
 *{
     box-sizing:border-box;
-    font-family: Barlow-Semi-Condensed;
+    font-family: Barlow-Semi-condensed-Medium;
 }
 
 @font-face {
     font-family: Barlow-Semi-condensed;
     src: url(./fonts/Barlow_Semi_Condensed/BarlowSemiCondensed-Black.ttf);
+}
+@font-face{
+    font-family: Barlow-Semi-condensed-Medium;
+    src:url(./fonts/Barlow_Semi_Condensed/BarlowSemiCondensed-Medium.ttf)
 }
 :root{
     --text-light:white;
@@ -20,6 +24,7 @@
 }
 body{
     background-color: var(--background);
+    overflow-x: hidden;
 }
 img{
     border-radius: 50%;
@@ -30,15 +35,20 @@ img{
     display:flex;
     align-items: center;
     height:4rem;
+    /* z-index: 1; */
 }
 .imgDiv{
     
 }
 .profileTextDiv{
     margin-left:1rem;
+    z-index: 1;
+}
+.profileTextDiv > :last-child{
+    opacity:50%;
 }
 .boldDiv{
-    
+    font-size: 1.5rem;
 }
 .textDiv{
     
@@ -109,4 +119,11 @@ img{
 .kira{
     grid-column-end:-1;
     grid-row: 1/span 2;
+}
+
+@media(max-width:760px){
+    .grid{
+        display:flex;
+        flex-direction: column;
+    }
 }
