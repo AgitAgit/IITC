@@ -61,7 +61,6 @@ img{
 }
 
 .grid-item{
-    border:1px solid black;
     border-radius: 0.5rem;
     padding:2rem;
     display: flex;
@@ -109,6 +108,7 @@ img{
 
 .jeanette{
     grid-column: span 1;
+    box-shadow: 20px 40px 50px -50px rgba(0, 0, 0, 0.548);
 }
 
 .patrick{
@@ -119,6 +119,7 @@ img{
 .kira{
     grid-column-end:-1;
     grid-row: 1/span 2;
+    box-shadow: 20px 40px 50px -50px rgba(0, 0, 0, 0.548);
 }
 
 @media(max-width:760px){
