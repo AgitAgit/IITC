@@ -36,10 +36,22 @@
         </div>
         <div id="empAddition">
             this is the employee adding div
+            First name:
             <input id="addFName">
+            Last name:
             <input id="addLName">
+            Age:
             <input id="addAge">
-            <input id="addStartDate">
+            Start date:
+            <div>
+                day:
+                <select id="addDay"></select>
+                month:
+                <select id="addMonth"></select>
+                year:
+                <input id="addYear">
+            </div>
+            department:
             <select id="addDepSelect">
                 <option>All</option>
                 <option>Marketing</option>
@@ -50,12 +62,41 @@
                 <option>Operations</option>
                 <option>Logistics</option>
             </select>
+            salary:
             <input id="addSalary">
-
+            <div class="addButtons">
+                <button id="addNewEmpBtn">Add employee</button>
+            </div>
         </div>
+        
         <div id="empEditing">
             this is the employee editing div
+            First name:
+            <input id="editFName">
+            Last name:
+            <input id="editLName">
+            Age:
+            <input id="editAge">
+            Start date:
+            <input id="editStartDate">
+            department:
+            <select id="editDepSelect">
+                <option>All</option>
+                <option>Marketing</option>
+                <option>Sales</option>
+                <option>IT</option>
+                <option>Finance</option>
+                <option>HR</option>
+                <option>Operations</option>
+                <option>Logistics</option>
+            </select>
+            salary:
+            <input id="editSalary">
+            <div class="editButtons">
+                <button id="editEmpBtn">Edit</button>
+            </div>
         </div>
+
     </div>
 
     <script src="main.js"></script>

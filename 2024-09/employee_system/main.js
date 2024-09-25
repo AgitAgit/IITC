@@ -74,22 +74,46 @@ let employees = ( localStorage.getItem('employees') ?
  */
 const _displayBtn = document.getElementById('displayBtn')
 const _addNew = document.getElementById('addNew');
+//display form
 const _empDisplay = document.getElementById('empDisplay');
-    const _depSelect = document.getElementById('depSelect');
-    const _empList = document.getElementById('empList');
+const _depSelect = document.getElementById('depSelect');
+const _empList = document.getElementById('empList');
+//add form
 const _empAddition = document.getElementById('empAddition');
+const _addFName = document.getElementById('addFName');
+const _addLName = document.getElementById('addLName');
+const _addAge = document.getElementById('addAge');
+const _addDay = document.getElementById('addDay');
+const _addMonth = document.getElementById('addMonth');
+const _addYear = document.getElementById('addYear');
+const _addDepSelect = document.getElementById('addDepSelect');
+const _addSalary = document.getElementById('addSalary');
+const _addNewEmpBtn = document.getElementById('addNewEmpBtn');
+//edit form
 const _empEditing = document.getElementById('empEditing');
-    
+// const _empEdit = document.getElementById('empEdit');
+const _editFName = document.getElementById('editFName');
+const _editLName = document.getElementById('editLName');
+const _editAge = document.getElementById('editAge');
+const _editStartDate = document.getElementById('editStartDate');
+const _editDepSelect = document.getElementById('editDepSelect');
+const _editSalary = document.getElementById('editSalary');
+const _editEmpBtn = document.getElementById('editEmpBtn');
+
+
 let _currentDisplay = _empDisplay;
 
 //Controller
 _displayBtn.addEventListener('click', handleDisplayClick);
 _addNew.addEventListener('click', handleAddNewClick);
 _depSelect.addEventListener('change', handleDepSelect);
+_addNewEmpBtn.addEventListener('click', handleAddEmpClick);
+_editEmpBtn.addEventListener('click',handleEditEmp);
 
 //event handlers
 function handleDisplayClick(){
     changeContent(_empDisplay);
+    renderEmployees(_depSelect.value);
 }
 function handleAddNewClick(){
     changeContent(_empAddition);
@@ -97,8 +121,21 @@ function handleAddNewClick(){
 function handleDepSelect(e){
     renderEmployees(e.target.value);
 }
-function handleEditClick(){
-    changeContent(_empEditing);
+function handleEditClick(id){
+    const employee = employees.find(emp => emp.id = id);
+    if(employee){
+        const {firstName, lastName, age, startDate, department, salary} = employee;
+        changeContent(_empEditing);
+        _editFName.value = firstName;
+        _editLName.value = lastName;
+        _editAge.value = age;
+        _editStartDate.value = startDate;
+        _editDepSelect.value = department;
+        _editSalary.value = salary;
+    }
+}
+function handleEditEmp(){
+    
 }
 function handleDeleteClick(id){
     employees = employees.filter(emp => {
@@ -107,7 +144,25 @@ function handleDeleteClick(id){
     renderEmployees(_depSelect.value);
 }
 
+function handleAddEmpClick(){
+    const fName = _addFName.value;
+    const lName = _addLName.value;
+    const age = parseInt(_addAge.value);
+    const day = _addDay.value;
+    const month = _addMonth.value;
+    const year = _addYear.value;
+    const dep = _addDepSelect.value;
+    const salary = parseInt(_addSalary.value);
+    if(validateValues(fName, lName, age, year, dep, salary)){
+        createEmployee(fName, lName, age, `${year}-${month}-${day}`, dep, salary);
+    }
+}
+
 //functions
+function validateValues(fName, lName, age, year, dep, salary){
+    console.log('validate values...');
+    return true;
+}
 function changeContent(newContent){
     _currentDisplay.hidden = true;
     newContent.hidden = false;
@@ -127,7 +182,18 @@ function createEmployee(firstName, lastName, age, startDate, department, salary)
         department,
         salary
     }
-    employees.push(newEmp);   
+    employees.push(newEmp);
+}
+function editEmployee(id, firstName, lastName, age, startDate, department, salary){
+    const employee = employees.find(employee => employee.id = id);
+    if (employee) {
+        employee.firstName = firstName;
+        employee.lastName = lastName;
+        employee.age = age;
+        employee.startDate = startDate;
+        employee.department = department;
+        employee.salary = salary;
+    }
 }
 function renderEmployees(filter='All'){
     _empList.innerHTML = '';
@@ -139,7 +205,8 @@ function renderEmployees(filter='All'){
             //data
             const data = document.createElement('div');
             data.textContent = 
-            `Employee: ${firstName} ${lastName} 
+            `ID:${id}
+            Employee: ${firstName} ${lastName} 
             Age: ${age}
             Start date: ${startDate}
             Department: ${department}
@@ -149,7 +216,7 @@ function renderEmployees(filter='All'){
             const buttons = document.createElement('div');
             const edit = document.createElement('button');
             edit.textContent = 'EDIT';
-            edit.addEventListener('click', handleEditClick);
+            edit.addEventListener('click', () => handleEditClick(id));
 
             const del = document.createElement('button');
             del.textContent = 'DELETE';
@@ -164,8 +231,21 @@ function renderEmployees(filter='All'){
         }
     });
 }
+function startSelect(){//need to match days to months?
+    for(let i = 1; i < 32; i++){
+        const op = document.createElement('option');
+        op.textContent = `${i}`
+        _addDay.appendChild(op);
+    }
+    for(let i = 1; i < 13; i++){
+        const op = document.createElement('option');
+        op.textContent = `${i}`
+        _addMonth.appendChild(op);
+    }
+}
 function startApp(){
     renderEmployees();
+    startSelect();
     // _empDisplay.hidden = true;
     _empAddition.hidden = true;
     _empEditing.hidden = true;
