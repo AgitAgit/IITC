@@ -1,3 +1,69 @@
+const originalEmployees = [
+    {
+      "id":1,
+      "firstName": "Alice",
+      "lastName": "Smith",
+      "age": 28,
+      "startDate": "2020-06-15",
+      "department": "Marketing",
+      "salary": 50000
+    },
+    {
+      "id":2,
+      "firstName": "John",
+      "lastName": "Doe",
+      "age": 35,
+      "startDate": "2018-01-25",
+      "department": "Sales",
+      "salary": 60000
+    },
+    {
+        "id":3,
+      "firstName": "Emma",
+      "lastName": "Johnson",
+      "age": 42,
+      "startDate": "2015-03-12",
+      "department": "IT",
+      "salary": 70000
+    },
+    {
+        "id":4,
+      "firstName": "Michael",
+      "lastName": "Brown",
+      "age": 30,
+      "startDate": "2019-07-01",
+      "department": "Finance",
+      "salary": 55000
+    },
+    {
+        "id":5,
+      "firstName": "Sophia",
+      "lastName": "Williams",
+      "age": 26,
+      "startDate": "2021-05-20",
+      "department": "HR",
+      "salary": 45000
+    },
+    {
+        "id":6,
+      "firstName": "David",
+      "lastName": "Taylor",
+      "age": 39,
+      "startDate": "2017-09-14",
+      "department": "Operations",
+      "salary": 64000
+    },
+    {
+        "id":7,
+      "firstName": "Laura",
+      "lastName": "White",
+      "age": 32,
+      "startDate": "2016-11-03",
+      "department": "Logistics",
+      "salary": 50000
+    }
+];
+
 let employees = ( localStorage.getItem('employees') ?
     JSON.parse(localStorage.getItem('employees')) : [
     {
@@ -74,6 +140,7 @@ let employees = ( localStorage.getItem('employees') ?
  */
 const _displayBtn = document.getElementById('displayBtn')
 const _addNew = document.getElementById('addNew');
+const _resetList = document.getElementById('resetList');
 //display form
 const _empDisplay = document.getElementById('empDisplay');
 const _depSelect = document.getElementById('depSelect');
@@ -110,7 +177,7 @@ _addNew.addEventListener('click', handleAddNewClick);
 _depSelect.addEventListener('change', handleDepSelect);
 _addNewEmpBtn.addEventListener('click', handleAddEmpClick);
 _editEmpBtn.addEventListener('click',handleEditEmp);
-
+_resetList.addEventListener('click', handleResetList);
 //event handlers
 function handleDisplayClick(){
     changeContent(_empDisplay);
@@ -118,6 +185,11 @@ function handleDisplayClick(){
 }
 function handleAddNewClick(){
     changeContent(_empAddition);
+}
+function handleResetList(){
+    employees = originalEmployees;
+    updateLocalStorate();
+    handleDisplayClick();
 }
 function handleDepSelect(e){
     renderEmployees(e.target.value);
@@ -149,12 +221,14 @@ function handleEditEmp(){
         editEmployee(id, fName, lName, age, startDate, dep, salary);
     }
     handleDisplayClick();
+    updateLocalStorate();
 }
 function handleDeleteClick(id){
     employees = employees.filter(emp => {
         return emp.id !== id;
     });
     renderEmployees(_depSelect.value);
+    updateLocalStorate();
 }
 
 function handleAddEmpClick(){
@@ -169,6 +243,7 @@ function handleAddEmpClick(){
     if(validateValues(fName, lName, age, year, month, day, dep, salary)){
         createEmployee(fName, lName, age, `${year}-${month}-${day}`, dep, salary);
     }
+    updateLocalStorate();
 }
 
 //functions
@@ -274,6 +349,7 @@ startApp();
 //Data manipulation
 function updateLocalStorate(){
     console.log('local storage was updated...');
+    localStorage.setItem('employees',JSON.stringify(employees));
 }  
 
 
