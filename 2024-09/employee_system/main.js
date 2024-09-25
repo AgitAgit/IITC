@@ -92,6 +92,7 @@ const _addNewEmpBtn = document.getElementById('addNewEmpBtn');
 //edit form
 const _empEditing = document.getElementById('empEditing');
 // const _empEdit = document.getElementById('empEdit');
+const _editId = document.getElementById('editId');
 const _editFName = document.getElementById('editFName');
 const _editLName = document.getElementById('editLName');
 const _editAge = document.getElementById('editAge');
@@ -126,6 +127,7 @@ function handleEditClick(id){
     if(employee){
         const {firstName, lastName, age, startDate, department, salary} = employee;
         changeContent(_empEditing);
+        _editId.textContent = id;
         _editFName.value = firstName;
         _editLName.value = lastName;
         _editAge.value = age;
@@ -135,7 +137,18 @@ function handleEditClick(id){
     }
 }
 function handleEditEmp(){
-    
+    const id = parseInt(_editId.textContent);
+    const fName = _editFName.value;
+    const lName = _editLName.value;
+    const age = parseInt(_editAge.value);
+    const startDate = _editStartDate.value;
+    const dep = _editDepSelect.value;
+    const salary = parseInt(_editSalary.value);
+
+    if (validateValues(fName, lName, age, startDate,dep, salary)) {
+        editEmployee(id, fName, lName, age, startDate, dep, salary);
+    }
+    handleDisplayClick();
 }
 function handleDeleteClick(id){
     employees = employees.filter(emp => {
@@ -153,13 +166,17 @@ function handleAddEmpClick(){
     const year = _addYear.value;
     const dep = _addDepSelect.value;
     const salary = parseInt(_addSalary.value);
-    if(validateValues(fName, lName, age, year, dep, salary)){
+    if(validateValues(fName, lName, age, year, month, day, dep, salary)){
         createEmployee(fName, lName, age, `${year}-${month}-${day}`, dep, salary);
     }
 }
 
 //functions
-function validateValues(fName, lName, age, year, dep, salary){
+function validateValues(fName, lName, age, year, month, day, dep, salary){
+    console.log('validate values...');
+    return true;
+}
+function validateValues(fName, lName, age, startDate, dep, salary){
     console.log('validate values...');
     return true;
 }
