@@ -64,8 +64,11 @@ let employees = ( localStorage.getItem('employees') ?
       "salary": 50000
     }
 ]);
-
 /**Extras:
+ * Instead of updating local storage when certain
+ * functions are called, I should update it whenever
+ * employees is changed.
+ * 
  * Perhaps I should add an option to save changes that
  * updates local storage.
  */
@@ -109,6 +112,22 @@ function changeContent(newContent){
     _currentDisplay.hidden = true;
     newContent.hidden = false;
     _currentDisplay = newContent;
+}
+function createEmployee(firstName, lastName, age, startDate, department, salary){
+    let maxId = 0;
+    for(let i = 0; i < employees.length; i++){
+        if(employees[i].id > maxId) maxId = employees[i].id;
+    }
+    const newEmp = {
+        id: maxId + 1,
+        firstName,
+        lastName,
+        age,
+        startDate,
+        department,
+        salary
+    }
+    employees.push(newEmp);   
 }
 function renderEmployees(filter='All'){
     _empList.innerHTML = '';
@@ -156,7 +175,9 @@ startApp();
 
 //Model
 //Data manipulation
-function updateLocalStorate(){}  
+function updateLocalStorate(){
+    console.log('local storage was updated...');
+}  
 
 
 /** emp details
