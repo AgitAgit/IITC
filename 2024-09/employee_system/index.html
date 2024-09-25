@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="mainDiv">
+        <header>
+            this is the header 
+            <hr>
+        </header>
+        <div class="toolsDiv">
+            <button id="displayBtn">Display employees</button>
+            <button id="addNew">Add new employee</button>
+        </div>
+
+        <div id="empDisplay">
+            <div class="optionsClass">
+                <span>Filter by department:</span>
+                <select id="depSelect">
+                    <option>All</option>
+                    <option>Marketing</option>
+                    <option>Sales</option>
+                    <option>IT</option>
+                    <option>Finance</option>
+                    <option>HR</option>
+                    <option>Operations</option>
+                    <option>Logistics</option>
+                </select>
+            </div>
+
+            <ul id="empList">
+            </ul>
+        </div>
+        <div id="empAddition">
+            this is the employee adding div
+        </div>
+        <div id="empEditing">
+            this is the employee editing div
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="style.css">
+</body>
+</html>
