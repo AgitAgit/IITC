@@ -196,9 +196,9 @@ function handleDepSelect(e){
 }
 function handleEditClick(id){
     const employee = employees.find(emp => emp.id = id);
+    changeContent(_empEditing);
     if(employee){
         const {firstName, lastName, age, startDate, department, salary} = employee;
-        changeContent(_empEditing);
         _editId.textContent = id;
         _editFName.value = firstName;
         _editLName.value = lastName;
@@ -207,6 +207,7 @@ function handleEditClick(id){
         _editDepSelect.value = department;
         _editSalary.value = salary;
     }
+    else changeContent(_empDisplay);
 }
 function handleEditEmp(){
     const id = parseInt(_editId.textContent);
