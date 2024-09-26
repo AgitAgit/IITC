@@ -296,16 +296,18 @@ function renderEmployees(filter='All'){
             
             //data
             const data = document.createElement('div');
-            data.textContent = 
-            `ID:${id}
-            Employee: ${firstName} ${lastName} 
-            Age: ${age}
-            Start date: ${startDate}
-            Department: ${department}
-            Salary: ${salary}`;
+            data.classList.add('dataDiv');
+            data.innerHTML = 
+            `<span>ID:${id}</span>
+            <span>Employee:${firstName}&nbsp${lastName}</span> 
+            <span>Age:${age}</span>
+            <span>Start&nbspdate:${startDate}</span>
+            <span>Department:&nbsp${department}</span>
+            <span>Salary:${salary}</span>`;
             
             //buttons
             const buttons = document.createElement('div');
+            buttons.classList.add('buttons')
             const edit = document.createElement('button');
             edit.textContent = 'EDIT';
             edit.addEventListener('click', () => handleEditClick(id));
