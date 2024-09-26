@@ -297,6 +297,7 @@ function renderEmployees(filter='All'){
             //data
             const data = document.createElement('div');
             data.classList.add('dataDiv');
+            data.addEventListener('click', () => handleEditClick(id));
             data.innerHTML = 
             `<span>ID:${id}</span>
             <span>Employee:${firstName}&nbsp${lastName}</span> 

@@ -35,64 +35,73 @@
             </ul>
         </div>
         <div id="empAddition">
-            this is the employee adding div
-            First name:
-            <input id="addFName">
-            Last name:
-            <input id="addLName">
-            Age:
-            <input id="addAge">
-            Start date:
-            <div>
-                day:
-                <select id="addDay"></select>
-                month:
-                <select id="addMonth"></select>
-                year:
-                <input id="addYear">
+            <div class="editDiv">
+                <span>
+                    First name:
+                    <input id="addFName">
+                </span>
+                <span>
+                    Last name:
+                    <input id="addLName">
+                </span>
+                <span>
+                    Age:
+                    <input id="addAge">
+                </span>
+                <span>
+                    Start date:
+                    <div>
+                        day:
+                        <select id="addDay"></select>
+                        month:
+                        <select id="addMonth"></select>
+                        year:
+                        <input id="addYear">
+                    </div>
+                </span>
+                <span>
+                    department:
+                    <select id="addDepSelect">
+                        <option>All</option>
+                        <option>Marketing</option>
+                        <option>Sales</option>
+                        <option>IT</option>
+                        <option>Finance</option>
+                        <option>HR</option>
+                        <option>Operations</option>
+                        <option>Logistics</option>
+                    </select>
+                </span>
+                <span>
+                    salary:
+                    <input id="addSalary">
+                </span>
             </div>
-            department:
-            <select id="addDepSelect">
-                <option>All</option>
-                <option>Marketing</option>
-                <option>Sales</option>
-                <option>IT</option>
-                <option>Finance</option>
-                <option>HR</option>
-                <option>Operations</option>
-                <option>Logistics</option>
-            </select>
-            salary:
-            <input id="addSalary">
             <div class="addButtons">
                 <button id="addNewEmpBtn">Add employee</button>
             </div>
         </div>
         
         <div id="empEditing">
-            this is the employee editing div
-            <span>ID:<span id="editId"></span></span>
-            First name:
-            <input id="editFName">
-            Last name:
-            <input id="editLName">
-            Age:
-            <input id="editAge">
-            Start date:
-            <input id="editStartDate">
-            department:
-            <select id="editDepSelect">
-                <option>All</option>
-                <option>Marketing</option>
-                <option>Sales</option>
-                <option>IT</option>
-                <option>Finance</option>
-                <option>HR</option>
-                <option>Operations</option>
-                <option>Logistics</option>
-            </select>
-            salary:
-            <input id="editSalary">
+            <div class="editDiv">
+                <span>ID:<span id="editId"></span></span>
+                <span>First&nbspname:<input id="editFName"></span>
+                <span>Last&nbspname:<input id="editLName"></span>
+                <span>Age:<input id="editAge"></span>
+                <span>
+                    department:<select id="editDepSelect">
+                        <option>All</option>
+                        <option>Marketing</option>
+                        <option>Sales</option>
+                        <option>IT</option>
+                        <option>Finance</option>
+                        <option>HR</option>
+                        <option>Operations</option>
+                        <option>Logistics</option>
+                    </select>
+                </span>
+                <span>salary:<input id="editSalary"></span>
+            </div>
             <div class="editButtons">
                 <button id="editEmpBtn">Edit</button>
             </div>
@@ -100,7 +109,7 @@
 
     </div>
 
-    <script src="main.js"></script>
     <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
 </body>
 </html>
