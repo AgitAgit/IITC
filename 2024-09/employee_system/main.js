@@ -150,9 +150,7 @@ const _empAddition = document.getElementById('empAddition');
 const _addFName = document.getElementById('addFName');
 const _addLName = document.getElementById('addLName');
 const _addAge = document.getElementById('addAge');
-const _addDay = document.getElementById('addDay');
-const _addMonth = document.getElementById('addMonth');
-const _addYear = document.getElementById('addYear');
+const _addDate = document.getElementById('addDate');
 const _addDepSelect = document.getElementById('addDepSelect');
 const _addSalary = document.getElementById('addSalary');
 const _addNewEmpBtn = document.getElementById('addNewEmpBtn');
@@ -236,13 +234,12 @@ function handleAddEmpClick(){
     const fName = _addFName.value;
     const lName = _addLName.value;
     const age = parseInt(_addAge.value);
-    const day = _addDay.value;
-    const month = _addMonth.value;
-    const year = _addYear.value;
+    const date = _addDate.value;
     const dep = _addDepSelect.value;
     const salary = parseInt(_addSalary.value);
-    if(validateValues(fName, lName, age, year, month, day, dep, salary)){
-        createEmployee(fName, lName, age, `${year}-${month}-${day}`, dep, salary);
+    if(validateValues(fName, lName, age, date, dep, salary)){
+        createEmployee(fName, lName, age, date, dep, salary);
+        changeContent(_empDisplay);
     }
     updateLocalStorate();
 }
@@ -257,6 +254,7 @@ function validateValues(fName, lName, age, startDate, dep, salary){
     return true;
 }
 function changeContent(newContent){
+    renderEmployees(_depSelect.value);
     _currentDisplay.hidden = true;
     newContent.hidden = false;
     _currentDisplay = newContent;
@@ -327,21 +325,9 @@ function renderEmployees(filter='All'){
         }
     });
 }
-function startSelect(){//need to match days to months?
-    for(let i = 1; i < 32; i++){
-        const op = document.createElement('option');
-        op.textContent = `${i}`
-        _addDay.appendChild(op);
-    }
-    for(let i = 1; i < 13; i++){
-        const op = document.createElement('option');
-        op.textContent = `${i}`
-        _addMonth.appendChild(op);
-    }
-}
+
 function startApp(){
     renderEmployees();
-    startSelect();
     // _empDisplay.hidden = true;
     _empAddition.hidden = true;
     _empEditing.hidden = true;

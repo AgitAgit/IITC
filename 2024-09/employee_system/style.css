@@ -2,6 +2,7 @@
     box-sizing:border-box;
     padding:0;
     margin:0;
+    overflow-x: hidden;
 }
 
 :root{
@@ -58,6 +59,7 @@ header{
     margin:1rem;
 }
 #empDisplay ul{
+    /* overflow-y: scroll; */
     list-style-type: none;
     padding:0.5rem;
 }
