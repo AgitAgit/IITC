@@ -130,14 +130,8 @@ let employees = ( localStorage.getItem('employees') ?
       "salary": 50000
     }
 ]);
-/**Extras:
- * Instead of updating local storage when certain
- * functions are called, I should update it whenever
- * employees is changed.
- * 
- * Perhaps I should add an option to save changes that
- * updates local storage.
- */
+
+//header
 const _displayBtn = document.getElementById('displayBtn')
 const _addNew = document.getElementById('addNew');
 const _resetList = document.getElementById('resetList');
@@ -343,12 +337,3 @@ function updateLocalStorate(){
     localStorage.setItem('employees',JSON.stringify(employees));
 }  
 
-
-/** emp details
-First Name (string)
-Last Name (string)
-Age (number)
-Start Date (string, date in YYYY-MM-DD format)
-Department (string)
-Salary (number)
- */

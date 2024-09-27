@@ -39,6 +39,15 @@ select{
 select:hover{
     border:3px solid var(--buff);
 }
+input{
+    border: 3px solid var(--background);
+    border-radius: 0.5rem;
+    background-color: buttonface;
+    padding-left:0.4rem;
+}
+input:hover{
+    border:3px solid var(--buff);
+}
 
 header{
     width: 100%;
