@@ -314,6 +314,7 @@ function renderEmployees(filter='All'){
 
             const del = document.createElement('button');
             del.textContent = 'DELETE';
+            del.classList.add('deleteBtn');
             del.addEventListener('click', () => handleDeleteClick(id));
             buttons.appendChild(edit);
             buttons.appendChild(del);

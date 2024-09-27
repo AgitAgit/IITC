@@ -96,6 +96,9 @@ header{
         max-height: 3rem;
     }
 }
+.deleteBtn{
+    background-color: rgba(255, 0, 0, 0.594);
+}
 
 
 .editDiv{
