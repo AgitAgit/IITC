@@ -15,6 +15,11 @@
 body{
     background-color: var(--background);
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    min-width: 320px;
+}
+h1{
+    margin-left:0.5rem;
+    padding:0.5rem;
 }
 button{
     border:3px solid var(--background);
@@ -86,7 +91,7 @@ header{
 }
 #empDisplay .buttons{
     display:flex;
-
+    flex-direction: column;
     button{
         max-height: 3rem;
     }
@@ -105,4 +110,54 @@ header{
 }
 .editDiv input{
     margin-left:0.5rem;
+}
+
+@media(max-width:768px){
+    #empDisplay, #empAddition, #empEditing{
+        width:100%;
+    }
+    .optionsClass{
+        display: flex;
+        justify-content: center;
+    }
+    /* #empDisplay .buttons{
+        display:flex;
+        flex-direction: column;
+        button{
+            max-height: 3rem;
+        }
+    } */
+}
+
+@media(max-width:645px){
+    #empDisplay li{
+        grid-template-columns: 2fr 1fr;
+    }
+    #empDisplay .buttons{
+        justify-content: center;
+    }
+}
+
+@media(max-width:500px){
+    h1{
+        text-align: center;
+    }
+    #empDisplay{
+        padding:0;
+    }
+    #empDisplay li{
+        grid-template-columns: 1fr;
+    }
+    #empDisplay .dataDiv{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+@media(max-width:340px){
+    .toolsDiv{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
