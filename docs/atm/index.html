@@ -6,6 +6,48 @@
     <title>Document</title>
 </head>
 <body>
+    <div>
+        <header>
+            this is the header
+            <hr>
+        </header>
+        <div id="displayDiv">
+            <form id="loginDiv">
+                <input id="pinInput" placeholder="Enter your PIN" name="PIN">
+                <button onclick="handleEnterPIN()" name="submit">Enter</button>
+            </form>
+
+            <div id="menuDiv" class="hidden">
+                <button onclick="goToDisplayBalance()">Display balance</button>
+                <button onclick="goToDeposit()">Deposit</button>
+                <button onclick="goToWithdraw()">Withdraw</button>
+                <button onclick='goToLogin()'>Log out</button>
+            </div>
+
+            <div id="displayBalanceDiv" class="hidden"><!--Add past transactions as well-->
+                this is the display balance div
+                <button onclick="goToMenu()">Return to menu</button>
+            </div>
+
+            <div id="depositDiv" class="hidden">
+                this is the deposit div
+                <input id="depositInput" placeholder="Enter deposit sum">
+                <button>Deposit sum</button>
+                <button onclick="goToMenu()">Return to menu</button>
+            </div>
+
+            <div id="withdrawDiv" class="hidden">
+                this is the withdraw div
+                <input id="withdrawInput" placeholder="Enter withdraw sum">
+                <button>Withdraw sum</button>
+                <button onclick="goToMenu()">Return to menu</button>
+            </div>
+        </div>
+        <footer>
+            <hr>
+            this is the footer
+        </footer>
+    </div>
     <script src="main.js"></script>
     <link rel="stylesheet" href="style.css">
 </body>
