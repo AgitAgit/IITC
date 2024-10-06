@@ -74,8 +74,16 @@ function handleSubmitForm(event){
     event.preventDefault();
     const formData = new FormData(_loginForm);
     const data = Object.fromEntries(formData);
+    if(!getUserById(data.PIN)){
+        users.push({
+            PIN:data.PIN,
+            Balance:0
+        })
+    }
     currentUser = getUserById(data.PIN);
     console.log("current user:", currentUser);
+    console.log("users:",users);
+    commitToLocalStorage();
 }
 function getUserById(pin){
     return users.find(user => user.PIN === pin);
