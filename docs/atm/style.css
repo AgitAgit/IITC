@@ -6,27 +6,18 @@
     --button:hsl(265, 64%, 30%);
     --text:hsl(124, 100%, 69%);
 }
-body{
-    color:var(--text);
-    background-color: var(--background);
-}
-#displayDiv{
-    height:80vh;
-    display:flex;
-    justify-content: center;
-    align-items: center;
-}
 /* [data-theme="light"]{
 }
 
 [data-theme="dark"]{
 } */
-
-.hidden{
-    display: none;
+body{
+    color:var(--text);
+    background-color: var(--background);
 }
+
 /* , input:focus, input:focus::selection */
-input{
+input, input:focus, input:focus::selection{
     color:var(--text);
     background-color: var(--button);
     border-radius: 0.5rem;
@@ -44,4 +35,28 @@ button{
     border-radius: 0.5rem;
     border:none;
     padding:0.5rem;
+}
+
+
+#displayDiv{
+    height:80vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuDiv{
+    display:flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
+.withdrawDiv{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+}
+
+.hidden{
+    display: none;
 }

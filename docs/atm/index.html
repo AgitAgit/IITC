@@ -8,16 +8,16 @@
 <body>
     <div>
         <header>
-            LOGO
+            ATM
             <hr>
         </header>
         <div id="displayDiv">
             <form id="loginDiv">
-                <input id="pinInput" placeholder="Enter your PIN" name="PIN">
+                <input id="pinInput" placeholder="Enter your PIN" name="PIN" autocomplete="off">
                 <button name="submit">Enter</button>
             </form>
 
-            <div id="menuDiv" class="hidden">
+            <div id="menuDiv" class="menuDiv hidden">
                 <button onclick="goToDisplayBalance()">Display balance</button>
                 <button onclick="goToDeposit()">Deposit</button>
                 <button onclick="goToWithdraw()">Withdraw</button>
@@ -30,20 +30,22 @@
             </div>
 
             <form id="depositDiv" class="hidden">
-                <input id="depositInput" placeholder="Enter deposit sum" name="depositSum">
+                <input id="depositInput" placeholder="Enter deposit sum" name="depositSum" autocomplete="off">
                 <button name="submit">Deposit</button>
                 <button class="returnBtn">Return to menu</button>
             </form>
 
-            <form id="withdrawDiv" class="hidden">
-                <input id="withdrawInput" placeholder="Enter withdraw sum" name="withdrawSum">
-                <button>Withdraw sum</button>
-                <button class="returnBtn">Return to menu</button>
+            <form id="withdrawDiv" class="withdrawDiv hidden">
+                <input id="withdrawInput" placeholder="Enter withdraw sum" name="withdrawSum" autocomplete="off">
+                <div>
+                    <button>Withdraw sum</button>
+                    <button class="returnBtn">Return to menu</button>
+                </div>
             </form>
         </div>
         <footer>
             <hr>
-            Heloooooooo! I'm a foooooterrrr!
+            ATM
         </footer>
     </div>
     <script src="main.js"></script>
