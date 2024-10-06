@@ -6,112 +6,49 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="mainDiv">
+    <div>
         <header>
-            <h1>LOGO</h1> 
-            <div class="toolsDiv">
-                <button id="displayBtn">Display employees</button>
-                <button id="addNew">Add new employee</button>
-                <button id="resetList">Reset employee list</button>
-            </div>
+            ATM
+            <hr>
         </header>
+        <div id="displayDiv">
+            <form id="loginDiv">
+                <input id="pinInput" placeholder="Enter your PIN" name="PIN" autocomplete="off">
+                <button name="submit">Enter</button>
+            </form>
 
-        <div id="empDisplay">
-            <div class="optionsClass">
-                <span>Filter by department:</span>
-                <select id="depSelect">
-                    <option>All</option>
-                    <option>Marketing</option>
-                    <option>Sales</option>
-                    <option>IT</option>
-                    <option>Finance</option>
-                    <option>HR</option>
-                    <option>Operations</option>
-                    <option>Logistics</option>
-                </select>
+            <div id="menuDiv" class="menuDiv hidden">
+                <button onclick="goToDisplayBalance()">Display balance</button>
+                <button onclick="goToDeposit()">Deposit</button>
+                <button onclick="goToWithdraw()">Withdraw</button>
+                <button onclick='goToLogin()'>Log out</button>
             </div>
 
-            <ul id="empList">
-            </ul>
-        </div>
-        <div id="empAddition">
-            <div class="editDiv">
-                <span>
-                    First name:
-                    <input id="addFName">
-                </span>
-                <span>
-                    Last name:
-                    <input id="addLName">
-                </span>
-                <span>
-                    Age:
-                    <input id="addAge">
-                </span>
-                <span>
-                    Start&nbsp;date:<input type="date" id="addDate" placeholder="YYYY-MM-DD">
-                    <!-- <div>
-                        day:
-                        <select id="addDay"></select>
-                        month:&nbsp;
-                        <select id="addMonth"></select>
-                        year:&nbsp;<input id="addYear">
-                    </div> -->
-                </span>
-                <span>
-                    Department:
-                    <select id="addDepSelect">
-                        <option>All</option>
-                        <option>Marketing</option>
-                        <option>Sales</option>
-                        <option>IT</option>
-                        <option>Finance</option>
-                        <option>HR</option>
-                        <option>Operations</option>
-                        <option>Logistics</option>
-                    </select>
-                </span>
-                <span>
-                    Salary:
-                    <input id="addSalary">
-                </span>
+            <div id="displayBalanceDiv" class="hidden"><!--Add past transactions as well-->
+                <p>Current balance:<span id="balanceSpan"></span></p>
+                <button class="returnBtn">Return to menu</button>
             </div>
-            <div class="addButtons">
-                <button id="addNewEmpBtn">Add employee</button>
-            </div>
-        </div>
-        
-        <div id="empEditing">
-            <div class="editDiv">
-                <span>ID:<span id="editId"></span></span>
-                <span>First&nbspname:<input id="editFName"></span>
-                <span>Last&nbspname:<input id="editLName"></span>
-                <span>Age:<input id="editAge"></span>
-                <span>Start&nbspdate:<input type="date" id="editStartDate" placeholder="YYYY-MM-DD"></span>
-                <span>
-                    Department:<select id="editDepSelect">
-                        <option>All</option>
-                        <option>Marketing</option>
-                        <option>Sales</option>
-                        <option>IT</option>
-                        <option>Finance</option>
-                        <option>HR</option>
-                        <option>Operations</option>
-                        <option>Logistics</option>
-                    </select>
-                </span>
-                <span>Salary:<input id="editSalary"></span>
-            </div>
-            <div class="editButtons">
-                <button id="editEmpBtn">Save changes</button>
-            </div>
-        </div>
 
+            <form id="depositDiv" class="hidden">
+                <input id="depositInput" placeholder="Enter deposit sum" name="depositSum" autocomplete="off">
+                <button name="submit">Deposit</button>
+                <button class="returnBtn">Return to menu</button>
+            </form>
+
+            <form id="withdrawDiv" class="withdrawDiv hidden">
+                <input id="withdrawInput" placeholder="Enter withdraw sum" name="withdrawSum" autocomplete="off">
+                <div>
+                    <button>Withdraw sum</button>
+                    <button class="returnBtn">Return to menu</button>
+                </div>
+            </form>
+        </div>
+        <footer>
+            <hr>
+            ATM
+        </footer>
     </div>
-
-    <link rel="stylesheet" href="./employee_system/style.css">
-    <script src="./employee_system/model.js"></script>
-    <script src="./employee_system/controller.js"></script>
-
+    <script src="./atm/main.js"></script>
+    <link rel="stylesheet" href="./atm/style.css">
 </body>
 </html>
