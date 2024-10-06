@@ -9,6 +9,7 @@ async function setDefaultUsers() {
         console.error('Error reading JSON file:', error);
         const data = [{PIN:"1234",Balance:3000},{PIN:"1111",Balance:1000},{PIN:"2222",Balance:10000}];
         localStorage.setItem("atmUsers",JSON.stringify(data));
+        //.......
     }
 }
 
