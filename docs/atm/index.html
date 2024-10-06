@@ -14,7 +14,7 @@
         <div id="displayDiv">
             <form id="loginDiv">
                 <input id="pinInput" placeholder="Enter your PIN" name="PIN">
-                <button onclick="handleEnterPIN()" name="submit">Enter</button>
+                <button name="submit">Enter</button>
             </form>
 
             <div id="menuDiv" class="hidden">
@@ -26,22 +26,23 @@
 
             <div id="displayBalanceDiv" class="hidden"><!--Add past transactions as well-->
                 this is the display balance div
-                <button onclick="goToMenu()">Return to menu</button>
+                <p>Current balance:<span id="balanceSpan"></span></p>
+                <button class="returnBtn">Return to menu</button>
             </div>
 
             <form id="depositDiv" class="hidden">
                 this is the deposit div
                 <input id="depositInput" placeholder="Enter deposit sum" name="depositSum">
                 <button name="submit">Deposit</button>
-                <button onclick="goToMenu()">Return to menu</button>
+                <button class="returnBtn">Return to menu</button>
             </form>
 
-            <div id="withdrawDiv" class="hidden">
+            <form id="withdrawDiv" class="hidden">
                 this is the withdraw div
-                <input id="withdrawInput" placeholder="Enter withdraw sum">
+                <input id="withdrawInput" placeholder="Enter withdraw sum" name="withdrawSum">
                 <button>Withdraw sum</button>
-                <button onclick="goToMenu()">Return to menu</button>
-            </div>
+                <button class="returnBtn">Return to menu</button>
+            </form>
         </div>
         <footer>
             <hr>
