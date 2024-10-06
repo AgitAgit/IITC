@@ -1,3 +1,47 @@
+*{
+    box-sizing: border-box;
+}
+:root{
+    --background:hsl(0, 0%, 12%);
+    --button:hsl(265, 64%, 30%);
+    --text:hsl(124, 100%, 69%);
+}
+body{
+    color:var(--text);
+    background-color: var(--background);
+}
+#displayDiv{
+    height:80vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+/* [data-theme="light"]{
+}
+
+[data-theme="dark"]{
+} */
+
 .hidden{
     display: none;
+}
+/* , input:focus, input:focus::selection */
+input{
+    color:var(--text);
+    background-color: var(--button);
+    border-radius: 0.5rem;
+    border:none;
+    padding:0.5rem;
+}
+input::-webkit-autocomplete-list {
+    display: none !important;
+}
+
+
+button{
+    color:var(--text);
+    background-color: var(--button);
+    border-radius: 0.5rem;
+    border:none;
+    padding:0.5rem;
 }
