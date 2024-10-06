@@ -1,0 +1,5 @@
+Check how to create a json file and read from it to store the employee data instead of typing it directly in the js file.
+
+Instead of assigning value to employees I can push it to local storage from the start.
+
+Try and improve the efficiency of the createEmployee function.(Maybe rely on the order of the array or generate a random id).
