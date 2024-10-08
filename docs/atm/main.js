@@ -20,9 +20,10 @@ async function setDefaultUsers() {
 function commitToLocalStorage(){
     localStorage.setItem('atmUsers',JSON.stringify(users));
 }
-const users = (localStorage.getItem('atmUsers') ? 
-JSON.parse(localStorage.getItem('atmUsers')) : 
-setDefaultUsers());
+const users = setDefaultUsers();
+// const users = (localStorage.getItem('atmUsers') ? 
+// JSON.parse(localStorage.getItem('atmUsers')) : 
+// setDefaultUsers());
 //model end--------------------------------------------------------------------------------
 
 
