@@ -14,7 +14,7 @@ async function getDefaultUsers() {
 }
 
 let users;
-setDefaultUsers().then(check => {
+getDefaultUsers().then(check => {
     console.log("result:", check);
     
     users = (localStorage.getItem('atmUsers') ? 
