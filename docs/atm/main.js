@@ -1,29 +1,32 @@
 //model---------------------------------------------------------------------------------------
-async function setDefaultUsers() {
+async function getDefaultUsers() {
     let result;
     try {
         const response = await fetch('./atmUsers.json');
         const data = await response.json();
-        // console.log("data:",data['atmUsers']);
-        localStorage.setItem("atmUsers", JSON.stringify(data['atmUsers']));
         result = data['atmUsers'];
     } catch (error) {
         console.error('Error reading JSON file:', error);
         const data = [{PIN:"1234",Balance:3000},{PIN:"1111",Balance:1000},{PIN:"2222",Balance:10000}];
-        localStorage.setItem("atmUsers",JSON.stringify(data));
         result = data;
-        //.......
     }
     return result;
 }
 
+let users;
+setDefaultUsers().then(check => {
+    console.log("result:", check);
+    
+    users = (localStorage.getItem('atmUsers') ? 
+    JSON.parse(localStorage.getItem('atmUsers')) : 
+    check);
+
+    localStorage.setItem('atmUsers',JSON.stringify(users));
+})
+
 function commitToLocalStorage(){
     localStorage.setItem('atmUsers',JSON.stringify(users));
 }
-const users = setDefaultUsers();
-// const users = (localStorage.getItem('atmUsers') ? 
-// JSON.parse(localStorage.getItem('atmUsers')) : 
-// setDefaultUsers());
 //model end--------------------------------------------------------------------------------
 
 
