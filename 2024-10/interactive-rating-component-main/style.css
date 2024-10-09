@@ -97,3 +97,15 @@ button{
     background-color: var(--White);
     color: var(--Dark-Blue);
 }
+.thankYou{
+    display:flex;
+    flex-direction: column;
+}
+.outerRatingSpan{
+    color:var(--Orange);
+    background-color: var(--button-background);
+    padding:0.5rem;
+    text-align: center;
+    border-radius: 1rem;
+    margin:1rem;
+}
