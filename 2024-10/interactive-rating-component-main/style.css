@@ -1,3 +1,59 @@
+/*  weights: 400, 700
+    paragraph font:15px
+*/
+@font-face {
+    font-family: overpass;
+    src: url(./fonts/Overpass/Overpass-VariableFont_wght.ttf);
+}
+*{
+    box-sizing:border-box;
+}
+body{
+    font-family: overpass;
+    background-color: var(--Very-Dark-Blue);
+    color:var(--Light-Grey);
+}
+:root{
+    --Orange: hsl(25, 97%, 53%);
+    --White: hsl(0, 0%, 100%);
+    --Light-Grey: hsl(217, 12%, 63%);
+    --Dark-Blue: hsl(213, 19%, 18%);
+    --Very-Dark-Blue: hsl(216, 12%, 8%);
+
+    --button-background:#272e38;
+    --form-background:#202731;
+}
 .hidden{
     display: none;
+}
+
+form{
+    background-color: var(--form-background);
+}
+.heading{
+    color:var(--White);
+}
+.roundButton{
+    height:2rem;
+    aspect-ratio: 1/1;
+    margin:0.5rem;
+    border-radius:50%;
+    border:none;
+    background-color: var(--button-background);
+    color:var(--Light-Grey);
+}
+.roundButton:hover{
+    background-color: var(--Orange);
+    color:var(--Very-Dark-Blue)
+}
+.clicked{
+    background-color: var(--White);
+    color:var(--Very-Dark-Blue);
+}
+#submitBtn{
+    background-color: var(--Orange);
+}
+#submitBtn:hover{
+    background-color: var(--White);
+    color: var(--Dark-Blue);
 }
