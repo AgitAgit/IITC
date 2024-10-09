@@ -15,32 +15,31 @@
   </style>
 </head>
 <body>
-
-  <form>
-    <img src="./images/icon-star.svg">
+  <div class="mainDiv">
+    <form class="displayWindow">
+      <div class="starDiv">
+        <img id="star" src="./images/icon-star.svg">
+      </div>
     
-    <div class="heading">How did we do?</div>
-
-    <p>
-      Please let us know how we did with your support request. All feedback is appreciated
-      to help us improve our offering!
-    </p>
-
-    <div class="ratingDiv">
+      <div class="heading">How did we do?</div>
+      <p>
+        Please let us know how we did with your support request. All feedback is appreciated
+        to help us improve our offering!
+      </p>
+      <div class="ratingDiv">
+      </div>
+      <button id="submitBtn">SUBMIT</button>
+    </form>
+    <div class="thankYou displayWindow hidden">
+      <img src="./images/illustration-thank-you.svg">
+      <span>You selected <span id="ratingSpan"></span> out of 5</span>
+      <div class="heading">Thank you!</div>
+      <p>
+        We appreciate you taking the time to give a rating. If you ever need more support,
+        don’t hesitate to get in touch!
+      </p>
+      <!-- <button onclick="toggle()">remove later</button> -->
     </div>
-    <button id="submitBtn">Submit</button>
-  </form>
-  <div class="thankYou hidden">
-    <img src="./images/illustration-thank-you.svg">
-    <span>You selected <span id="ratingSpan"></span> out of 5</span>
-
-    <div class="heading">Thank you!</div>
-
-    <p>
-      We appreciate you taking the time to give a rating. If you ever need more support,
-      don’t hesitate to get in touch!
-    </p>
-    <button onclick="toggle()">remove later</button>
   </div>
   <script src="./main.js"></script>
   <link rel="stylesheet" href="./style.css">
