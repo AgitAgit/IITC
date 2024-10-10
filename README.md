@@ -3,3 +3,6 @@
 
 ### [Stats preview card component](https://agitagit.github.io/IITC/docs/HW11)
 
+## Home-work:
+### DOM manipulation:
+### [Employee-tracking](https://agitagit.github.io/IITC/docs/employee_system)
