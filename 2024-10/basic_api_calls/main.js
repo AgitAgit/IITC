@@ -1,8 +1,9 @@
 const _alterImage = document.getElementById('alternatingImg');
-const _gif = document.querySelector('.tenor-gif-embed');
+// const _gif = document.querySelector('.tenor-gif-embed');
+const _gif = document.querySelector('#gifWrapper');
 
 function handleApiClick(event=null, random=null){
-    _gif.classList.add('hidden');
+    _gif.classList.remove('hidden');
     let api;
     if(random){
         api = random;
@@ -25,6 +26,7 @@ function handleApiClick(event=null, random=null){
             _alterImage.src = imgUrl;
             //URL.revokeObjectURL(imgUrl);
             _alterImage.classList.toggle('hidden');
+            _gif.classList.add('hidden');
         })
         .catch(error => console.log(error));
     }
@@ -47,6 +49,7 @@ function handleApiClick(event=null, random=null){
                 }
                 _alterImage.src = url;
                 _alterImage.classList.toggle('hidden');
+                _gif.classList.add('hidden');
             })
             .catch(error => {
                 console.log(error);
@@ -64,6 +67,7 @@ function handleApiClick(event=null, random=null){
                 const url = data.url;
                 _alterImage.src = url;
                 _alterImage.classList.toggle('hidden');
+                _gif.classList.add('hidden');
             })
     }
     else if(api === 'api4'){
@@ -77,8 +81,8 @@ function handleApiClick(event=null, random=null){
                 const url = data.image;
                 _alterImage.src = url;
                 _alterImage.classList.toggle('hidden');
+                _gif.classList.add('hidden');
             })
-        console.log('api4');
     }
     else if(api === 'api5'){
         _alterImage.classList.toggle('hidden');
@@ -91,6 +95,7 @@ function handleApiClick(event=null, random=null){
                 const url = data.url;
                 _alterImage.src = url;
                 _alterImage.classList.toggle('hidden');
+                _gif.classList.add('hidden');
             })
 
     }
@@ -98,6 +103,5 @@ function handleApiClick(event=null, random=null){
         const rand = Math.ceil(Math.random() * 5);
         handleApiClick(null, `api${rand}`);
     }
-    _gif.classList.remove('hidden');
 }
 handleApiClick();
