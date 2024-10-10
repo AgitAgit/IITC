@@ -37,7 +37,8 @@ function handleApiClick(event=null, random=null){
                 let url = data.primaryImage;
                 console.log(url)
                 if(!url){
-                    url = 'https://images.metmuseum.org/CRDImages/ad/original/140813.jpg';
+                    // url = 'https://images.metmuseum.org/CRDImages/ad/original/140813.jpg';
+                    url = "https://images.metmuseum.org/CRDImages/ad/original/24516.jpg";
                 }
                 _alterImage.src = url;
             })
