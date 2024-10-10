@@ -104,4 +104,4 @@ function handleApiClick(event=null, random=null){
         handleApiClick(null, `api${rand}`);
     }
 }
-handleApiClick();
+// handleApiClick();
