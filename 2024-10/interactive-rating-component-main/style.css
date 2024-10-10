@@ -40,8 +40,8 @@ body{
     border-radius: 1rem;
     padding:1.5rem;
 }
-form{
-}
+/* form{
+} */
 .starDiv{
     background-color: var(--button-background);
     border-radius: 50%;
