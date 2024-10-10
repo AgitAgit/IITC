@@ -1,5 +1,12 @@
 .imgDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
-    height:250px;
+    height:450px;
     aspect-ratio: 1/1;
 }
+
+/* #alternatingImg{
+    transform: translate(-50%,-50%);;
+} */
