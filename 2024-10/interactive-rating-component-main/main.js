@@ -2,6 +2,7 @@ const _form = document.querySelector('form');
 const _rating = document.querySelector('.ratingDiv');
 const _submit = document.getElementById('submitBtn');
 
+const _outerThankYou = document.querySelector('.outerThankYou');
 const _thankYou = document.querySelector('.thankYou');
 const _ratingSpan = document.getElementById('ratingSpan');
 
@@ -28,7 +29,7 @@ function initRating(){
 function handleSubmit(event){
     event.preventDefault();
     _form.classList.toggle('hidden');
-    _thankYou.classList.toggle('hidden');
+    _outerThankYou.classList.toggle('hidden');
     _ratingSpan.textContent = rating;
 }
 

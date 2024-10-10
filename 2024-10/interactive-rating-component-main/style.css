@@ -34,7 +34,7 @@ body{
     height:90vh;
 }
 .displayWindow{
-    height:375;
+    height:375px;
     width:375px;
     background-color: var(--form-background);
     border-radius: 1rem;
@@ -100,6 +100,18 @@ button{
 .thankYou{
     display:flex;
     flex-direction: column;
+    justify-content: space-between;
+    /* align-items: center; */
+    text-align: center;
+}
+.thankImgDiv{
+    display:flex;
+    justify-content: center;
+}
+.thankImg{
+    aspect-ratio: 3 / 2;
+    width:150px;
+    margin: 1rem 0 1rem 0;
 }
 .outerRatingSpan{
     color:var(--Orange);
@@ -107,5 +119,11 @@ button{
     padding:0.5rem;
     text-align: center;
     border-radius: 1rem;
-    margin:1rem;
+    margin:1rem 0 0 0;
+}
+.thankYou .heading{
+    margin:0 0 0 0;
+}
+.thankYou p{
+    margin:0 0 0 0;;
 }
