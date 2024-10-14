@@ -1,16 +1,67 @@
 *{
     box-sizing:border-box;
 }
+@font-face {
+    font-family: 'WorkSans';
+    src: url('./assets/fonts/WorkSans-VariableFont_wght.ttf');
+}
+:root{
+    /* colors */
+    --White: hsl(0, 0%, 100%);
+    --Light-pink: hsl(275, 100%, 97%);
+    --Grayish-purple: hsl(292, 16%, 49%);
+    --Light-purple: hsl(286, 100%, 50%);
+    --Dark-purple: hsl(292, 42%, 14%);
+    
+    /* weights:400,600,700 */
+}
+body{
+    font-family: WorkSans;
+    color:var(--Dark-purple);
+    font-size: 16px;
+    background-color: var(--Light-pink);
+}
+.backgroundImg{
+    position:absolute;
+    z-index: -1;
+    top:-1px;
+    left:-1px;
+    width:110%;
+}
+.backgroundDiv{
+    /* background-color: var(--Light-pink); */
+}
 .mainDiv{
-
+    border:1px solid black;
+    border-radius: 0.5rem;
+    padding:1rem;
+    background-color: white;
+}
+.faqHeader{
+    display:flex;
+    align-items: center;
+    height:2.5rem;
+    margin:0.5rem 0.5rem 2rem 0.5rem;
+}
+.starImg{
+    height: 1.5rem;
+    margin-right: 1rem;
 }
 .item{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
 }
 .itemHeading{
-
+    font-weight:700;
+}
+.itemHeading:hover{
+    color: var(--Light-purple);
+    opacity: 0.5;
 }
 .itemText{
-
+    color:var(--Grayish-purple);
+    grid-column-start: 1;
+    grid-column-end:3;
 }
 button{
     border:none;
@@ -21,4 +72,8 @@ button{
 }
 .hidden{
     display: none;
+}
+
+@media(min-width:1400px){
+
 }
