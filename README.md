@@ -3,6 +3,9 @@
 
 ### [Stats preview card component](https://agitagit.github.io/IITC/docs/HW11)
 
+### [FAQ's accordion](https://agitagit.github.io/IITC/docs/faq-accordion-main)
+
+
 ## Homework:
 ### Basic API fetching:
 ### [API fetching](https://agitagit.github.io/IITC/2024-10/basic_api_calls)
