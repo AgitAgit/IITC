@@ -16,10 +16,15 @@
     /* weights:400,600,700 */
 }
 body{
+    overflow-x: hidden;
     font-family: WorkSans;
     color:var(--Dark-purple);
     font-size: 16px;
     background-color: var(--Light-pink);
+    height:100vh;
+}
+hr{
+    opacity: 0.3;
 }
 .backgroundImg{
     position:absolute;
@@ -29,10 +34,16 @@ body{
     width:110%;
 }
 .backgroundDiv{
-    /* background-color: var(--Light-pink); */
+    height:100%;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
 }
 .mainDiv{
-    border:1px solid black;
+    margin-top:145px;
+    border:none;
     border-radius: 0.5rem;
     padding:1rem;
     background-color: white;
@@ -41,7 +52,7 @@ body{
     display:flex;
     align-items: center;
     height:2.5rem;
-    margin:0.5rem 0.5rem 2rem 0.5rem;
+    margin:0.5rem 0.5rem 0.5rem 0.5rem;
 }
 .starImg{
     height: 1.5rem;
@@ -49,10 +60,18 @@ body{
 }
 .item{
     display:grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 3fr 1fr;
+}
+.item img{
+    justify-self:end;
+    align-self:center;
 }
 .itemHeading{
+    margin-top:1rem;
+    margin-bottom: 1rem;
     font-weight:700;
+    display: flex;
+    align-items:center;
 }
 .itemHeading:hover{
     color: var(--Light-purple);
@@ -62,6 +81,8 @@ body{
     color:var(--Grayish-purple);
     grid-column-start: 1;
     grid-column-end:3;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 button{
     border:none;
