@@ -1,0 +1,24 @@
+*{
+    box-sizing:border-box;
+}
+.mainDiv{
+
+}
+.item{
+}
+.itemHeading{
+
+}
+.itemText{
+
+}
+button{
+    border:none;
+    border-radius: 50%;
+}
+.buttonClicked{
+
+}
+.hidden{
+    display: none;
+}
