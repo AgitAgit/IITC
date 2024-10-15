@@ -9,7 +9,7 @@ _patchPost.addEventListener('submit', event => handleSubmitPatchPost(event));
 //exercise 8
 async function getPosts() {
     const data = await axios.get(`${_baseUrl}/posts`);
-    console.log(data.data);
+    // console.log(data.data);
     return data.data;
 }
 
@@ -60,11 +60,31 @@ async function patchPost(title, content, postId){
     });
     console.log(response.data);
 }
+// patchPost('duck duck','quack quack',"670e2332c3c56c455ad8b40e");
+async function handleSubmitPatchPost(event){
+    event.preventDefault();
+    const {postId, title, content} = event.target.elements;
+    await patchPost(title.value, content.value, postId.value);
+    title.value = '';
+    content.value = '';
+    postId.value = '';
+    getPosts();
+}
 
-function handleSubmitPatchPost(title, content){
-
+//exercise 13
+async function deletePost(postId){
+    const response = await axios.delete(`${_baseUrl}/posts/${postId}`);
+    console.log(response);
 }
 getPosts();
+
+async function handleFetchPosts(){
+    const posts = getPosts();
+    const ul = document.querySelector('#list2');
+    posts.forEach(post => {
+        
+    });
+}
 // postsToList();
 // getPostById('670d1480b45f25be4c034e97');
 // createPost('3000 title','3000 content');

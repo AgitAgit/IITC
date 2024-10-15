@@ -11,6 +11,8 @@
     
     <div class="forms">
         <button onclick="toggleElement('createPost')">new post</button>
+        <button onclick="toggleElement('patchPost')">patch post</button>
+        <button onclick="toggleElement('displayPosts')">display posts</button>
         <form id="createPost" class="hidden">
             create post:
             <hr>
@@ -26,10 +28,13 @@
             <hr>
         </form>
         
-        <button onclick="toggleElement('patchPost')">patch post</button>
         <form id="patchPost" class="hidden">
             patch post:
             <hr>
+            post Id:
+            <br>
+            <input name="postId">
+            <br>
             title:
             <br>
             <input name="title">
@@ -41,6 +46,14 @@
             <button>submit</button>
             <hr>
         </form>
+
+        <div id="displayPosts" class="hidden">
+            <button onclick="handleFetchPosts">fetch posts</button>
+            <hr>
+            <ul id="list2">
+
+            </ul>
+        </div>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./main.js"></script>
