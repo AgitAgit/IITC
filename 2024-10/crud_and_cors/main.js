@@ -137,10 +137,12 @@ async function displayBySearch(){
     const ul = document.querySelector('#list2');
     ul.innerHTML = '';
     loading.classList.toggle('hidden');
-    const posts = await getPosts();
+    let posts = await getPosts();
     loading.classList.toggle('hidden');
     posts = posts.filter(post => {
-        post.title.includes(title);
+        if(post.title.includes(title)){
+            return post;
+        }
     });
     posts.forEach(post => {
         const {title, content, _id} = post;
