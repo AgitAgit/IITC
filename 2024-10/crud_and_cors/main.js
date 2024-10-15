@@ -94,32 +94,32 @@ async function handleDeleteClick(event, _id) {
     handleFetchPosts();
 }
 
-// async function handleFetchPosts(){
-//     const loading = document.querySelector('#displayPostsLoading');
-//     loading.classList.toggle('hidden');
-//     const posts = await getPosts();
-//     loading.classList.toggle('hidden');
-//     const ul = document.querySelector('#list2');
-//     ul.innerHTML = '';
-//     posts.forEach(post => {
-//         const {title, content, _id} = post;
-//         const li = document.createElement('li');
-//         li.innerHTML = `
-//         title:${title}
-//         <br>
-//         content:${content}
-//         <button onclick="handleDeleteClick(event,'${_id}')">DELETE</button>`
-//         ul.appendChild(li);
-//     });
-// }
-
-async function handleFetchPosts(){
+async function showAllPosts(){
     const loading = document.querySelector('#displayPostsLoading');
+    const ul = document.querySelector('#list2');
+    ul.innerHTML = '';
     loading.classList.toggle('hidden');
     const posts = await getPosts();
     loading.classList.toggle('hidden');
+    posts.forEach(post => {
+        const {title, content, _id} = post;
+        const li = document.createElement('li');
+        li.innerHTML = `
+        title:${title}
+        <br>
+        content:${content}
+        <button onclick="handleDeleteClick(event,'${_id}')">DELETE</button>`
+        ul.appendChild(li);
+    });
+}
+
+async function handleFetchPosts(){
+    const loading = document.querySelector('#displayPostsLoading');
     const ul = document.querySelector('#list2');
     ul.innerHTML = '';
+    loading.classList.toggle('hidden');
+    const posts = await getPosts();
+    loading.classList.toggle('hidden');
     for(let i = 0; i <= _currentEnd && i < posts.length; i++){
         const {title, content, _id} = posts[i];
         const li = document.createElement('li');
@@ -131,6 +131,26 @@ async function handleFetchPosts(){
         ul.appendChild(li);
     }
 }
+function clearDisplay(){
+    _currentEnd = -1;
+    const ul = document.querySelector('#list2');
+    ul.innerHTML = '';
+    // handleFetchPosts();
+}
+function showMore(){
+    _currentEnd += 5;
+    handleFetchPosts();
+}
+function showLess(){
+    if(_currentEnd <= 4){
+        _currentEnd = -1;
+    }
+    else {
+        _currentEnd -= 5;
+    }
+    handleFetchPosts();
+}
+handleFetchPosts();
 // postsToList();
 // getPostById('670d1480b45f25be4c034e97');
 // createPost('3000 title','3000 content');
