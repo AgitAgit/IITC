@@ -78,11 +78,22 @@ async function deletePost(postId){
 }
 getPosts();
 
+async function handleDeleteClick(event, _id) {
+    await deletePost(_id);
+    handleFetchPosts();
+}
 async function handleFetchPosts(){
-    const posts = getPosts();
+    const posts = await getPosts();
     const ul = document.querySelector('#list2');
     posts.forEach(post => {
-        
+        const {title, content, _id} = post;
+        const li = document.createElement('li');
+        li.innerHTML = `
+        title:${title}
+        <br>
+        content:${content}
+        <button onclick="handleDeleteClick(event,'${_id}')">DELETE</button>`
+        ul.appendChild(li);
     });
 }
 // postsToList();
