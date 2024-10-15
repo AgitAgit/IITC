@@ -7,8 +7,41 @@
 </head>
 <body>
     <ul id="list1">
-        
     </ul>
+    
+    <div class="forms">
+        <button onclick="toggleElement('createPost')">new post</button>
+        <form id="createPost" class="hidden">
+            create post:
+            <hr>
+            title:
+            <br>
+            <input name="title">
+            <br>
+            content:
+            <br>
+            <input name="content">
+            <br>
+            <button>submit</button>
+            <hr>
+        </form>
+        
+        <button onclick="toggleElement('patchPost')">patch post</button>
+        <form id="patchPost" class="hidden">
+            patch post:
+            <hr>
+            title:
+            <br>
+            <input name="title">
+            <br>
+            content:
+            <br>
+            <input name="content">
+            <br>
+            <button>submit</button>
+            <hr>
+        </form>
+    </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./main.js"></script>
     <link rel="stylesheet" href="./style.css">
