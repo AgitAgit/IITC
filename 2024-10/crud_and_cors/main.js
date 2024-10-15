@@ -2,7 +2,7 @@ const _baseUrl = 'https://api-playground-ten.vercel.app';
 
 const _createPost = document.querySelector('#createPost');
 _createPost.addEventListener('submit', (event) => handleSubmitCreatePost(event));
-
+const _createPostMessage = document.querySelector('#createPostMessage');
 const _patchPost = document.querySelector('#patchPost');
 _patchPost.addEventListener('submit', event => handleSubmitPatchPost(event));
 
@@ -34,11 +34,23 @@ async function getPostById(id){
 
  
 async function createPost(title, content){
-    const response = await axios.post(`${_baseUrl}/posts`,{
-        title,
-        content
-    });
-    console.log(response.data);
+    _createPostMessage.textContent = '';
+    try{
+        const response = await axios.post(`${_baseUrl}/posts`,{
+            title,
+            content
+        });
+        _createPostMessage.textContent = 'new post created';
+        setTimeout(() => {
+            _createPostMessage.textContent = '';
+        },2000);
+    }
+    catch{
+        _createPostMessage.textContent = 'failed to create new post';
+        setTimeout(() => {
+            _createPostMessage.textContent = '';
+        },2000);
+    }
 }
 function handleSubmitCreatePost(event){
     event.preventDefault();
