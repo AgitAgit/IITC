@@ -3,6 +3,9 @@
     margin:0;
     padding:0;
 }
+body{
+    /* background-color: pink; */
+}
 .hidden{
     display:none;
 }
@@ -13,4 +16,7 @@ button{
 li{
     margin:0.5rem;
     border:1px solid black;
+}
+.loading{
+    opacity: 0.5;
 }

@@ -6,14 +6,14 @@ _createPost.addEventListener('submit', (event) => handleSubmitCreatePost(event))
 const _patchPost = document.querySelector('#patchPost');
 _patchPost.addEventListener('submit', event => handleSubmitPatchPost(event));
 
-//exercise 8
+ 
 async function getPosts() {
     const data = await axios.get(`${_baseUrl}/posts`);
     // console.log(data.data);
     return data.data;
 }
 
-//exercise 9
+ 
 async function postsToList(){
     const posts = await getPosts();
     const ul = document.querySelector('#list1');
@@ -26,13 +26,13 @@ async function postsToList(){
     })
 }
 
-//exercise 10
+ 
 async function getPostById(id){
     const post = await axios.get(`${_baseUrl}/posts/${id}`);
     console.log(post.data);
 }
 
-//exercise 11
+ 
 async function createPost(title, content){
     const response = await axios.post(`${_baseUrl}/posts`,{
         title,
@@ -52,7 +52,6 @@ function toggleElement(id){
     element.classList.toggle('hidden');
 }
 
-//exercise 12
 async function patchPost(title, content, postId){
     const response = await axios.patch(`${_baseUrl}/posts/${postId}`,{
         title,
@@ -71,7 +70,6 @@ async function handleSubmitPatchPost(event){
     getPosts();
 }
 
-//exercise 13
 async function deletePost(postId){
     const response = await axios.delete(`${_baseUrl}/posts/${postId}`);
     console.log(response);
@@ -83,8 +81,12 @@ async function handleDeleteClick(event, _id) {
     handleFetchPosts();
 }
 async function handleFetchPosts(){
+    const loading = document.querySelector('#displayPostsLoading');
+    loading.classList.toggle('hidden');
     const posts = await getPosts();
+    loading.classList.toggle('hidden');
     const ul = document.querySelector('#list2');
+    ul.innerHTML = '';
     posts.forEach(post => {
         const {title, content, _id} = post;
         const li = document.createElement('li');
