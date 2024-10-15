@@ -131,6 +131,28 @@ async function handleFetchPosts(){
         ul.appendChild(li);
     }
 }
+async function displayBySearch(){
+    const title = document.querySelector('#searchInput').value;
+    const loading = document.querySelector('#displayPostsLoading');
+    const ul = document.querySelector('#list2');
+    ul.innerHTML = '';
+    loading.classList.toggle('hidden');
+    const posts = await getPosts();
+    loading.classList.toggle('hidden');
+    posts = posts.filter(post => {
+        post.title.includes(title);
+    });
+    posts.forEach(post => {
+        const {title, content, _id} = post;
+        const li = document.createElement('li');
+        li.innerHTML = `
+        title:${title}
+        <br>
+        content:${content}
+        <button onclick="handleDeleteClick(event,'${_id}')">DELETE</button>`
+        ul.appendChild(li);
+    });
+}
 function clearDisplay(){
     _currentEnd = -1;
     const ul = document.querySelector('#list2');
