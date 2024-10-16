@@ -1,0 +1,1 @@
+poster_sizes:92,154,185,342,500,780,original
