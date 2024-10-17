@@ -14,18 +14,27 @@
     <nav>
         
         sort by:
-        <select>
+        <select id="sortSelect" onchange="handleSearchConfigChange()">
+            <option>popularity</option>
+            <option>title</option>
+            <option>score</option>
+            <option>vote count</option>
+            <option>release date</option>
         </select>
-        
-        order:
-        <select>
+        <br>
+        order by:
+        <select id="orderSelect" onchange="handleSearchConfigChange()">
             <option>Descending</option>
             <option>Ascending</option>
         </select>
-
-        limit dates:
+        <br>
+        Released&nbsp;starting&nbsp;from:
+        <input id="" type="date" onchange="handleSearchConfigChange()">
+        <br>
+        Released&nbsp;up&nbsp;to:
+        <input type="date" onchange="handleSearchConfigChange()">
     </nav>
-
+    <hr>
     <div class="moviesDisplay">
     </div>
     
