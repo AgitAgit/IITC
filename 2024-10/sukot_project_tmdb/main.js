@@ -41,9 +41,11 @@ function displayMovies(movies){
         const div = document.createElement('div');
         const img = document.createElement('img');
         const imgText = document.createElement('div');
-        imgText.innerHTML = `${title}<br>score: ${vote_average/2}/5<br>${release_date}`;
+        
         div.classList.add('imgDiv');
         img.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
+        imgText.innerHTML = `${title}<br>score: ${vote_average/2}/5<br>${release_date}`;
+        
         div.appendChild(img);
         div.appendChild(imgText);
         display.appendChild(div);
