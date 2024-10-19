@@ -4,6 +4,8 @@
 
 let _API_KEY;
 let _KEY_READY = false;
+let _ADVANCED_SEARCH_ON = false;
+
 const _API_KEY_PROMISE = fetch('privateData.json')
 .then(data => data.json())
 .then(data => {
@@ -14,6 +16,10 @@ const _API_KEY_PROMISE = fetch('privateData.json')
 const _baseUrl = 'https://api.themoviedb.org/3';
 const _baseImgUrl = 'https://image.tmdb.org';
 
+const _searchInput = document.querySelector('#searchInput');
+const _searchBtn = document.querySelector('#searchBtn');
+
+const _advancedSearchDiv = document.querySelector('.advancedSearch');
 const _sortSelect = document.querySelector('#sortSelect');
 const _orderSelect = document.querySelector('#orderSelect');
 const _fromDate = document.querySelector('#fromDate');
@@ -188,6 +194,18 @@ async function handleSearchConfigChange(){
         const movies = await getMovies(query);
         displayMovies(movies);
     }
+}
+
+function handleAdvancedSearchClick(event){
+    _advancedSearchDiv.classList.toggle('hidden');
+    const button = event.target;
+    if(button.textContent === '+') button.textContent = '-';
+    else button.textContent = '+';
+    _ADVANCED_SEARCH_ON = !_ADVANCED_SEARCH_ON;
+}
+
+async function handleSearchClick(){
+
 }
 
 async function main(){

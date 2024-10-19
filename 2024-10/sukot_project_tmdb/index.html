@@ -17,26 +17,36 @@
         <button>Menu</button>
     </header>
     <nav>
-        sort by:
-        <select id="sortSelect" onchange="handleSearchConfigChange()">
-            <option>popularity</option>
-            <option>title</option>
-            <option>score</option>
-            <option>vote count</option>
-            <option>release date</option>
-        </select>
+        <hr>
+        <input id="searchInput">
+        <button id="searchBtn" onclick="handleSearchClick()">search</button>
         <br>
-        order by:
-        <select id="orderSelect" onchange="handleSearchConfigChange()">
-            <option>Descending</option>
-            <option>Ascending</option>
-        </select>
-        <br>
-        Released&nbsp;starting&nbsp;from:
-        <input id="fromDate" type="date" onchange="handleSearchConfigChange()">
-        <br>
-        Released&nbsp;up&nbsp;to:
-        <input id="toDate" type="date" onchange="handleSearchConfigChange()">
+        
+        <div class="advencedSearchWrapper">
+            <span>advanced search</span><button onclick="handleAdvancedSearchClick(event)">+</button>
+            <div class="advancedSearch hidden">
+                sort by:
+                <select id="sortSelect" onchange="handleSearchConfigChange()">
+                    <option>popularity</option>
+                    <option>title</option>
+                    <option>score</option>
+                    <option>vote count</option>
+                    <option>release date</option>
+                </select>
+                <br>
+                order by:
+                <select id="orderSelect" onchange="handleSearchConfigChange()">
+                    <option>Descending</option>
+                    <option>Ascending</option>
+                </select>
+                <br>
+                Released&nbsp;starting&nbsp;from:
+                <input id="fromDate" type="date" onchange="handleSearchConfigChange()">
+                <br>
+                Released&nbsp;up&nbsp;to:
+                <input id="toDate" type="date" onchange="handleSearchConfigChange()">
+            </div>
+        </div>
     </nav>
     <hr>
     <div class="paginationDiv"></div>
