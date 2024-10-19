@@ -173,6 +173,13 @@ async function getMovies(query){
     });
 }
 
+async function searchMovies(query){
+    if(_KEY_READY){
+        return await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${_API_KEY}`)
+
+    }
+}
+
 function displayMovies(movies){
     const display = document.querySelector('.moviesDisplay');
     display.innerHTML = '';
@@ -208,7 +215,7 @@ async function handleSearchClick(){
 }
 
 function restoreFilterDefault(){
-    
+
 }
 
 async function main(){
