@@ -2,6 +2,13 @@
 // I should break this down into modules...
 // I should create some logo for my projects and github.
 
+//should separate into search mode and filter mode.
+//annoying that they are separate but that is the api provided.
+//I could either copy the data to my own db and query it however I like,
+//or create the illusion of such search by complex queries
+//to the api.
+//Both of these options are outside the scope of this exercise.
+
 let _API_KEY;
 let _KEY_READY = false;
 let _ADVANCED_SEARCH_ON = false;
