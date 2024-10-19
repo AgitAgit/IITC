@@ -10,9 +10,13 @@
     <img src="https://image.tmdb.org/t/p/w500/7h6TqPB3ESmjuVbxCxAeB1c9OB1.jpg">
     <img src="https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg"> -->
     <header>
+        <div>LOGO</div>
+        <button>Home</button>
+        <button>Favorites</button>
+        <button>About</button>
+        <button>Menu</button>
     </header>
     <nav>
-        
         sort by:
         <select id="sortSelect" onchange="handleSearchConfigChange()">
             <option>popularity</option>
@@ -29,10 +33,10 @@
         </select>
         <br>
         Released&nbsp;starting&nbsp;from:
-        <input id="" type="date" onchange="handleSearchConfigChange()">
+        <input id="fromDate" type="date" onchange="handleSearchConfigChange()">
         <br>
         Released&nbsp;up&nbsp;to:
-        <input type="date" onchange="handleSearchConfigChange()">
+        <input id="toDate" type="date" onchange="handleSearchConfigChange()">
     </nav>
     <hr>
     <div class="paginationDiv"></div>

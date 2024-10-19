@@ -1,4 +1,6 @@
 // add a filter for n.o. votes so the order by score will have meaning?
+// I should break this down into modules...
+// I should create some logo for my projects and github.
 
 let _API_KEY;
 let _KEY_READY = false;
@@ -14,6 +16,9 @@ const _baseImgUrl = 'https://image.tmdb.org';
 
 const _sortSelect = document.querySelector('#sortSelect');
 const _orderSelect = document.querySelector('#orderSelect');
+const _fromDate = document.querySelector('#fromDate');
+const _toDate = document.querySelector('#toDate');
+
 
 const _paginationDivs = document.querySelectorAll('.paginationDiv');
 
@@ -46,6 +51,8 @@ function buttonMarker(currentPage){
     })
 }
 function refreshPaginationDiv(currentPage, itemCount, pageCount){
+    window.scrollTo(0,0);
+
     if(pageCount > 500) pageCount = 500;
     _paginationDivs.forEach(paginator => {
         paginator.innerHTML = '';
@@ -120,10 +127,14 @@ function buildQuery(page){
     
     let sortBy;
     let orderBy;
+
+    const text = _sortSelect.value;
+    const fromDate = _fromDate.value;
+    const toDate = _toDate.value;
+    
     if(_orderSelect.value === 'Descending') orderBy = '.desc';
     else orderBy = '.asc';
 
-    const text = _sortSelect.value;
     if(text==='popularity') sortBy = 'popularity';
     else if(text === 'title') sortBy = 'title';
     else if(text === 'score') sortBy = 'vote_average';
@@ -132,8 +143,8 @@ function buildQuery(page){
     
     sortBy += orderBy;
     
-    //if(fromDate) result += `&primary_release_date.gte=${fromDate?.toISOString().slice(0,10)}`;
-    //if(toDate) result += `&primary_release_date.lte=${toDate?.toISOString().slice(0,10)}`;
+    if(fromDate) result += `&primary_release_date.gte=${fromDate}`;
+    if(toDate) result += `&primary_release_date.lte=${toDate}`;
     if(sortBy) result += `&sort_by=${sortBy}`;
     if(page) result += `&page=${page}`;
     return result;
