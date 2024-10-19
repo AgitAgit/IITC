@@ -25,24 +25,28 @@ function logConfigurationData(){
     })
 }
 
-// async function handlePaginationClick(event){
-//     console.log('handlePaginationClick triggered...');
-//     const buttonText = event.target.textContent;
-//     if(parseInt(buttonText)){
-//         const query = buildQuery(parseInt(buttonText));//FOR REFACTOR:this trio of call often appear together. should be made into a function.
-//         const movies = await getMovies(query);
-//         displayMovies(movies);
-//     }
-// }
+async function handlePaginationClick(event){
+    console.log('handlePaginationClick triggered...');
+    const buttonText = event.target.textContent;
+    navToPage(parseInt(buttonText));
+}
 async function navToPage(page){
     if(page < 1 || 500 < page) return;
     const query = buildQuery(page);//FOR REFACTOR:this trio of call often appear together. should be made into a function.
     const movies = await getMovies(query);
     displayMovies(movies);
 }
+function buttonMarker(currentPage){
+    _paginationDivs.forEach(div => {
+        const buttons = div.querySelectorAll('button');
+        buttons.forEach(button => {
+            button.classList.remove('markedButton');
+            if(currentPage === parseInt(button.textContent)) button.classList.add('markedButton');
+        })
+    })
+}
 function refreshPaginationDiv(currentPage, itemCount, pageCount){
     if(pageCount > 500) pageCount = 500;
-
     _paginationDivs.forEach(paginator => {
         paginator.innerHTML = '';
         const leftButton = document.createElement('button');
@@ -63,7 +67,7 @@ function refreshPaginationDiv(currentPage, itemCount, pageCount){
         lastButton.textContent = `${pageCount}`;
         rightButton.textContent = '>';
         
-        if(currentPage < 3){
+        if(currentPage <= 3){
             for(let i = 2; i < buttons.length + 2; i++){
                 buttons[i-2].textContent = `${i}`;
             }
@@ -82,8 +86,9 @@ function refreshPaginationDiv(currentPage, itemCount, pageCount){
                 counter++;
             }
         }
-
+        
         leftButton.addEventListener('click', () => navToPage(currentPage - 1));
+        rightButton.addEventListener('click', () => navToPage(currentPage + 1));
         firstButton.addEventListener('click', (event) => handlePaginationClick(event));
         lastButton.addEventListener('click', (event) => handlePaginationClick(event));
         buttons.forEach(button => button.addEventListener('click', (event) => handlePaginationClick(event)));
@@ -106,6 +111,7 @@ function refreshPaginationDiv(currentPage, itemCount, pageCount){
         if(pageCount > 1) paginator.appendChild(lastButton);
         paginator.appendChild(rightButton);
     });
+    buttonMarker(currentPage);//remove this after testing;
 }
 
 function buildQuery(page){

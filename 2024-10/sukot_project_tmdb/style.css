@@ -1,0 +1,13 @@
+*{
+    box-sizing:border-box;
+}
+/* :root{} */
+[data-theme='light']{
+    --button-marker:hsl(0, 100%, 50%);
+}
+/* [data-theme='dark']{
+
+} */
+.markedButton{
+    border: 1px solid red;
+}
