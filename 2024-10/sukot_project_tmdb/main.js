@@ -26,7 +26,6 @@ const _baseImgUrl = 'https://image.tmdb.org';
 const _searchInput = document.querySelector('#searchInput');
 const _searchBtn = document.querySelector('#searchBtn');
 
-const _advancedSearchDiv = document.querySelector('.advancedSearch');
 const _sortSelect = document.querySelector('#sortSelect');
 const _orderSelect = document.querySelector('#orderSelect');
 const _fromDate = document.querySelector('#fromDate');
@@ -203,16 +202,13 @@ async function handleSearchConfigChange(){
     }
 }
 
-function handleAdvancedSearchClick(event){
-    _advancedSearchDiv.classList.toggle('hidden');
-    const button = event.target;
-    if(button.textContent === '+') button.textContent = '-';
-    else button.textContent = '+';
-    _ADVANCED_SEARCH_ON = !_ADVANCED_SEARCH_ON;
-}
 
 async function handleSearchClick(){
 
+}
+
+function restoreFilterDefault(){
+    
 }
 
 async function main(){
