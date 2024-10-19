@@ -1,3 +1,5 @@
+// add a filter for n.o. votes so the order by score will have meaning?
+
 let _API_KEY;
 let _KEY_READY = false;
 const _API_KEY_PROMISE = fetch('privateData.json')
@@ -13,12 +15,36 @@ const _baseImgUrl = 'https://image.tmdb.org';
 const _sortSelect = document.querySelector('#sortSelect');
 const _orderSelect = document.querySelector('#orderSelect');
 
+const _paginationDivs = document.querySelectorAll('.paginationDiv');
+
 function logConfigurationData(){
     fetch(`${_baseUrl}/configuration?api_key=${_API_KEY}`)
     .then(response => response.json())
     .then(data => {
         console.log(data);
     })
+}
+
+function refreshPaginationDiv(currentPage, itemCount, pageCount){
+
+    _paginationDivs.forEach(paginator => {
+        const leftButton = document.createElement('button');
+        const rightButton = document.createElement('button');
+        const firstButton = document.createElement('button');
+        const lastButton = document.createElement('button');
+        
+
+
+        leftButton.textContent = '<';
+        firstButton.textContent = '1';
+        lastButton.textContent = `${pageCount}`;
+        rightButton.textContent = '>';
+
+        paginator.appendChild(leftButton);
+        paginator.appendChild(firstButton);
+        if(pageCount > 1) paginator.appendChild(lastButton);
+        paginator.appendChild(rightButton);
+    });
 }
 
 function buildQuery(_API_KEY, sortBy, page, fromDate, toDate){
@@ -36,6 +62,8 @@ async function getMovies(query){
     .then(response => response.json())
     .then(data => {
         console.log(data);
+        const {page, total_results, total_pages} = data;
+        refreshPaginationDiv(page, total_results, total_pages);
         return data.results;
     });
 }
@@ -45,14 +73,14 @@ function displayMovies(movies){
     display.innerHTML = '';
     const width = 'w185';
     movies.forEach(movie => {
-        const {id, title, poster_path, release_date, vote_average} = movie;
+        const {id, title, poster_path, release_date, vote_average, vote_count} = movie;
         const div = document.createElement('div');
         const img = document.createElement('img');
         const imgText = document.createElement('div');
         
         div.classList.add('imgDiv');
         img.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
-        imgText.innerHTML = `${title}<br>score: ${vote_average/2}/5<br>${release_date}`;
+        imgText.innerHTML = `${title}<br>score: ${vote_average/2}/5 (${vote_count} votes)<br>${release_date}`;
         
         div.appendChild(img);
         div.appendChild(imgText);
@@ -69,7 +97,10 @@ async function handleSearchConfigChange(){
 
     const text = _sortSelect.value;
     if(text==='popularity') sortBy = 'popularity';
+    else if(text === 'title') sortBy = 'title';
     else if(text === 'score') sortBy = 'vote_average';
+    else if(text === 'vote count') sortBy = 'vote_count';
+    else if(text === 'release date') sortBy = 'primary_release_date';
     
     sortBy += orderBy;
     if(_KEY_READY){
@@ -88,9 +119,10 @@ async function main(){
     earlierDate.setDate(currentDate.getDate() - 7);
     const query1 = buildQuery(_API_KEY, 'primary_release_date.asc');
     const query2 = buildQuery(_API_KEY,null,null,null,null);
-    const data = await getMovies(query1);
-    console.log(data);
-    displayMovies(data);
+    // const data = await getMovies(query1);
+    // console.log(data);
+    // displayMovies(data);
+    handleSearchConfigChange();
 }
 
 main();
