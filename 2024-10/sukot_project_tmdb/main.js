@@ -25,14 +25,30 @@ function logConfigurationData(){
     })
 }
 
-function refreshPaginationDiv(currentPage, itemCount, pageCount){
+function handlePaginationClick(){
 
+}
+function refreshPaginationDiv(currentPage, itemCount, pageCount){
     _paginationDivs.forEach(paginator => {
+        paginator.innerHTML = '';
         const leftButton = document.createElement('button');
         const rightButton = document.createElement('button');
         const firstButton = document.createElement('button');
         const lastButton = document.createElement('button');
         
+        const buttons = [
+            document.createElement('button'),
+            document.createElement('button'),
+            document.createElement('button'),
+            document.createElement('button'),
+            document.createElement('button')
+        ];
+        
+        if(currentPage < 3){
+            for(let i = 2; i < buttons.length + 2; i++){
+                buttons[i-2].textContent = `${i}`;
+            }
+        }    
 
 
         leftButton.textContent = '<';
@@ -42,16 +58,34 @@ function refreshPaginationDiv(currentPage, itemCount, pageCount){
 
         paginator.appendChild(leftButton);
         paginator.appendChild(firstButton);
+        for(let i = 0; i < 5; i++){
+            paginator.appendChild(buttons[i]);
+        }
         if(pageCount > 1) paginator.appendChild(lastButton);
         paginator.appendChild(rightButton);
     });
 }
 
-function buildQuery(_API_KEY, sortBy, page, fromDate, toDate){
+function buildQuery(page){
     //sort by: (popularity/vote_average/title/original_title/primary_release_date/vote_count/revenue).desc/asc
     let result = `${_baseUrl}/discover/movie?api_key=${_API_KEY}`;
-    if(fromDate) result += `&primary_release_date.gte=${fromDate?.toISOString().slice(0,10)}`;
-    if(toDate) result += `&primary_release_date.lte=${toDate?.toISOString().slice(0,10)}`;
+    
+    let sortBy;
+    let orderBy;
+    if(_orderSelect.value === 'Descending') orderBy = '.desc';
+    else orderBy = '.asc';
+
+    const text = _sortSelect.value;
+    if(text==='popularity') sortBy = 'popularity';
+    else if(text === 'title') sortBy = 'title';
+    else if(text === 'score') sortBy = 'vote_average';
+    else if(text === 'vote count') sortBy = 'vote_count';
+    else if(text === 'release date') sortBy = 'primary_release_date';
+    
+    sortBy += orderBy;
+    
+    //if(fromDate) result += `&primary_release_date.gte=${fromDate?.toISOString().slice(0,10)}`;
+    //if(toDate) result += `&primary_release_date.lte=${toDate?.toISOString().slice(0,10)}`;
     if(sortBy) result += `&sort_by=${sortBy}`;
     if(page) result += `&page=${page}`;
     return result;
@@ -90,28 +124,13 @@ function displayMovies(movies){
 async function handleSearchConfigChange(){
     // const sort = document.querySelector('#sortChange');
     //sort by: (popularity/vote_average/title/original_title/primary_release_date/vote_count/revenue).desc/asc
-    let sortBy;
-    let orderBy;
-    if(_orderSelect.value === 'Descending') orderBy = '.desc';
-    else orderBy = '.asc';
-
-    const text = _sortSelect.value;
-    if(text==='popularity') sortBy = 'popularity';
-    else if(text === 'title') sortBy = 'title';
-    else if(text === 'score') sortBy = 'vote_average';
-    else if(text === 'vote count') sortBy = 'vote_count';
-    else if(text === 'release date') sortBy = 'primary_release_date';
-    
-    sortBy += orderBy;
     if(_KEY_READY){
-        const query = buildQuery(_API_KEY,sortBy,null,null,null);
+        const query = buildQuery();
         const movies = await getMovies(query);
         displayMovies(movies);
     }
 }
-function handleOrderChange(){
 
-}
 async function main(){
     const currentDate = new Date();
     await _API_KEY_PROMISE;
