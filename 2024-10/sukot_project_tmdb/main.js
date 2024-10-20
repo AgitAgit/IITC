@@ -11,7 +11,8 @@
 
 let _API_KEY;
 let _KEY_READY = false;
-let _ADVANCED_SEARCH_ON = false;
+let _SEARCH_METHOD = 'filter';
+let _current_search_query = '';
 
 const _API_KEY_PROMISE = fetch('privateData.json')
 .then(data => data.json())
@@ -20,6 +21,7 @@ const _API_KEY_PROMISE = fetch('privateData.json')
     _KEY_READY = true;
     return data._API_KEY;
 })
+
 const _baseUrl = 'https://api.themoviedb.org/3';
 const _baseImgUrl = 'https://image.tmdb.org';
 
@@ -34,6 +36,7 @@ const _toDate = document.querySelector('#toDate');
 
 const _paginationDivs = document.querySelectorAll('.paginationDiv');
 
+//miscellaneous methods
 function logConfigurationData(){
     fetch(`${_baseUrl}/configuration?api_key=${_API_KEY}`)
     .then(response => response.json())
@@ -42,26 +45,28 @@ function logConfigurationData(){
     })
 }
 
+
+
+//pagination methods
 async function handlePaginationClick(event){
-    console.log('handlePaginationClick triggered...');
+    // console.log('handlePaginationClick triggered...');
     const buttonText = event.target.textContent;
     navToPage(parseInt(buttonText));
 }
+
 async function navToPage(page){
     if(page < 1 || 500 < page) return;
-    const query = buildQuery(page);//FOR REFACTOR:this trio of call often appear together. should be made into a function.
-    const movies = await getMovies(query);
+    let movies;
+    if(_SEARCH_METHOD === 'filter'){
+        const query = buildQuery(page);//FOR REFACTOR:this trio of call often appear together. should be made into a function.
+        movies = await getMovies(query);
+    }
+    else if(_SEARCH_METHOD === 'search'){
+        movies = await searchMovies(_current_search_query,page);
+    }
     displayMovies(movies);
 }
-function buttonMarker(currentPage){
-    _paginationDivs.forEach(div => {
-        const buttons = div.querySelectorAll('button');
-        buttons.forEach(button => {
-            button.classList.remove('markedButton');
-            if(currentPage === parseInt(button.textContent)) button.classList.add('markedButton');
-        })
-    })
-}
+
 function refreshPaginationDiv(currentPage, itemCount, pageCount){
     window.scrollTo(0,0);
 
@@ -133,6 +138,42 @@ function refreshPaginationDiv(currentPage, itemCount, pageCount){
     buttonMarker(currentPage);//remove this after testing;
 }
 
+
+
+//display methods
+function displayMovies(movies){
+    const display = document.querySelector('.moviesDisplay');
+    display.innerHTML = '';
+    const width = 'w185';
+    movies.forEach(movie => {
+        const {id, title, poster_path, release_date, vote_average, vote_count} = movie;
+        const div = document.createElement('div');
+        const img = document.createElement('img');
+        const imgText = document.createElement('div');
+        
+        div.classList.add('imgDiv');
+        img.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
+        imgText.innerHTML = `${title}<br>score: ${vote_average/2}/5 (${vote_count} votes)<br>${release_date}`;
+        
+        div.appendChild(img);
+        div.appendChild(imgText);
+        display.appendChild(div);
+    })
+}
+
+function buttonMarker(currentPage){
+    _paginationDivs.forEach(div => {
+        const buttons = div.querySelectorAll('button');
+        buttons.forEach(button => {
+            button.classList.remove('markedButton');
+            if(currentPage === parseInt(button.textContent)) button.classList.add('markedButton');
+        })
+    })
+}
+
+
+
+//filter methods
 function buildQuery(page){
     //sort by: (popularity/vote_average/title/original_title/primary_release_date/vote_count/revenue).desc/asc
     let result = `${_baseUrl}/discover/movie?api_key=${_API_KEY}`;
@@ -173,32 +214,6 @@ async function getMovies(query){
     });
 }
 
-async function searchMovies(query){
-    if(_KEY_READY){
-        return await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${_API_KEY}`)
-
-    }
-}
-
-function displayMovies(movies){
-    const display = document.querySelector('.moviesDisplay');
-    display.innerHTML = '';
-    const width = 'w185';
-    movies.forEach(movie => {
-        const {id, title, poster_path, release_date, vote_average, vote_count} = movie;
-        const div = document.createElement('div');
-        const img = document.createElement('img');
-        const imgText = document.createElement('div');
-        
-        div.classList.add('imgDiv');
-        img.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
-        imgText.innerHTML = `${title}<br>score: ${vote_average/2}/5 (${vote_count} votes)<br>${release_date}`;
-        
-        div.appendChild(img);
-        div.appendChild(imgText);
-        display.appendChild(div);
-    })
-}
 async function handleSearchConfigChange(){
     // const sort = document.querySelector('#sortChange');
     //sort by: (popularity/vote_average/title/original_title/primary_release_date/vote_count/revenue).desc/asc
@@ -207,16 +222,40 @@ async function handleSearchConfigChange(){
         const movies = await getMovies(query);
         displayMovies(movies);
     }
-}
-
-
-async function handleSearchClick(){
-
+    
 }
 
 function restoreFilterDefault(){
 
 }
+    
+
+
+//search methods
+async function searchMovies(query, page = 1){
+    if(_KEY_READY){
+        return await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${_API_KEY}&query=${query}&page=${page}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            const {page, total_results, total_pages} = data;
+            refreshPaginationDiv(page, total_results, total_pages);
+            return data.results;
+        })
+    }
+}
+
+async function handleSearchClick(){
+    _SEARCH_METHOD = 'search';
+    const query = _searchInput.value;
+    _current_search_query = query;
+    _searchInput.value = '';
+
+    const movies = await searchMovies(query);
+    displayMovies(movies);
+}
+
+
 
 async function main(){
     const currentDate = new Date();
