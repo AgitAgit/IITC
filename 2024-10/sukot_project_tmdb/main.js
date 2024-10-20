@@ -9,6 +9,8 @@
 //to the api.
 //Both of these options are outside the scope of this exercise.
 
+//need to add a default image
+
 let _API_KEY;
 let _KEY_READY = false;
 let _SEARCH_METHOD = 'filter';
@@ -25,6 +27,9 @@ const _API_KEY_PROMISE = fetch('privateData.json')
 const _baseUrl = 'https://api.themoviedb.org/3';
 const _baseImgUrl = 'https://image.tmdb.org';
 
+
+const _moviesDisplayWrapper = document.querySelector('.moviesDisplayWrapper');
+
 const _searchInput = document.querySelector('#searchInput');
 const _searchBtn = document.querySelector('#searchBtn');
 
@@ -33,8 +38,9 @@ const _orderSelect = document.querySelector('#orderSelect');
 const _fromDate = document.querySelector('#fromDate');
 const _toDate = document.querySelector('#toDate');
 
-
 const _paginationDivs = document.querySelectorAll('.paginationDiv');
+
+const _singleMovieDisplay = document.querySelector('.singleMovieDisplay');
 
 //miscellaneous methods
 function logConfigurationData(){
@@ -152,6 +158,7 @@ function displayMovies(movies){
         const imgText = document.createElement('div');
         
         div.classList.add('imgDiv');
+        div.addEventListener('click', () => handleMovieClick(movie));
         img.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
         imgText.innerHTML = `${title}<br>score: ${vote_average/2}/5 (${vote_count} votes)<br>${release_date}`;
         
@@ -217,6 +224,7 @@ async function getMovies(query){
 async function handleSearchConfigChange(){
     // const sort = document.querySelector('#sortChange');
     //sort by: (popularity/vote_average/title/original_title/primary_release_date/vote_count/revenue).desc/asc
+    _SEARCH_METHOD = 'filter';
     if(_KEY_READY){
         const query = buildQuery();
         const movies = await getMovies(query);
@@ -255,7 +263,32 @@ async function handleSearchClick(){
     displayMovies(movies);
 }
 
+//single movie methods
+function handleMovieClick(movie){
+    const { backdrop_path, genre_ids, id, original_language, title, overview, poster_path, release_date, vote_average, vote_count} = movie
+    _moviesDisplayWrapper.classList.toggle('hidden');
+    _singleMovieDisplay.classList.toggle('hidden');
+    
+    const singleMovieContainer = document.createElement('div');
+    const posterImg = document.createElement('img');
+    const backDropImg = document.createElement('img');
 
+    const width = 'w185';
+
+    posterImg.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
+    backDropImg.src = `${_baseImgUrl}/t/p/${width}${backdrop_path}`;
+
+    singleMovieContainer.innerHTML = '';//remove old content;
+    singleMovieContainer.appendChild(posterImg);
+    singleMovieContainer.appendChild(backDropImg);
+
+
+    console.log(movie);
+}
+function handleGoBackClick(){
+    _moviesDisplayWrapper.classList.toggle('hidden');
+    _singleMovieDisplay.classList.toggle('hidden');
+}
 
 async function main(){
     const currentDate = new Date();
