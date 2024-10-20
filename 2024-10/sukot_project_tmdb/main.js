@@ -41,6 +41,10 @@ const _toDate = document.querySelector('#toDate');
 const _paginationDivs = document.querySelectorAll('.paginationDiv');
 
 const _singleMovieDisplay = document.querySelector('.singleMovieDisplay');
+const _favoritesPage = document.querySelector('.favoritesPage');
+const _aboutPage = document.querySelector('.aboutPage');
+
+const _displays = [_moviesDisplayWrapper, _singleMovieDisplay, _favoritesPage, _aboutPage];
 
 //miscellaneous methods
 function logConfigurationData(){
@@ -51,6 +55,18 @@ function logConfigurationData(){
     })
 }
 
+function handleHomeClick(){
+    switchDisplayTo(_moviesDisplayWrapper);
+}
+
+function handleFavoritesClick(){
+    switchDisplayTo(_favoritesPage);
+}
+
+
+function handleAboutClick(){
+    switchDisplayTo(_aboutPage);
+}
 
 
 //pagination methods
@@ -178,7 +194,10 @@ function buttonMarker(currentPage){
     })
 }
 
-
+function switchDisplayTo(element){
+    _displays.forEach(display => display.classList.add('hidden'));
+    element.classList.remove('hidden');
+}
 
 //filter methods
 function buildQuery(page){
@@ -266,8 +285,9 @@ async function handleSearchClick(){
 //single movie methods
 function handleMovieClick(movie){
     const { backdrop_path, genre_ids, id, original_language, title, overview, poster_path, release_date, vote_average, vote_count} = movie
-    _moviesDisplayWrapper.classList.toggle('hidden');
-    _singleMovieDisplay.classList.toggle('hidden');
+    // _moviesDisplayWrapper.classList.toggle('hidden');
+    // _singleMovieDisplay.classList.toggle('hidden');
+    switchDisplayTo(_singleMovieDisplay);
     
     // const backButton = document.createElement('button');
     const posterImg = document.createElement('img');
@@ -292,8 +312,9 @@ function handleMovieClick(movie){
     // console.log(movie);
 }
 function handleGoBackClick(){
-    _moviesDisplayWrapper.classList.toggle('hidden');
-    _singleMovieDisplay.classList.toggle('hidden');
+    // _moviesDisplayWrapper.classList.toggle('hidden');
+    // _singleMovieDisplay.classList.toggle('hidden');
+    switchDisplayTo(_moviesDisplayWrapper);
 }
 
 async function main(){
