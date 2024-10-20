@@ -269,21 +269,27 @@ function handleMovieClick(movie){
     _moviesDisplayWrapper.classList.toggle('hidden');
     _singleMovieDisplay.classList.toggle('hidden');
     
-    const singleMovieContainer = document.createElement('div');
+    // const backButton = document.createElement('button');
     const posterImg = document.createElement('img');
     const backDropImg = document.createElement('img');
 
     const width = 'w185';
 
+    // backButton.textContent = 'go back';
+    // backButton.addEventListener('click', handleGoBackClick);
     posterImg.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
     backDropImg.src = `${_baseImgUrl}/t/p/${width}${backdrop_path}`;
+    _singleMovieDisplay.innerHTML = 
+    `<button onclick="handleGoBackClick()">go back</button>
+    <br>
+    ${title}
+    <br>
+    overview: ${overview}
+    <br>`;//remove old content;
+    _singleMovieDisplay.appendChild(posterImg);
+    _singleMovieDisplay.appendChild(backDropImg);
 
-    singleMovieContainer.innerHTML = '';//remove old content;
-    singleMovieContainer.appendChild(posterImg);
-    singleMovieContainer.appendChild(backDropImg);
-
-
-    console.log(movie);
+    // console.log(movie);
 }
 function handleGoBackClick(){
     _moviesDisplayWrapper.classList.toggle('hidden');
