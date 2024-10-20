@@ -23,6 +23,7 @@ const _API_KEY_PROMISE = fetch('privateData.json')
     _KEY_READY = true;
     return data._API_KEY;
 })
+const _favorites = JSON.parse(localStorage.getItem('sukkotFavorites')) || [];
 
 const _baseUrl = 'https://api.themoviedb.org/3';
 const _baseImgUrl = 'https://image.tmdb.org';
@@ -61,6 +62,7 @@ function handleHomeClick(){
 
 function handleFavoritesClick(){
     switchDisplayTo(_favoritesPage);
+    console.log(_favorites);
 }
 
 
@@ -272,6 +274,19 @@ async function searchMovies(query, page = 1){
     }
 }
 
+async function searchById(id){//not done...
+    if(_KEY_READY){
+        return await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${_API_KEY}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // const {page, total_results, total_pages} = data;
+            // refreshPaginationDiv(page, total_results, total_pages);
+            // return data.results;
+        })
+    }
+}
+
 async function handleSearchClick(){
     _SEARCH_METHOD = 'search';
     const query = _searchInput.value;
@@ -281,6 +296,8 @@ async function handleSearchClick(){
     const movies = await searchMovies(query);
     displayMovies(movies);
 }
+
+
 
 //single movie methods
 function handleMovieClick(movie){
@@ -315,6 +332,13 @@ function handleGoBackClick(){
     // _moviesDisplayWrapper.classList.toggle('hidden');
     // _singleMovieDisplay.classList.toggle('hidden');
     switchDisplayTo(_moviesDisplayWrapper);
+}
+
+
+
+//storage methods
+function addToFavorites(movie){
+    const favorite = JSON.stringify(movie);
 }
 
 async function main(){
