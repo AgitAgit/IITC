@@ -1,5 +1,8 @@
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
+    overflow-x: hidden;
 }
 /* :root{} */
 [data-theme='light']{
@@ -8,9 +11,32 @@
 /* [data-theme='dark']{
 
 } */
- .hidden{
+body{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+header{
+    padding:1rem;
+}
+.moviesDisplayWrapper{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+nav{
+    display:flex;
+    flex-direction: column;
+}
+.paginationDiv{
+    padding:1rem;
+}
+.hidden{
     display:none;
- }
+}
 .markedButton{
     border: 1px solid red;
+}
+.imgDiv img{
+    max-width: 185px;
 }

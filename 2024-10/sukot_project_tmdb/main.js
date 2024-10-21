@@ -1,4 +1,6 @@
 // add a filter for n.o. votes so the order by score will have meaning?
+// this would require complex querying or data keeping in a separate location.
+
 // I should break this down into modules...
 // I should create some logo for my projects and github.
 
@@ -9,7 +11,10 @@
 //to the api.
 //Both of these options are outside the scope of this exercise.
 
-//need to add a default image
+//need to add a default image DONE.
+
+// add the github symbol with a link to the footer and the about page? 
+//That can wait to the finishing touches.
 
 let _API_KEY;
 let _KEY_READY = false;
@@ -27,7 +32,7 @@ let _favorites = JSON.parse(localStorage.getItem('sukkotFavorites')) || [];
 
 const _baseUrl = 'https://api.themoviedb.org/3';
 const _baseImgUrl = 'https://image.tmdb.org';
-
+const _defaultImgUrl = './assets/pexels-neosiam-603580.jpg';
 
 const _moviesDisplayWrapper = document.querySelector('.moviesDisplayWrapper');
 
@@ -182,6 +187,7 @@ function refreshPaginationDiv(currentPage, itemCount, pageCount){
 
 //display methods
 function displayMovies(movies, displayElement = null){
+    console.log(movies);
     let display;
     if(displayElement) display = displayElement;
     else display = document.querySelector('.moviesDisplay');
@@ -196,7 +202,10 @@ function displayMovies(movies, displayElement = null){
         
         div.classList.add('imgDiv');
         div.addEventListener('click', () => handleMovieClick(movie));
-        img.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
+
+        if(poster_path === null) img.src = _defaultImgUrl;
+        else img.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
+
         imgText.innerHTML = `${title}<br>score: ${vote_average/2}/5 (${vote_count} votes)<br>${release_date}`;
         likeButton.textContent = '🤍';
         likeButton.addEventListener('click', (event) => handleLikeClick(event, movie));
