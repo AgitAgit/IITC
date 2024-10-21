@@ -58,6 +58,8 @@ function logConfigurationData(){
 
 function handleHomeClick(){
     switchDisplayTo(_moviesDisplayWrapper);
+    _SEARCH_METHOD = 'filter';
+    handleSearchConfigChange();
 }
 
 function handleFavoritesClick(){
@@ -257,7 +259,7 @@ async function getMovies(query){
     return await fetch(query)
     .then(response => response.json())
     .then(data => {
-        console.log(data);
+        // console.log(data);
         const {page, total_results, total_pages} = data;
         refreshPaginationDiv(page, total_results, total_pages);
         return data.results;
@@ -288,7 +290,7 @@ async function searchMovies(query, page = 1){
         return await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${_API_KEY}&query=${query}&page=${page}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             const {page, total_results, total_pages} = data;
             refreshPaginationDiv(page, total_results, total_pages);
             return data.results;
@@ -301,7 +303,7 @@ async function searchById(id){//not done...
         return await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${_API_KEY}`)
         .then(response => response.json())
         .then(data => {
-            console.log(data);
+            // console.log(data);
             // const {page, total_results, total_pages} = data;
             // refreshPaginationDiv(page, total_results, total_pages);
             // return data.results;
