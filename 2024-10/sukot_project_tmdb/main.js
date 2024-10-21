@@ -23,7 +23,7 @@ const _API_KEY_PROMISE = fetch('privateData.json')
     _KEY_READY = true;
     return data._API_KEY;
 })
-const _favorites = JSON.parse(localStorage.getItem('sukkotFavorites')) || [];
+let _favorites = JSON.parse(localStorage.getItem('sukkotFavorites')) || [];
 
 const _baseUrl = 'https://api.themoviedb.org/3';
 const _baseImgUrl = 'https://image.tmdb.org';
@@ -325,8 +325,6 @@ function handleMovieClick(movie){
     <br>`;//remove old content;
     _singleMovieDisplay.appendChild(posterImg);
     _singleMovieDisplay.appendChild(backDropImg);
-
-    // console.log(movie);
 }
 function handleGoBackClick(){
     // _moviesDisplayWrapper.classList.toggle('hidden');
@@ -338,8 +336,19 @@ function handleGoBackClick(){
 
 //storage methods
 function addToFavorites(movie){
-    const favorite = JSON.stringify(movie);
+    for(let i = 0; i < _favorites.length; i++){
+        if(_favorites[i].id === movie.id) return;
+    }
+    _favorites.push(movie);
+    console.log(movie, 'added to favorites');
+    localStorage.setItem('sukkotFavorites', JSON.stringify(_favorites));
 }
+
+function removeFromFavorites(movie){
+    _favorites = _favorites.filter(favorite => favorite.id !== movie.id);
+    localStorage.setItem('sukkotFavorites', JSON.stringify(_favorites));
+}
+
 
 async function main(){
     const currentDate = new Date();
