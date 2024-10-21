@@ -65,9 +65,12 @@ function handleFavoritesClick(){
     console.log(_favorites);
 }
 
-
 function handleAboutClick(){
     switchDisplayTo(_aboutPage);
+}
+
+function handleLikeClick(movie){
+    
 }
 
 
@@ -174,12 +177,15 @@ function displayMovies(movies){
         const div = document.createElement('div');
         const img = document.createElement('img');
         const imgText = document.createElement('div');
+        const likeButton = document.createElement('button');
         
         div.classList.add('imgDiv');
         div.addEventListener('click', () => handleMovieClick(movie));
         img.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
         imgText.innerHTML = `${title}<br>score: ${vote_average/2}/5 (${vote_count} votes)<br>${release_date}`;
-        
+        likeButton.textContent = '🤍';
+        likeButton.addEventListener('click', () => handleLikeClick(movie));
+
         div.appendChild(img);
         div.appendChild(imgText);
         display.appendChild(div);
