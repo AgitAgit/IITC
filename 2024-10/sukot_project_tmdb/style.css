@@ -10,25 +10,25 @@
     overflow-x: hidden;
 }
 :root{
-    --tea-green: hsl(74, 32, 76);
-    --beige: hsl(67, 50, 86);
-    --cornsilk: hsl(52, 94, 94);
-    --papaya-whip: hsl(43, 82, 89);
-    --buff: hsl(30, 53, 64);
+    --tea-green: hsl(74, 32%, 76%);
+    --beige: hsl(67, 50%, 86%);
+    --cornsilk: hsl(52, 94%, 94%);
+    --papaya-whip: hsl(43, 82%, 89%);
+    --buff: hsl(30, 53%, 64%);
 }
 
 [data-theme='light']{
     --button-marker:hsl(0, 100%, 50%);
 }
 /* [data-theme='dark']{
-
+    
 } */
 body{
     font-family: Roboto;
     display:flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--);
+    background-color: var(--tea-green);
 }
 button{
     border:none;
