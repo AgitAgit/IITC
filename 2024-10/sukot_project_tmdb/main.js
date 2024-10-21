@@ -249,11 +249,11 @@ function buildQuery(page){
     if(_orderSelect.value === 'Descending') orderBy = '.desc';
     else orderBy = '.asc';
 
-    if(text==='popularity') sortBy = 'popularity';
-    else if(text === 'title') sortBy = 'title';
-    else if(text === 'score') sortBy = 'vote_average';
-    else if(text === 'vote count') sortBy = 'vote_count';
-    else if(text === 'release date') sortBy = 'primary_release_date';
+    if(text==='Popularity') sortBy = 'popularity';
+    else if(text === 'Title') sortBy = 'title';
+    else if(text === 'Score') sortBy = 'vote_average';
+    else if(text === 'Vote count') sortBy = 'vote_count';
+    else if(text === 'Release date') sortBy = 'primary_release_date';
     
     sortBy += orderBy;
     

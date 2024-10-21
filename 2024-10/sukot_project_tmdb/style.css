@@ -1,10 +1,22 @@
+@font-face {
+    font-family: Roboto;
+    src: url('./assets/Roboto/Roboto-Regular.ttf');
+}
+
 *{
     box-sizing:border-box;
     margin:0;
     padding:0;
     overflow-x: hidden;
 }
-/* :root{} */
+:root{
+    --tea-green: hsl(74, 32, 76);
+    --beige: hsl(67, 50, 86);
+    --cornsilk: hsl(52, 94, 94);
+    --papaya-whip: hsl(43, 82, 89);
+    --buff: hsl(30, 53, 64);
+}
+
 [data-theme='light']{
     --button-marker:hsl(0, 100%, 50%);
 }
@@ -12,9 +24,20 @@
 
 } */
 body{
+    font-family: Roboto;
     display:flex;
     flex-direction: column;
     align-items: center;
+    background-color: var(--);
+}
+button{
+    border:none;
+    border-radius:0.2rem;
+    padding:0.25rem;
+    margin: 0 0.1rem 0 0.1rem;
+}
+.markedButton{
+    border: 1px solid red;
 }
 header{
     padding:1rem;
@@ -27,16 +50,34 @@ header{
 nav{
     display:flex;
     flex-direction: column;
+    row-gap: 1rem;
+    padding:1rem;
+}
+.searchWrapper{
+    display:flex;
+    flex-direction: column;
+}
+.filterWrapper{
+    display: flex;
+    flex-direction: column;
+}
+.miniHeader{
+    /* margin:auto; */
+    margin-bottom: 0.2rem;
+    font-size: 1.15rem;
 }
 .paginationDiv{
     padding:1rem;
 }
+.moviesDisplay{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
 .hidden{
     display:none;
 }
-.markedButton{
-    border: 1px solid red;
-}
+
 .imgDiv img{
     max-width: 185px;
 }

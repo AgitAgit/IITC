@@ -17,48 +17,48 @@
     </header>
     <div class="moviesDisplayWrapper">
         <nav>
-            <hr>
-            search by title:
-            <br>
-            <input id="searchInput">
-            <button id="searchBtn" onclick="handleSearchClick()">search</button>
-            <br>
+
+            <div class="searchWrapper">
+                <span class="miniHeader">Search by title:</span>
+                <input id="searchInput">
+                <button id="searchBtn" onclick="handleSearchClick()">search</button>
+            </div>
             
             <div class="filterWrapper">
                 <!-- <button onclick="handleFilterClick()">filter</button> -->
-                 search by filter:
-                 <br>
+                 <span class="miniHeader">Search by filter:</span>
                 <div class="filter">
-                    sort by:
-                    <select id="sortSelect" onchange="handleSearchConfigChange()">
-                        <option>popularity</option>
-                        <option>title</option>
-                        <option>score</option>
-                        <option>vote count</option>
-                        <option>release date</option>
-                    </select>
-                    <br>
-                    order by:
-                    <select id="orderSelect" onchange="handleSearchConfigChange()">
-                        <option>Descending</option>
-                        <option>Ascending</option>
-                    </select>
-                    <br>
-                    Released&nbsp;starting&nbsp;from:
-                    <input id="fromDate" type="date" onchange="handleSearchConfigChange()">
-                    <br>
-                    Released&nbsp;up&nbsp;to:
-                    <input id="toDate" type="date" onchange="handleSearchConfigChange()">
-                    <br>
+                    <div>
+                        Sort by:
+                        <select id="sortSelect" onchange="handleSearchConfigChange()">
+                            <option>Popularity</option>
+                            <option>Title</option>
+                            <option>Score</option>
+                            <option>Vote count</option>
+                            <option>Release date</option>
+                        </select>
+                    </div>
+                    <div>
+                        order by:
+                        <select id="orderSelect" onchange="handleSearchConfigChange()">
+                            <option>Descending</option>
+                            <option>Ascending</option>
+                        </select>
+                    </div>
+                    <div>
+                        Released&nbsp;starting&nbsp;from:
+                        <input id="fromDate" type="date" onchange="handleSearchConfigChange()">
+                    </div>
+                    <div>
+                        Released&nbsp;up&nbsp;to:
+                        <input id="toDate" type="date" onchange="handleSearchConfigChange()">
+                    </div>
                     <button onclick="handleSearchConfigChange()">search</button>
                 </div>
             </div>
-            <hr>
         </nav>
         <div class="paginationDiv"></div>
-        <br>
         <div class="moviesDisplay"></div>
-        <br>
         <div class="paginationDiv"></div>
     </div>
     <div class="singleMovieDisplay hidden">
