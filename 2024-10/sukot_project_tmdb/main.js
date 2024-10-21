@@ -62,7 +62,8 @@ function handleHomeClick(){
 
 function handleFavoritesClick(){
     switchDisplayTo(_favoritesPage);
-    console.log(_favorites);
+    displayMovies(_favorites, _favoritesPage);
+    // console.log(_favorites);
 }
 
 function handleAboutClick(){
@@ -81,6 +82,7 @@ function handleLikeClick(event, movie){
         addToFavorites(movie);
     }
 }
+
 
 
 //pagination methods
@@ -177,8 +179,10 @@ function refreshPaginationDiv(currentPage, itemCount, pageCount){
 
 
 //display methods
-function displayMovies(movies){
-    const display = document.querySelector('.moviesDisplay');
+function displayMovies(movies, displayElement = null){
+    let display;
+    if(displayElement) display = displayElement;
+    else display = document.querySelector('.moviesDisplay');
     display.innerHTML = '';
     const width = 'w185';
     movies.forEach(movie => {
@@ -216,6 +220,8 @@ function switchDisplayTo(element){
     _displays.forEach(display => display.classList.add('hidden'));
     element.classList.remove('hidden');
 }
+
+
 
 //filter methods
 function buildQuery(page){
@@ -367,6 +373,8 @@ function removeFromFavorites(movie){
 }
 
 
+
+//main
 async function main(){
     const currentDate = new Date();
     await _API_KEY_PROMISE;
