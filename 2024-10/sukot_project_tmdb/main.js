@@ -69,8 +69,17 @@ function handleAboutClick(){
     switchDisplayTo(_aboutPage);
 }
 
-function handleLikeClick(movie){
-    
+function handleLikeClick(event, movie){
+    event.stopPropagation();
+
+    if(_favorites.indexOf(movie) !== -1){
+        // console.log('favorites includes movie');
+        removeFromFavorites(movie);
+    }
+    else{
+        // console.log('favorites doesnt include movie');
+        addToFavorites(movie);
+    }
 }
 
 
@@ -184,10 +193,11 @@ function displayMovies(movies){
         img.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
         imgText.innerHTML = `${title}<br>score: ${vote_average/2}/5 (${vote_count} votes)<br>${release_date}`;
         likeButton.textContent = '🤍';
-        likeButton.addEventListener('click', () => handleLikeClick(movie));
+        likeButton.addEventListener('click', (event) => handleLikeClick(event, movie));
 
         div.appendChild(img);
         div.appendChild(imgText);
+        div.appendChild(likeButton);
         display.appendChild(div);
     })
 }
@@ -346,12 +356,13 @@ function addToFavorites(movie){
         if(_favorites[i].id === movie.id) return;
     }
     _favorites.push(movie);
-    console.log(movie, 'added to favorites');
+    // console.log('added to favorites:',movie);
     localStorage.setItem('sukkotFavorites', JSON.stringify(_favorites));
 }
 
 function removeFromFavorites(movie){
     _favorites = _favorites.filter(favorite => favorite.id !== movie.id);
+    // console.log('removed from favorites:',movie);
     localStorage.setItem('sukkotFavorites', JSON.stringify(_favorites));
 }
 
