@@ -206,7 +206,8 @@ function displayMovies(movies, displayElement = null){
         if(poster_path === null) img.src = _defaultImgUrl;
         else img.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
 
-        imgText.innerHTML = `${title}<br>score: ${vote_average/2}/5 (${vote_count} votes)<br>${release_date}`;
+        imgText.innerHTML = `${title}<br>score: ${vote_average/2}/5 (${vote_count}&nbsp;votes)<br>${release_date}`;
+        imgText.classList.add('imgText');
         likeButton.textContent = '🤍';
         likeButton.addEventListener('click', (event) => handleLikeClick(event, movie));
 
