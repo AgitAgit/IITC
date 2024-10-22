@@ -341,17 +341,19 @@ function handleMovieClick(movie){
     switchDisplayTo(_singleMovieDisplay);
     
     // const backButton = document.createElement('button');
+    const textDiv = document.createElement('div');
+    const backButton = document.createElement('button');
     const posterImg = document.createElement('img');
     const backDropImg = document.createElement('img');
 
     const width = 'w185';
 
-    // backButton.textContent = 'go back';
-    // backButton.addEventListener('click', handleGoBackClick);
+    backButton.textContent = 'go back';
+    backButton.addEventListener('click', handleGoBackClick);
     posterImg.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
     backDropImg.src = `${_baseImgUrl}/t/p/${width}${backdrop_path}`;
-    _singleMovieDisplay.innerHTML = 
-    `<button onclick="handleGoBackClick()">go back</button>
+    textDiv.innerHTML = 
+    `
     <br>
     ${title}
     <br>
