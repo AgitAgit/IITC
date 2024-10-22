@@ -16,7 +16,7 @@
         <button onclick="handleAboutClick()">About</button>
     </header>
     <div class="mainDisplayWrapper">
-        <div class="moviesDisplayWrapper">
+        <div class="moviesDisplayWrapper hidden">
             <nav>
                 <div class="searchWrapper">
                     <span class="miniHeader">Search by title:</span>
@@ -64,27 +64,40 @@
         <div class="singleMovieDisplay hidden">
             this is the single movie display
         </div>
-        <div class="aboutPage hidden">
-            Introduction
-            Welcome to Amit's Sukkot project!, your go-to destination for discovering and exploring the world of movies. This website is designed to provide a seamless and enjoyable experience for movie enthusiasts of all ages.
-            Features
-            Search and Filter: Easily find movies by title or explore our curated collections.
-            Save Favorites: Create your personal watchlist and never miss a movie.
-            Read Descriptions: Dive deeper into the the movie's data.
-        
-            How it Works
+        <div class="aboutPage">
+            <div class="miniHeader">Welcome to Amit's Sukkot project!</div> 
+            your go-to destination for discovering and exploring the world of movies. 
+            <br>
+            This website is designed to provide a seamless and enjoyable experience for movie enthusiasts of all ages.
+            <br>
+            <br>
+            <div class="miniHeader">Features</div>
+            <span class="bold">Search and Filter:</span> Easily find movies by title or explore our curated collections.
+            <br>
+            <span class="bold">Save Favorites:</span> Create your personal watchlist and never miss a movie.
+            <br>
+            <span class="bold">Read Descriptions:</span> Dive deeper into the the movie's data.
+            <br>
+            <br>
+            <div class="miniHeader">How it Works</div>
             The website utilizes the TMDB API to access a vast database of movies and their information. By searching for a movie or browsing our categories, you can discover new titles and add them to your favorites.
-            Contact
-            Have questions or feedback? I would love to hear from you! Please contact me at
-            <a href='https://github.com/AgitAgit/IITC?tab=readme-ov-file#homework'  target='_blank'>Github</a>
+            <br>
+            <br>
+            <div class="miniHeader">Contact</div>
+            Have questions or feedback? I would love to hear from you! Please contact me at Github or at Linkedin:
+            <br>
+            <div class="logosDiv">
+                <a href='https://github.com/AgitAgit/IITC?tab=readme-ov-file#homework'  target='_blank'><img class="miniLogo" src="./assets/github-mark-c791e9551fe4/github-mark/github-mark.png"></a>
+                <a href='https://www.linkedin.com/in/amit-kubani-1b0a47320/' target='_blank'><img id="linkedinLogo" class="miniLogo" src='./assets/LinkedIn-Logos/LI-In-Bug.png'></a>
+            </div>
         </div>
         <div class="favoritesPage hidden">
             this is the favorites page...
         </div>
     </div>
-    <footer>
-        <a href='https://github.com/AgitAgit/IITC?tab=readme-ov-file#homework'  target='_blank'>Github</a>
-    </footer>
+    <!-- <footer>
+        <a href='https://github.com/AgitAgit/IITC?tab=readme-ov-file#homework'  target='_blank'><img class="githubLogo" src="./assets/github-mark-c791e9551fe4/github-mark/github-mark.png"></a>
+    </footer> -->
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="./main.js"></script>

@@ -132,3 +132,38 @@ nav{
     align-self:center;
     width:185px;
 }
+
+
+.aboutPage{
+    padding:1rem;
+}
+.bold{
+    font-weight: 600;
+}
+
+/* a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+.logosDiv{
+    margin-top:1rem;
+    height:80px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.miniLogo{
+    width:45px;
+}
+/* .miniLogo:hover{
+    scale:1.05;
+} */
+
+a:hover{
+    scale:1.05;
+}
+
+.singleMovieDisplay{
+    padding:1rem;
+}
