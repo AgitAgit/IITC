@@ -18,9 +18,14 @@
 //the movies in the last row are displayed with a different amount if the number of items is not divisible
 //by the number of columns. Possible solutions:
 //add a page_size parameter to the api queries
-//display with grid instead of flex? lets try that for the favorites and see what happens.
+//display with grid instead of flex? lets try that for the favorites and see what happens. DONE.
 
-//the favorites page doesn't disappear when clicking home. Need to add a wrapper.
+//the favorites page doesn't disappear when clicking home. Need to add a wrapper. FIXED.
+
+//Need to fix style of like button.
+
+//There is no pagination system for the favorites page.
+//There is no handling of pagination state for less than 7 pages?
 
 let _API_KEY;
 let _KEY_READY = false;
@@ -52,10 +57,11 @@ const _paginationDivs = document.querySelectorAll('.paginationDiv');
 
 const _singleMovieDisplayWrapper = document.querySelector('.singleMovieDisplayWrapper');
 const _singleMovieDisplay = document.querySelector('.singleMovieDisplay');
+const _favoritesPageWrapper = document.querySelector('.favoritesPageWrapper');
 const _favoritesPage = document.querySelector('.favoritesPage');
 const _aboutPage = document.querySelector('.aboutPage');
 
-const _displays = [_moviesDisplayWrapper, _singleMovieDisplayWrapper, _favoritesPage, _aboutPage];
+const _displays = [_moviesDisplayWrapper, _singleMovieDisplayWrapper, _favoritesPageWrapper, _aboutPage];
 
 let _former_display = _moviesDisplayWrapper;
 let _SEARCH_METHOD = 'filter';
@@ -78,7 +84,7 @@ function handleHomeClick(){
 }
 
 function handleFavoritesClick(){
-    switchDisplayTo(_favoritesPage);
+    switchDisplayTo(_favoritesPageWrapper);
     displayMovies(_favorites, _favoritesPage);
     // console.log(_favorites);
 }
@@ -343,9 +349,10 @@ async function handleSearchClick(){
     const query = _searchInput.value;
     _current_search_query = query;
     _searchInput.value = '';
-
-    const movies = await searchMovies(query);
-    displayMovies(movies);
+    if(query !== ''){
+        const movies = await searchMovies(query);
+        displayMovies(movies);
+    }
 }
 
 
