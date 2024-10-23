@@ -4,22 +4,26 @@
 // I should break this down into modules...
 // I should create some logo for my projects and github.
 
-//should separate into search mode and filter mode.
-//annoying that they are separate but that is the api provided.
-//I could either copy the data to my own db and query it however I like,
-//or create the illusion of such search by complex queries
-//to the api.
-//Both of these options are outside the scope of this exercise.
-
 //need to add a default image DONE.
 
 // add the github symbol with a link to the footer and the about page? 
-//That can wait to the finishing touches.
+//That can wait to the finishing touches. DONE.
+
+//back button should return to the correct y scroll position. DONE.
+
+//design the single movie display... DONE.
+
+//the back button from the favorites page single movie should return to the favorites page.
+
+//the movies in the last row are displayed with a different amount if the number of items is not divisible
+//by the number of columns. Possible solutions:
+//add a page_size parameter to the api queries
+//display with grid instead of flex? lets try that for the favorites and see what happens.
+
+//the favorites page doesn't disappear when clicking home. Need to add a wrapper.
 
 let _API_KEY;
 let _KEY_READY = false;
-let _SEARCH_METHOD = 'filter';
-let _current_search_query = '';
 
 const _API_KEY_PROMISE = fetch('privateData.json')
 .then(data => data.json())
@@ -46,11 +50,17 @@ const _toDate = document.querySelector('#toDate');
 
 const _paginationDivs = document.querySelectorAll('.paginationDiv');
 
+const _singleMovieDisplayWrapper = document.querySelector('.singleMovieDisplayWrapper');
 const _singleMovieDisplay = document.querySelector('.singleMovieDisplay');
 const _favoritesPage = document.querySelector('.favoritesPage');
 const _aboutPage = document.querySelector('.aboutPage');
 
-const _displays = [_moviesDisplayWrapper, _singleMovieDisplay, _favoritesPage, _aboutPage];
+const _displays = [_moviesDisplayWrapper, _singleMovieDisplayWrapper, _favoritesPage, _aboutPage];
+
+let _former_display = _moviesDisplayWrapper;
+let _SEARCH_METHOD = 'filter';
+let _current_search_query = '';
+let _last_Y_scroll = 0;
 
 //miscellaneous methods
 function logConfigurationData(){
@@ -187,7 +197,7 @@ function refreshPaginationDiv(currentPage, itemCount, pageCount){
 
 //display methods
 function displayMovies(movies, displayElement = null){
-    console.log(movies);
+    // console.log(movies);
     let display;
     if(displayElement) display = displayElement;
     else display = document.querySelector('.moviesDisplay');
@@ -206,7 +216,7 @@ function displayMovies(movies, displayElement = null){
         if(poster_path === null) img.src = _defaultImgUrl;
         else img.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
 
-        imgText.innerHTML = `${title}<br>score: ${vote_average/2}/5 (${vote_count}&nbsp;votes)<br>${release_date}`;
+        imgText.innerHTML = `${title}<br>score: ${(vote_average/2).toFixed(1)}/5 (${vote_count}&nbsp;votes)<br>${release_date}`;
         imgText.classList.add('imgText');
         likeButton.textContent = '🤍';
         likeButton.addEventListener('click', (event) => handleLikeClick(event, movie));
@@ -229,7 +239,14 @@ function buttonMarker(currentPage){
 }
 
 function switchDisplayTo(element){
-    _displays.forEach(display => display.classList.add('hidden'));
+    _displays.forEach(display => {
+        if(!display.classList.contains('hidden')) {
+            _former_display = display;
+            // console.log(display);
+            // console.log(_former_display);
+        }
+        display.classList.add('hidden')
+    });
     element.classList.remove('hidden');
 }
 
@@ -336,36 +353,51 @@ async function handleSearchClick(){
 //single movie methods
 function handleMovieClick(movie){
     const { backdrop_path, genre_ids, id, original_language, title, overview, poster_path, release_date, vote_average, vote_count} = movie
-    // _moviesDisplayWrapper.classList.toggle('hidden');
-    // _singleMovieDisplay.classList.toggle('hidden');
-    switchDisplayTo(_singleMovieDisplay);
-    
-    // const backButton = document.createElement('button');
+
+    _last_Y_scroll = window.scrollY;    
+
+    switchDisplayTo(_singleMovieDisplayWrapper);
+    _singleMovieDisplayWrapper.innerHTML = '';
+    _singleMovieDisplayWrapper.appendChild(_singleMovieDisplay);
+    _singleMovieDisplay.innerHTML = '';
+
     const textDiv = document.createElement('div');
     const backButton = document.createElement('button');
     const posterImg = document.createElement('img');
     const backDropImg = document.createElement('img');
 
     const width = 'w185';
+    const backdropWidth = 'w342';
 
     backButton.textContent = 'go back';
     backButton.addEventListener('click', handleGoBackClick);
     posterImg.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
-    backDropImg.src = `${_baseImgUrl}/t/p/${width}${backdrop_path}`;
+    backDropImg.src = `${_baseImgUrl}/t/p/${backdropWidth}${backdrop_path}`;
+    textDiv.classList.add('singleMovieTextDiv');
     textDiv.innerHTML = 
     `
+    <div class="miniHeader">${title}</div>
+    ${overview}
     <br>
-    ${title}
     <br>
-    overview: ${overview}
-    <br>`;//remove old content;
-    _singleMovieDisplay.appendChild(posterImg);
+    Release date: ${release_date}
+    <br>
+    Score: ${(vote_average/2).toFixed(1)}/5
+    <br>
+    Votes: ${vote_count}
+    `;
+    // _singleMovieDisplay.appendChild(posterImg);
+    _singleMovieDisplay.appendChild(backButton);
     _singleMovieDisplay.appendChild(backDropImg);
+    _singleMovieDisplay.appendChild(textDiv);
+}
+function displaySingleMovie(movie){
+
 }
 function handleGoBackClick(){
-    // _moviesDisplayWrapper.classList.toggle('hidden');
-    // _singleMovieDisplay.classList.toggle('hidden');
-    switchDisplayTo(_moviesDisplayWrapper);
+    // switchDisplayTo(_moviesDisplayWrapper);
+    switchDisplayTo(_former_display);
+    window.scrollTo(0, _last_Y_scroll);
 }
 
 
@@ -385,7 +417,6 @@ function removeFromFavorites(movie){
     // console.log('removed from favorites:',movie);
     localStorage.setItem('sukkotFavorites', JSON.stringify(_favorites));
 }
-
 
 
 //main
