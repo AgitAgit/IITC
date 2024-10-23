@@ -106,6 +106,9 @@ function handleLikeClick(event, movie){
     }
 }
 
+function isLiked(movie){
+    return true;
+}
 
 
 //pagination methods
@@ -224,8 +227,12 @@ function displayMovies(movies, displayElement = null){
 
         imgText.innerHTML = `${title}<br>score: ${(vote_average/2).toFixed(1)}/5 (${vote_count}&nbsp;votes)<br>${release_date}`;
         imgText.classList.add('imgText');
-        likeButton.textContent = '🤍';
+        if(isLiked(movie)){
+            likeButton.textContent = '🧡';
+        }
+        else likeButton.textContent = '🤍';
         likeButton.addEventListener('click', (event) => handleLikeClick(event, movie));
+        likeButton.classList.add('likeButton');
 
         div.appendChild(img);
         div.appendChild(imgText);

@@ -109,6 +109,7 @@ nav{
     display:none;
 }
 
+/* movie card display */
 .imgDiv{
     display: flex;
     flex-direction: column;
@@ -132,6 +133,22 @@ nav{
 .imgText{
     align-self:center;
     width:185px;
+}
+.likeButton{
+    text-align: center;
+    align-self: center;
+    padding: 0;
+    /* width:2rem; */
+    font-size: 24px;
+    background:none;
+    border:none;
+}
+.likeButton:hover{
+    scale:1.15;
+    border:none;
+}
+.liked{
+
 }
 
 
