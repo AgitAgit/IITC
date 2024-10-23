@@ -22,10 +22,12 @@
 
 //the favorites page doesn't disappear when clicking home. Need to add a wrapper. FIXED.
 
-//Need to fix style of like button.
+//Need to fix style of like button. DONE.
 
 //There is no pagination system for the favorites page.
 //There is no handling of pagination state for less than 7 pages?
+
+//Need to check refresh view for the search state...
 
 let _API_KEY;
 let _KEY_READY = false;
@@ -93,23 +95,57 @@ function handleAboutClick(){
     switchDisplayTo(_aboutPage);
 }
 
-function handleLikeClick(event, movie){
+async function handleLikeClick(event, movie){
     event.stopPropagation();
 
-    if(_favorites.indexOf(movie) !== -1){
-        // console.log('favorites includes movie');
+    // if(_favorites.indexOf(movie) !== -1){
+    //     console.log('favorites includes movie', movie.title);
+    //     removeFromFavorites(movie);
+    // }
+    // else{
+    //     console.log('favorites doesnt include movie', movie.title);
+    //     addToFavorites(movie);
+    // }
+    if(isLiked(movie)){
+        console.log('favorites includes movie', movie.title, "will be removed");
         removeFromFavorites(movie);
     }
     else{
-        // console.log('favorites doesnt include movie');
+        console.log('favorites does not include movie', movie.title);
         addToFavorites(movie);
     }
+    console.log(_favorites);
+
+    refreshView();
 }
 
 function isLiked(movie){
-    return true;
+    let result = false;
+    _favorites.forEach(favorite => {
+        if(favorite.id === movie.id){
+            result = true;
+        }    
+    })
+    return result;
 }
 
+async function refreshView(){
+    _last_Y_scroll = window.scrollY;
+    if(!_moviesDisplayWrapper.classList.contains('hidden')){
+        if(_SEARCH_METHOD === 'filter'){
+            await handleSearchConfigChange();
+        }
+        else{
+            await handleSearchClick();
+            //might have a problem due to empty search string.
+            //might have been solved for the pagination system earlier
+        }
+    }
+    else if(!_favoritesPageWrapper.classList.contains('hidden')){
+        await handleFavoritesClick();
+    }
+    window.scrollTo(0, _last_Y_scroll);
+}
 
 //pagination methods
 async function handlePaginationClick(event){
