@@ -32,8 +32,10 @@
 //Need to make the single page view responsive for different screen sizes.
 
 //options for finishing touches:
-//Add light/dark mode.
-//Add like button to the single movie card view.
+//-Add light/dark mode.
+//-Add like button to the single movie card view.
+//-For larger screen sizes get a larger image for the single movie card.
+//-Add comments/order to the css file
 
 //If I would want to refactor this I could:
 //-take out much of the logic in the search and filter handling, and putting it in
