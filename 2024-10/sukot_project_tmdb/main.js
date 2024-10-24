@@ -36,6 +36,7 @@
 //-Add like button to the single movie card view.
 //-For larger screen sizes get a larger image for the single movie card.
 //-Add comments/order to the css file
+//-Add Error messages like "failed to get data" and "no favorites have been added"
 
 //If I would want to refactor this I could:
 //-take out much of the logic in the search and filter handling, and putting it in
@@ -50,6 +51,8 @@
 // interact with the tmdb and get user data (sort of creating a wrapper for tmdb?)
 //-Add a way for users to vote on movies?
 //-combine the search and filter parameters so users can search with parameters.
+
+import logConfigurationData from "./modules/getConfigData.js";
 
 let _API_KEY;
 let _KEY_READY = false;
@@ -93,14 +96,7 @@ let _current_search_query = '';
 let _last_Y_scroll = 0;
 
 //miscellaneous methods
-function logConfigurationData(){
-    fetch(`${_baseUrl}/configuration?api_key=${_API_KEY}`)
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-    })
-}
-
+const getConfigData = logConfigurationData;
 function handleHomeClick(){
     switchDisplayTo(_moviesDisplayWrapper);
     _SEARCH_METHOD = 'filter';
@@ -504,6 +500,7 @@ async function main(){
     // const data = await getMovies(query1);
     // console.log(data);
     // displayMovies(data);
+    logConfigurationData(_baseUrl, _API_KEY);
     handleSearchConfigChange();
 }
 
