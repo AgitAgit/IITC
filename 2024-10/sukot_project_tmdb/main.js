@@ -13,7 +13,7 @@
 
 //design the single movie display... DONE.
 
-//the back button from the favorites page single movie should return to the favorites page.
+//the back button from the favorites page single movie should return to the favorites page. DONE.
 
 //the movies in the last row are displayed with a different amount if the number of items is not divisible
 //by the number of columns. Possible solutions:
@@ -32,14 +32,14 @@
 //Need to make the single page view responsive for different screen sizes. DONE.
 
 //Need to deal with the whole module problem. remove the event listeners from the html and add
-//them to the js.
+//them to the js. DONE.
 
 //options for finishing touches:
+//-Add Error messages like "failed to get data" and "no favorites have been added"
 //-Add light/dark mode.
 //-Add like button to the single movie card view.
 //-For larger screen sizes get a larger image for the single movie card.
 //-Add comments/order to the css file
-//-Add Error messages like "failed to get data" and "no favorites have been added"
 
 //If I would want to refactor this I could:
 //-take out much of the logic in the search and filter handling, and putting it in
@@ -274,8 +274,15 @@ function refreshPaginationDiv(currentPage, itemCount, pageCount){
 function displayMovies(movies, displayElement = null){
     // console.log(movies);
     let display;
-    if(displayElement) display = displayElement;
+    if(displayElement) {
+        display = displayElement;
+    }
     else display = document.querySelector('.moviesDisplay');
+    if(movies.length === 0){
+        console.log(displayElement);
+        display.innerHTML = 'There is no data to display...';
+        return;
+    }
     display.innerHTML = '';
     const width = 'w185';
     movies.forEach(movie => {
