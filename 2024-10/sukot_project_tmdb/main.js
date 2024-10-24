@@ -27,7 +27,23 @@
 //There is no pagination system for the favorites page.
 //There is no handling of pagination state for less than 7 pages?
 
-//Need to check refresh view for the search state...
+//Need to check refresh view for the search state... fixed. DONE.
+
+//Need to make the single page view responsive for different screen sizes.
+
+//If I would want to refactor this I could:
+//-take out much of the logic in the search and filter handling, and putting it in
+//more fitting places so the code is more modular.
+
+//If I would want to develop this furter I could:
+//-change the favorites storage method from whole objects to id's, and get the favorites by id from the db.
+//(currently, things like the favorites votes number and score are true to the time of the like.
+//"old" favorites will be out of date on those fronts...).
+//-change the favorites storage location from local storage to a db.
+//-add a login and user data tracking system.
+// interact with the tmdb and get user data (sort of creating a wrapper for tmdb?)
+//-Add a way for users to vote on movies?
+//-combine the search and filter parameters so users can search with parameters.
 
 let _API_KEY;
 let _KEY_READY = false;
@@ -97,6 +113,7 @@ function handleAboutClick(){
 
 async function handleLikeClick(event, movie){
     event.stopPropagation();
+    console.log("search method", _SEARCH_METHOD);
 
     // if(_favorites.indexOf(movie) !== -1){
     //     console.log('favorites includes movie', movie.title);
@@ -136,6 +153,7 @@ async function refreshView(){
             await handleSearchConfigChange();
         }
         else{
+            _searchInput.value = _current_search_query;
             await handleSearchClick();
             //might have a problem due to empty search string.
             //might have been solved for the pagination system earlier
