@@ -32,7 +32,7 @@
 //Need to make the single page view responsive for different screen sizes. DONE.
 
 //Need to deal with the whole module problem. remove the event listeners from the html and add
-//them to the js. DONE.
+//them to the js.   DONE.
 
 //options for finishing touches:
 //-Add Error messages like "failed to get data" and "no favorites have been added"
@@ -85,11 +85,20 @@ const _moviesDisplayWrapper = document.querySelector('.moviesDisplayWrapper');
 
 const _searchInput = document.querySelector('#searchInput');
 const _searchBtn = document.querySelector('#searchBtn');
+_searchBtn.addEventListener('click', handleSearchClick);
+
 
 const _sortSelect = document.querySelector('#sortSelect');
 const _orderSelect = document.querySelector('#orderSelect');
 const _fromDate = document.querySelector('#fromDate');
 const _toDate = document.querySelector('#toDate');
+const _filterSearchBtn = document.querySelector('#filterSearchBtn');
+_sortSelect.addEventListener('change', handleSearchConfigChange);
+_orderSelect.addEventListener('change', handleSearchConfigChange);
+_fromDate.addEventListener('change', handleSearchConfigChange);
+_toDate.addEventListener('change', handleSearchConfigChange);
+_filterSearchBtn.addEventListener('click', handleSearchConfigChange);
+
 
 const _paginationDivs = document.querySelectorAll('.paginationDiv');
 
