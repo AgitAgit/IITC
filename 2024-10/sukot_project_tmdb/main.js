@@ -73,6 +73,14 @@ const _baseUrl = 'https://api.themoviedb.org/3';
 const _baseImgUrl = 'https://image.tmdb.org';
 const _defaultImgUrl = './assets/pexels-neosiam-603580.jpg';
 
+const _homeBtn = document.querySelector('#homeBtn');
+const _favoritesBtn = document.querySelector('#favoritesBtn');
+const _aboutBtn = document.querySelector('#aboutBtn');
+
+_homeBtn.addEventListener('click', handleHomeClick);
+_favoritesBtn.addEventListener('click', handleFavoritesClick);
+_aboutBtn.addEventListener('click', handleAboutClick);
+
 const _moviesDisplayWrapper = document.querySelector('.moviesDisplayWrapper');
 
 const _searchInput = document.querySelector('#searchInput');
