@@ -29,7 +29,10 @@
 
 //Need to check refresh view for the search state... fixed. DONE.
 
-//Need to make the single page view responsive for different screen sizes.
+//Need to make the single page view responsive for different screen sizes. DONE.
+
+//Need to deal with the whole module problem. remove the event listeners from the html and add
+//them to the js.
 
 //options for finishing touches:
 //-Add light/dark mode.
@@ -96,7 +99,6 @@ let _current_search_query = '';
 let _last_Y_scroll = 0;
 
 //miscellaneous methods
-const getConfigData = logConfigurationData;
 function handleHomeClick(){
     switchDisplayTo(_moviesDisplayWrapper);
     _SEARCH_METHOD = 'filter';
