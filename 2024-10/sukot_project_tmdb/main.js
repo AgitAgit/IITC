@@ -136,14 +136,6 @@ async function handleLikeClick(event, movie){
     event.stopPropagation();
     console.log("search method", _SEARCH_METHOD);
 
-    // if(_favorites.indexOf(movie) !== -1){
-    //     console.log('favorites includes movie', movie.title);
-    //     removeFromFavorites(movie);
-    // }
-    // else{
-    //     console.log('favorites doesnt include movie', movie.title);
-    //     addToFavorites(movie);
-    // }
     if(isLiked(movie)){
         console.log('favorites includes movie', movie.title, "will be removed");
         removeFromFavorites(movie);
@@ -197,7 +189,7 @@ async function navToPage(page){
     if(page < 1 || 500 < page) return;
     let movies;
     if(_SEARCH_METHOD === 'filter'){
-        const query = buildQuery(page);//FOR REFACTOR:this trio of call often appear together. should be made into a function.
+        const query = buildQuery(page);
         movies = await getMovies(query);
     }
     else if(_SEARCH_METHOD === 'search'){
@@ -490,7 +482,6 @@ function displaySingleMovie(movie){
 
 }
 function handleGoBackClick(){
-    // switchDisplayTo(_moviesDisplayWrapper);
     switchDisplayTo(_former_display);
     window.scrollTo(0, _last_Y_scroll);
 }
@@ -509,7 +500,6 @@ function addToFavorites(movie){
 
 function removeFromFavorites(movie){
     _favorites = _favorites.filter(favorite => favorite.id !== movie.id);
-    // console.log('removed from favorites:',movie);
     localStorage.setItem('sukkotFavorites', JSON.stringify(_favorites));
 }
 
@@ -518,14 +508,8 @@ function removeFromFavorites(movie){
 async function main(){
     const currentDate = new Date();
     await _API_KEY_PROMISE;
-    const earlierDate = new Date(currentDate);
-    earlierDate.setDate(currentDate.getDate() - 7);
-    const query1 = buildQuery(_API_KEY, 'primary_release_date.asc');
-    const query2 = buildQuery(_API_KEY,null,null,null,null);
-    // const data = await getMovies(query1);
-    // console.log(data);
-    // displayMovies(data);
-    logConfigurationData(_baseUrl, _API_KEY);
+    
+    //logConfigurationData(_baseUrl, _API_KEY);
     handleSearchConfigChange();
 }
 
