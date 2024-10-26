@@ -1,0 +1,43 @@
+1. Introduction
+    Who am I
+    What the project aims to achieve 
+
+2. Project_requirements_and_technologies
+    The technical requirements of the project were to display movie data to the user and remember his favorites.
+    This was achieved by using vanilla js to fetch data from an online third party movie database, get and store user preferences
+    and html/css for the displaying of data. 
+    I used java script objects and JSON strings as the main data storing and communicating method.
+
+3. Showcasing the website
+
+4. Explaining key code segments
+    querying
+    pagination
+
+
+5. Challenges and Insights
+    If I were to create a new version of the same project I would likely separate the code into modules,
+    with a data fetching module, data storage management module, display/UI module and a controller module
+    to manage all the action modules.
+
+    Separate search and filter functionalities of the api.
+    I handled it by creating separate functions to handle each search type, but it limited greatly the specificity
+    of the data the user could get.
+    If I wanted to improve it I would take one of three approaches: 
+    use a different data source, 
+    Maintain a separate db and update it from the tmdb api but query my own db,
+    Build more complex queries that take larger amounts of data with each call and further filter them to create the illusion
+    of a more specific query.
+
+6. Describing the workflow
+    My general approach was quick development and tackling of features over modularity and abstraction.
+    Making things work first and "pretty" second.
+
+    Choosing to keep the code in a single document allowed some flexibility but caused problems of
+    interdependence and complexity.
+
+    I would say that it's a beneficial approach when developing a prototype, where your'e not yet sure how things should look eventually.
+
+7. Audience engagement
+
+8. Additional visual aids

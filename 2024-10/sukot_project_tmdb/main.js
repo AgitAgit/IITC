@@ -35,7 +35,7 @@
 //them to the js.   DONE.
 
 //options for finishing touches:
-//-Add Error messages like "failed to get data" and "no favorites have been added"
+//-Add Error messages like "failed to get data" and "no favorites have been added"  DONE.
 //-Add light/dark mode.
 //-Add like button to the single movie card view.
 //-For larger screen sizes get a larger image for the single movie card.
@@ -400,8 +400,7 @@ async function handleSearchConfigChange(){
     
 }
 
-function restoreFilterDefault(){
-
+function restoreFilterDefault(){//not done...
 }
     
 
