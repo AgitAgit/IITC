@@ -34,6 +34,10 @@
 //Need to deal with the whole module problem. remove the event listeners from the html and add
 //them to the js.   DONE.
 
+//Bug: clicking the like button returns the viewer to the first page. FIXED.
+
+//Problem: there is no default backdrop image for the single movie display.
+
 //options for finishing touches:
 //-Add Error messages like "failed to get data" and "no favorites have been added"  DONE.
 //-Add light/dark mode.
@@ -114,6 +118,7 @@ let _former_display = _moviesDisplayWrapper;
 let _SEARCH_METHOD = 'filter';
 let _current_search_query = '';
 let _last_Y_scroll = 0;
+let _current_page = 1;
 
 //miscellaneous methods
 function handleHomeClick(){
@@ -163,11 +168,13 @@ async function refreshView(){
     _last_Y_scroll = window.scrollY;
     if(!_moviesDisplayWrapper.classList.contains('hidden')){
         if(_SEARCH_METHOD === 'filter'){
-            await handleSearchConfigChange();
+            // await handleSearchConfigChange();
+            await navToPage(_current_page);
         }
         else{
-            _searchInput.value = _current_search_query;
-            await handleSearchClick();
+            await navToPage(_current_page);
+            // _searchInput.value = _current_search_query;
+            // await handleSearchClick();
             //might have a problem due to empty search string.
             //might have been solved for the pagination system earlier
         }
@@ -186,6 +193,7 @@ async function handlePaginationClick(event){
 }
 
 async function navToPage(page){
+    _current_page = page;
     if(page < 1 || 500 < page) return;
     let movies;
     if(_SEARCH_METHOD === 'filter'){
@@ -340,7 +348,7 @@ function switchDisplayTo(element){
 
 
 //filter methods
-function buildQuery(page){
+function buildQuery(page=1){
     //sort by: (popularity/vote_average/title/original_title/primary_release_date/vote_count/revenue).desc/asc
     let result = `${_baseUrl}/discover/movie?api_key=${_API_KEY}`;
     
@@ -367,6 +375,7 @@ function buildQuery(page){
     if(sortBy) result += `&sort_by=${sortBy}`;
     if(page) result += `&page=${page}`;
     return result;
+    _current_page = page;
 }
 
 async function getMovies(query){
@@ -409,6 +418,7 @@ async function searchMovies(query, page = 1){
             return data.results;
         })
     }
+    _current_page = page;
 }
 
 async function searchById(id){//not done...
