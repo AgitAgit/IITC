@@ -36,7 +36,7 @@
 
 //Bug: clicking the like button returns the viewer to the first page. FIXED.
 
-//Problem: there is no default backdrop image for the single movie display.
+//Problem: there is no default backdrop image for the single movie display. DONE.
 //aspect ratio:155:87 for single movie image.
 
 //options for finishing touches:
