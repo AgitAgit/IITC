@@ -39,6 +39,8 @@
 //Problem: there is no default backdrop image for the single movie display. DONE.
 //aspect ratio:155:87 for single movie image.
 
+//Need a function to return the filter to default values.
+
 //options for finishing touches:
 //-Add Error messages like "failed to get data" and "no favorites have been added"  DONE.
 //-Add light/dark mode.
