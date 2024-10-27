@@ -184,7 +184,8 @@ a:hover{
 
 .singleMovieDisplayWrapper{
     max-width: 374px;
-    justify-self: center;
+    /* justify-self: center; */
+    margin:auto;
 }
 .singleMovieDisplay{
     display: flex;
@@ -199,6 +200,7 @@ a:hover{
 }
 .singleMovieDisplay img{
     border-radius: 0.5rem;
+    aspect-ratio: 155/87;
 }
 .singleMovieTextDiv{
     max-width:320px;
@@ -274,7 +276,7 @@ a:hover{
         padding: 1rem;
         justify-items: center;
     }
-    
+
     .favoritesPage{
         display:grid;
         grid-template-columns: repeat(auto-fit, minmax(250px,1fr));

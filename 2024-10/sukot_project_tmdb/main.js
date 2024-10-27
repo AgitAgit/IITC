@@ -37,6 +37,7 @@
 //Bug: clicking the like button returns the viewer to the first page. FIXED.
 
 //Problem: there is no default backdrop image for the single movie display.
+//aspect ratio:155:87 for single movie image.
 
 //options for finishing touches:
 //-Add Error messages like "failed to get data" and "no favorites have been added"  DONE.
@@ -467,7 +468,7 @@ function handleMovieClick(movie){
     // const width = 'w185';
     // const width = 'w92';
     const backdropWidth = 'w780';
-
+    backDropImg.classList.add('backDropImg');
     backButton.textContent = 'go back';
     backButton.addEventListener('click', handleGoBackClick);
     // posterImg.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
