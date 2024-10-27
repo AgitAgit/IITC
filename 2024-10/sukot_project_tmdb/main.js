@@ -42,7 +42,6 @@
 //-Add Error messages like "failed to get data" and "no favorites have been added"  DONE.
 //-Add light/dark mode.
 //-Add like button to the single movie card view.
-//-For larger screen sizes get a larger image for the single movie card.
 //-Add comments/order to the css file
 
 //If I would want to refactor this I could:
@@ -76,6 +75,7 @@ let _favorites = JSON.parse(localStorage.getItem('sukkotFavorites')) || [];
 const _baseUrl = 'https://api.themoviedb.org/3';
 const _baseImgUrl = 'https://image.tmdb.org';
 const _defaultImgUrl = './assets/pexels-neosiam-603580.jpg';
+const _defaultBackdropImgUrl = './assets/pexels-neosiam-603580.jpg';
 
 const _homeBtn = document.querySelector('#homeBtn');
 const _favoritesBtn = document.querySelector('#favoritesBtn');
@@ -293,7 +293,7 @@ function displayMovies(movies, displayElement = null){
         return;
     }
     display.innerHTML = '';
-    const width = 'w185';
+    const width = 'w780';
     movies.forEach(movie => {
         const {id, title, poster_path, release_date, vote_average, vote_count} = movie;
         const div = document.createElement('div');
@@ -382,7 +382,7 @@ async function getMovies(query){
     return await fetch(query)
     .then(response => response.json())
     .then(data => {
-        // console.log(data);
+        console.log(data);
         const {page, total_results, total_pages} = data;
         refreshPaginationDiv(page, total_results, total_pages);
         return data.results;
@@ -450,7 +450,7 @@ async function handleSearchClick(){
 //single movie methods
 function handleMovieClick(movie){
     const { backdrop_path, genre_ids, id, original_language, title, overview, poster_path, release_date, vote_average, vote_count} = movie
-
+    
     _last_Y_scroll = window.scrollY;    
 
     switchDisplayTo(_singleMovieDisplayWrapper);
@@ -463,13 +463,17 @@ function handleMovieClick(movie){
     const posterImg = document.createElement('img');
     const backDropImg = document.createElement('img');
 
-    const width = 'w185';
-    const backdropWidth = 'w342';
+    const screenWidth = window.innerWidth;
+    // const width = 'w185';
+    // const width = 'w92';
+    const backdropWidth = 'w780';
 
     backButton.textContent = 'go back';
     backButton.addEventListener('click', handleGoBackClick);
-    posterImg.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
-    backDropImg.src = `${_baseImgUrl}/t/p/${backdropWidth}${backdrop_path}`;
+    // posterImg.src = `${_baseImgUrl}/t/p/${width}${poster_path}`;
+    if(backdrop_path) backDropImg.src = `${_baseImgUrl}/t/p/${backdropWidth}${backdrop_path}`;
+    else backDropImg.src = _defaultBackdropImgUrl;
+
     textDiv.classList.add('singleMovieTextDiv');
     textDiv.innerHTML = 
     `
@@ -519,7 +523,7 @@ async function main(){
     const currentDate = new Date();
     await _API_KEY_PROMISE;
     
-    //logConfigurationData(_baseUrl, _API_KEY);
+    logConfigurationData(_baseUrl, _API_KEY);
     handleSearchConfigChange();
 }
 
