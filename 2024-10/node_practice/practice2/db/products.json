@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "name": "iPhone 14",
+      "price": 999,
+      "category": "Electronics",
+      "description": "Latest iPhone model with advanced features"
+    },
+    {
+      "id": 2,
+      "name": "Nike Air Max",
+      "price": 120,
+      "category": "Footwear",
+      "description": "Comfortable and stylish sneakers"
+    },
+    {
+      "id": 3,
+      "name": "Dell Laptop",
+      "price": 799,
+      "category": "Electronics",
+      "description": "Powerful laptop for work and gaming"
+    }
+  ]
