@@ -37,7 +37,3 @@
     interdependence and complexity.
 
     I would say that it's a beneficial approach when developing a prototype, where your'e not yet sure how things should look eventually.
-
-7. Audience engagement
-
-8. Additional visual aids
