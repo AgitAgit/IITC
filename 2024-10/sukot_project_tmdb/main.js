@@ -62,7 +62,7 @@
 //-combine the search and filter parameters so users can search with parameters.
 
 import logConfigurationData from "./modules/getConfigData.js";
-
+import genres from "./modules/genres.js";
 
 let _API_KEY;
 let _KEY_READY = false;
@@ -123,6 +123,8 @@ let _SEARCH_METHOD = 'filter';
 let _current_search_query = '';
 let _last_Y_scroll = 0;
 let _current_page = 1;
+
+
 
 //miscellaneous methods
 function handleHomeClick(){
@@ -188,6 +190,8 @@ async function refreshView(){
     }
     window.scrollTo(0, _last_Y_scroll);
 }
+
+
 
 //pagination methods
 async function handlePaginationClick(event){
@@ -452,9 +456,33 @@ async function handleSearchClick(){
 
 
 //single movie methods
+function formatGenres(genre_ids){
+    let result = '';
+
+    const genreList = [];
+    genre_ids.forEach(genre => {
+        genres.forEach(genreObj => {
+            if(genreObj.id === genre){
+                genreList.push(genreObj.name);
+            }
+        })
+    })
+    for(let i = 0; i < genreList.length; i++){
+        if(i === genreList.length - 1){
+            result += genreList[i];
+        }
+        else{
+            result += `${genreList[i]}, `;
+        }
+    }
+    return result;
+}
+
 function handleMovieClick(movie){
     const { backdrop_path, genre_ids, id, original_language, title, overview, poster_path, release_date, vote_average, vote_count} = movie
     
+    const movieGenres = formatGenres(genre_ids);
+
     _last_Y_scroll = window.scrollY;    
 
     switchDisplayTo(_singleMovieDisplayWrapper);
@@ -487,6 +515,8 @@ function handleMovieClick(movie){
     <br>
     Release date: ${release_date}
     <br>
+    Genres: ${movieGenres}
+    <br>
     Score: ${(vote_average/2).toFixed(1)}/5
     <br>
     Votes: ${vote_count}
@@ -496,9 +526,11 @@ function handleMovieClick(movie){
     _singleMovieDisplay.appendChild(backDropImg);
     _singleMovieDisplay.appendChild(textDiv);
 }
+
 function displaySingleMovie(movie){
 
 }
+
 function handleGoBackClick(){
     switchDisplayTo(_former_display);
     window.scrollTo(0, _last_Y_scroll);
@@ -520,6 +552,7 @@ function removeFromFavorites(movie){
     _favorites = _favorites.filter(favorite => favorite.id !== movie.id);
     localStorage.setItem('sukkotFavorites', JSON.stringify(_favorites));
 }
+
 
 
 //main
