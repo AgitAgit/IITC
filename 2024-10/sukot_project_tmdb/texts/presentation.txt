@@ -30,7 +30,7 @@
 
 6. Describing the workflow
     My general approach was quick development and tackling of features over modularity and abstraction.
-    Making things work first and "pretty" second.
+    Making the code work first and "pretty" second.
 
     Choosing to keep the code in a single document allowed some flexibility but caused problems of
     interdependence and complexity.
