@@ -1,5 +1,4 @@
 1. Introduction
-    Who am I
     What the project aims to achieve 
 
 2. Project_requirements_and_technologies

@@ -63,6 +63,7 @@
 
 import logConfigurationData from "./modules/getConfigData.js";
 
+
 let _API_KEY;
 let _KEY_READY = false;
 
@@ -528,6 +529,9 @@ async function main(){
     
     logConfigurationData(_baseUrl, _API_KEY);
     handleSearchConfigChange();
+    // const genres = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${_API_KEY}`);
+    // const pGeneres = await genres.json();
+    // console.log(JSON.stringify(pGeneres));
 }
 
 main();
