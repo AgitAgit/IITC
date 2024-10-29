@@ -76,7 +76,7 @@ const _API_KEY_PROMISE = fetch('privateData.json')
 })
 let _favorites = JSON.parse(localStorage.getItem('sukkotFavorites')) || [];
 
-const _baseUrl = 'https://api.themoviedb.org/3';
+const _baseUrl = 'https://api.thedb.org/3';
 const _baseImgUrl = 'https://image.tmdb.org';
 const _defaultImgUrl = './assets/pexels-neosiam-603580.jpg';
 const _defaultBackdropImgUrl = './assets/pexels-neosiam-603580.jpg';
