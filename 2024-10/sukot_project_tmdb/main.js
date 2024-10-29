@@ -515,9 +515,12 @@ function handleMovieClick(movie){
     <br>
     Release date: ${release_date}
     <br>
+    <br>
     Genres: ${movieGenres}
     <br>
+    <br>
     Score: ${(vote_average/2).toFixed(1)}/5
+    <br>
     <br>
     Votes: ${vote_count}
     `;
