@@ -1,5 +1,6 @@
 import express, {json} from 'express';
 import fs from 'fs';
+import mongoose from 'mongoose';
 // import { assert } from 'console';
 
 import originalJokes from './db/jokes.json' assert {type:'json'};
