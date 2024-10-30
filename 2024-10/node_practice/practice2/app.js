@@ -7,6 +7,7 @@ import originalUsers from './db/users.json' assert {type : 'json'};
 import originalProducts from './db/products.json' assert{type:'json'};
 
 import jokesRouter from './routes/jokesRoute.js';
+import logger from './middleware/logger.js';
 
 let jokes = originalJokes;
 let users = originalUsers;
@@ -22,16 +23,7 @@ export function writeToFileSync(path, data){
 
 app.use(json());
 
-app.use((req, res, next) => {
-    console.log("the middleware has been passed...");
-    // console.log(`method: ${req.method} route: ${req.query}`);
-    // console.log(req.query);
-    // console.log('------------------------');
-    // console.log(req.originalUrl);
-    // console.log(req._parsedUrl);
-    // console.log(req._parsedUrl);
-    next();
-})
+app.use('/', logger);
 
 app.use(express.static('public'));
 

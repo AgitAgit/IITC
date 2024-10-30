@@ -1,3 +1,10 @@
+import express from 'express';
+import originalUsers from '../db/users.json' assert {type:'json'}
+import { writeToFileSync } from '../app';
+
+const router = express.Router();
+let users = originalUsers;
+
 app.get('/api/users', (req, res) => {
     res.send(jokes);
 });
@@ -17,14 +24,14 @@ app.get('/api/users/:id', (req, res) =>{
 app.post('/api/users/single', (req, res) => {
     const newUser = req.body;
     users.push(newUser);
-    fs.writeFileSync('./db/users.json',JSON.stringify(users));  
+    writeToFileSync('./db/users.json',JSON.stringify(users));  
     res.send('user added!');
 });
 
 app.post('/api/users/many', (req, res) => {
     const newUsers = req.body;
     users.push(...newUsers);
-    fs.writeFileSync('./db/users.json',JSON.stringify(users));  
+    writeToFileSync('./db/users.json',JSON.stringify(users));  
     res.send('users added!');
 });
 
@@ -34,7 +41,7 @@ app.patch('/api/users/:id', (req, res) => {
     users.forEach(user => {
         if(user.id === id){
             users[users.indexOf(user)] = newUser;
-            fs.writeFileSync('./db/users.json', JSON.stringify(users));
+            writeToFileSync('./db/users.json', JSON.stringify(users));
             res.send('patch successful!');
         }
     })
@@ -45,6 +52,8 @@ app.delete('/api/users/:id', (req,res) => {
     const id = parseInt(req.params.id);
     users = users.filter(user => user.id !== id);
     
-    fs.writeFileSync('./db/jokes.json', JSON.stringify(users));
+    writeToFileSync('./db/jokes.json', JSON.stringify(users));
     res.send('delete successful!');
 });
+
+export default router;
