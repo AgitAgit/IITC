@@ -7,6 +7,7 @@ import originalUsers from './db/users.json' assert {type : 'json'};
 import originalProducts from './db/products.json' assert{type:'json'};
 
 import jokesRouter from './routes/jokesRoute.js';
+import usersRouter from './routes/usersRoute.js';
 import logger from './middleware/logger.js';
 
 let jokes = originalJokes;
@@ -28,6 +29,7 @@ app.use('/', logger);
 app.use(express.static('public'));
 
 app.use('/api/jokes', jokesRouter);
+app.use('/api/users', usersRouter);
 
 app.get("/", (req, res) => {
     // res.send("Hello World");
