@@ -6,6 +6,7 @@ export default function logger(req, res, next){
     //         log += ` ${key} = ${req.query[key]},`;
     //     })
     // }
+    // console.log(req);
     console.log('The logger says: params are', req.query);
     console.log(log);
     next();

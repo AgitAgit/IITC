@@ -19,7 +19,12 @@ router.get('/', async (req, res) => {
 
 
 router.get('/:id', getJoke, (req, res) =>{
-    res.json(res.joke);
+    try{
+        res.json(res.joke);
+    }
+    catch (error){
+        next(error);
+    }
 });
 
 async function getJoke(req, res, next){
@@ -74,7 +79,7 @@ router.put('/:id', getJoke, async (req, res) => {
     }
 });
 
-router.delete('/:id', getJoke, async (req, res) => {
+router.delete('/byId/:id', getJoke, async (req, res) => {
     try {
         console.log(res.joke);
       await Joke.deleteOne({ _id: res.joke._id});
@@ -84,8 +89,9 @@ router.delete('/:id', getJoke, async (req, res) => {
     }
 });
 
-async function getJokesByContent(req, res, next){
-    const { setup, punchline } = req.params;
+async function getIdsByContent(req, res, next){
+    const { setup, punchline } = req.body.joke;
+    // console.log("@ss");
     console.log("setup: ", setup, "punchline: ", punchline);
     let jokeIds;
     try{
@@ -99,12 +105,18 @@ async function getJokesByContent(req, res, next){
     }
 }
 
-router.delete('/full/:setup/:punchline', getJokesByContent, (req, res) =>{
-    res.json( { ids: res.jokeIds });
+router.delete('/bycontent', getIdsByContent, async (req, res) =>{
+    try{
+        await Joke.deleteMany({ _id: { $in: res.jokeIds }});
+        res.json( { message:"delete successful", ids: res.jokeIds });
+    } catch (error){
+        next(error);
+    }
 });
 
 router.use((err, req, res, next) => {
-    console.error(err);
+    // console.error(err);
+    console.log("there was an error...");
     res.status(500).json({ message: "something went wrong in the server..."});
 });
 
