@@ -1,7 +1,9 @@
 import express, {json} from 'express';
 import fs from 'fs';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 // import { assert } from 'console';
+import jokeModel from './models/jokeModel.js';
 
 import originalJokes from './db/jokes.json' assert {type:'json'};
 import originalUsers from './db/users.json' assert {type : 'json'};
@@ -15,9 +17,17 @@ let jokes = originalJokes;
 let users = originalUsers;
 let products = originalProducts;
 
+dotenv.config();
+
+const uri = process.env.URI;
+
 const app = express();
 
 const PORT = 3000;
+
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
+    console.log("connected");
+});
 
 export function writeToFileSync(path, data){
     fs.writeFileSync(path, data);

@@ -2,12 +2,19 @@ import express from 'express';
 import originalJokes from '../db/jokes.json' assert {type:'json'};
 // import fs from 'fs';
 import { writeToFileSync } from '../app.js';
+import Joke from '../models/jokeModel.js';
 
 let jokes = originalJokes;
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send(jokes);
+router.get('/', async (req, res) => {
+    try{
+        const jokes = await Joke.find();
+        res.json(jokes);
+    }
+    catch (error) {
+        res.status(500).json({message: error.message});
+    }
 });
 
 router.get('/random', (req, res) => {
@@ -22,11 +29,17 @@ router.get('/:id', (req, res) =>{
     else res.send("joke not found...");
 });
 
-router.post('/single', (req, res) => {
-    const newJoke = req.body;
-    jokes.push(newJoke);
-    writeToFileSync('./db/jokes.json',JSON.stringify(jokes));  
-    res.send('joke added!');
+router.post('/single', async (req, res) => {
+    const joke = new Joke({
+      setup: req.body.setup,
+      punchline: req.body.punchline,
+    });
+    try {
+      const newJoke = await joke.save();
+      res.status(201).json(newJoke);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
 });
 
 router.post('/many', (req, res) => {

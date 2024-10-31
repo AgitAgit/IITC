@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const jokeSchema = new mongoose.Schema({
-    id:Number,
+    // id:Number,
     setup:String,
     punchline:String
 })
