@@ -17,17 +17,24 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/random', (req, res) => {
-    const randomJoke = jokes[Math.floor(Math.random() * jokes.length)]
-    res.send(randomJoke)
+
+router.get('/:id', getJoke, (req, res) =>{
+    res.json(res.joke);
 });
 
-router.get('/:id', (req, res) =>{
-    const joke = jokes.find(joke => joke.id === parseInt(req.params.id));
-    if(joke) res.send(joke);
-    
-    else res.send("joke not found...");
-});
+async function getJoke(req, res, next){
+    const { id } = req.params;
+    try{
+        const joke = await Joke.findById(id);
+        if(joke === null){
+            return res.status(404).json({ message:"Joke not found"});
+        }
+        res.joke = joke;
+    } catch (error){
+        next(error);//is this proper handling of the error?
+    }
+    next();
+}
 
 router.post('/single', async (req, res) => {
     const joke = new Joke({
@@ -42,32 +49,44 @@ router.post('/single', async (req, res) => {
     }
 });
 
-router.post('/many', (req, res) => {
-    const newJokes = req.body;
-    jokes.push(...newJokes);
-    writeToFileSync('./db/jokes.json',JSON.stringify(jokes));  
-    res.send('jokes added!');
+router.post('/many', async (req, res) => {
+    const { jokes } = req.body;
+    try {
+        const newJokes = await Joke.insertMany(jokes);
+        res.status(200).json({ message: "post successfull", newJokes:newJokes});
+    } catch (error){
+        next(error);
+    }
 });
 
-router.patch('/:id', (req, res) => {
-    const newJoke = req.body;
-    const id = parseInt(req.params.id);
-    jokes.forEach(joke => {
-        if(joke.id === id){
-            jokes[jokes.indexOf(joke)] = newJoke;
-            writeToFileSync('./db/jokes.json', JSON.stringify(jokes));
-            res.send('patch successful!');
-        }
-    })
-    res.send('patch failed!');
-})
+router.put('/:id', getJoke, async (req, res) => {
+    if (req.body.setup != null) {
+      res.joke.setup = req.body.setup;
+    }
+    if (req.body.punchline != null) {
+      res.joke.punchline = req.body.punchline;
+    }
+    try {
+      const updatedJoke = await res.joke.save();
+      res.json(updatedJoke);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+});
 
-router.delete('/:id', (req,res) => {
-    const id = parseInt(req.params.id);
-    jokes = jokes.filter(joke => joke.id !== id);
-    
-    writeToFileSync('./db/jokes.json', JSON.stringify(jokes));
-    res.send('delete successful!');
+router.delete('/:id', getJoke, async (req, res) => {
+    try {
+        console.log(res.joke);
+      await res.joke.remove();
+      res.json({ message: 'Deleted Joke' });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+});
+
+router.use((err, req, res, next) => {
+    console.error(err);
+    res.status(500).json({ message: "something went wrong in the server..."});
 });
 
 export default router;
