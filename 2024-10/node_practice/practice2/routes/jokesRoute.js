@@ -1,21 +1,12 @@
 import express from 'express';
-import originalJokes from '../db/jokes.json' assert {type:'json'};
 // import fs from 'fs';
 import { writeToFileSync } from '../app.js';
 import Joke from '../models/jokeModel.js';
+import { getJokes } from '../controllers/jokesController.js';
 
-let jokes = originalJokes;
 const router = express.Router();
 
-router.get('/', async (req, res) => {
-    try{
-        const jokes = await Joke.find();
-        res.json(jokes);
-    }
-    catch (error) {
-        res.status(500).json({message: error.message});
-    }
-});
+router.get('/', );
 
 
 router.get('/:id', getJoke, (req, res) =>{
