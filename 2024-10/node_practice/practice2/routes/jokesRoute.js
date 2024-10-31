@@ -77,11 +77,30 @@ router.put('/:id', getJoke, async (req, res) => {
 router.delete('/:id', getJoke, async (req, res) => {
     try {
         console.log(res.joke);
-      await res.joke.remove();
+      await Joke.deleteOne({ _id: res.joke._id});
       res.json({ message: 'Deleted Joke' });
     } catch (error) {
       res.status(500).json({ message: error.message });
     }
+});
+
+async function getJokesByContent(req, res, next){
+    const { setup, punchline } = req.params;
+    console.log("setup: ", setup, "punchline: ", punchline);
+    let jokeIds;
+    try{
+        jokeIds = await Joke.find({ setup: setup, punchline: punchline }, '_id');
+        console.log(jokeIds);
+        res.jokeIds = jokeIds;
+        next();
+    }
+    catch (error){
+        next(error);
+    }
+}
+
+router.delete('/full/:setup/:punchline', getJokesByContent, (req, res) =>{
+    res.json( { ids: res.jokeIds });
 });
 
 router.use((err, req, res, next) => {
