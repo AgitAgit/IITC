@@ -1,9 +1,6 @@
 import express from 'express';
-import originalUsers from '../db/users.json' assert {type:'json'}
-import { writeToFileSync } from '../app.js';
 
 const router = express.Router();
-let users = originalUsers;
 
 router.get('/', (req, res) => {
     res.send(users);

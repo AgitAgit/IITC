@@ -1,12 +1,9 @@
 import express from 'express';
 // import fs from 'fs';
-import { writeToFileSync } from '../app.js';
 import Joke from '../models/jokeModel.js';
-import { getJokes } from '../controllers/jokesController.js';
+import { getJoke, getJokes, getIdsByContent } from '../controllers/jokesController.js';
 
 const router = express.Router();
-
-router.get('/', );
 
 
 router.get('/:id', getJoke, (req, res) =>{
@@ -18,19 +15,14 @@ router.get('/:id', getJoke, (req, res) =>{
     }
 });
 
-async function getJoke(req, res, next){
-    const { id } = req.params;
+router.get('/', getJokes, (req, res) => {
     try{
-        const joke = await Joke.findById(id);
-        if(joke === null){
-            return res.status(404).json({ message:"Joke not found"});
-        }
-        res.joke = joke;
-    } catch (error){
-        next(error);//is this proper handling of the error?
+        res.json(res.body);
     }
-    next();
-}
+    catch(error){
+        next(error);
+    }
+});
 
 router.post('/single', async (req, res) => {
     const joke = new Joke({
@@ -79,22 +71,6 @@ router.delete('/byId/:id', getJoke, async (req, res) => {
       res.status(500).json({ message: error.message });
     }
 });
-
-async function getIdsByContent(req, res, next){
-    const { setup, punchline } = req.body.joke;
-    // console.log("@ss");
-    console.log("setup: ", setup, "punchline: ", punchline);
-    let jokeIds;
-    try{
-        jokeIds = await Joke.find({ setup: setup, punchline: punchline }, '_id');
-        console.log(jokeIds);
-        res.jokeIds = jokeIds;
-        next();
-    }
-    catch (error){
-        next(error);
-    }
-}
 
 router.delete('/bycontent', getIdsByContent, async (req, res) =>{
     try{
