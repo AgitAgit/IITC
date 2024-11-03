@@ -11,6 +11,7 @@ const productSchema = new mongoose.Schema({
         required: true,
         min: 0,
     },
+    category: String,
     inStock: {
         type: Boolean,
         default:true,
@@ -21,4 +22,4 @@ const productSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('Product', productSchema);
+export default mongoose.model('Product', productSchema);

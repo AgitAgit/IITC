@@ -124,3 +124,5 @@ Route: POST /many
 Description: Creates multiple users at once.
 Request Body:
 A JSON object with a users property containing an array
+
+## Products api:

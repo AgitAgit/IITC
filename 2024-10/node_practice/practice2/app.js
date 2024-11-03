@@ -6,6 +6,8 @@ import dotenv from 'dotenv';
 
 import jokesRouter from './routes/jokesRoute.js';
 import usersRouter from './routes/usersRoute.js';
+import productsRouter from './routes/productsRoute.js';
+
 import logger from './middleware/logger.js';
 
 dotenv.config();
@@ -28,6 +30,8 @@ app.use('/', logger);
 
 app.use('/api/jokes', jokesRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/products', productsRouter);
+
 
 app.get("/", (req, res) => {
     // res.send("Hello World");
