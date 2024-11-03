@@ -45,3 +45,17 @@ export async function getIdsByContent(req, res, next){
         next(error);
     }
 }
+
+export async function addJoke(req, res, next){
+    try{
+        const joke = new Joke({
+        setup: req.body.setup,
+        punchline: req.body.punchline,
+        });
+        const newJoke = await joke.save();
+        res.status(201).json(newJoke);
+        next();
+    } catch(error){
+        next(error);
+    }
+}

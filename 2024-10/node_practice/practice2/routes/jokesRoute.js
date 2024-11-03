@@ -1,7 +1,7 @@
 import express from 'express';
 // import fs from 'fs';
 import Joke from '../models/jokeModel.js';
-import { getJoke, getJokes, getIdsByContent } from '../controllers/jokesController.js';
+import { getJoke, getJokes, getIdsByContent, addJoke } from '../controllers/jokesController.js';
 
 const router = express.Router();
 
@@ -24,17 +24,7 @@ router.get('/', getJokes, (req, res) => {
     }
 });
 
-router.post('/single', async (req, res) => {
-    const joke = new Joke({
-      setup: req.body.setup,
-      punchline: req.body.punchline,
-    });
-    try {
-      const newJoke = await joke.save();
-      res.status(201).json(newJoke);
-    } catch (error) {
-      res.status(400).json({ message: error.message });
-    }
+router.post('/single', addJoke, async (req, res) => {
 });
 
 router.post('/many', async (req, res) => {

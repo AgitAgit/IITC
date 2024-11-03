@@ -1,9 +1,11 @@
 import express from 'express';
+import { getAllUsers, addUser } from '../controllers/usersController.js';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send(users);
+//----------------------------------------I'M HERE---------------------------------------
+router.get('/', getAllUsers, (req, res) => {
+    res.send(res.body);
 });
 
 router.get('/random', (req, res) => {
@@ -17,11 +19,7 @@ router.get('/:id', (req, res) =>{
     else res.send("user not found...");
 });
 
-router.post('/single', (req, res) => {
-    const newUser = req.body;
-    users.push(newUser);
-    writeToFileSync('./db/users.json',JSON.stringify(users));  
-    res.send('user added!');
+router.post('/single', addUser, (req, res) => {
 });
 
 router.post('/many', (req, res) => {
