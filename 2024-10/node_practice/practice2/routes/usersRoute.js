@@ -3,7 +3,6 @@ import { getAllUsers, addUser, patchUser, addUsers, getUserById } from '../contr
 
 const router = express.Router();
 
-//----------------------------------------I'M HERE---------------------------------------
 router.get('/', getAllUsers, (req, res) => {
     res.send(res.body);
 });
@@ -23,8 +22,10 @@ router.patch('/', patchUser,(req, res) => {
 router.delete('/:id', (req,res) => {
 });
 
-router.use('/',(err, req, res, next) => {
-    
+router.use((err, req, res, next) => {
+    console.log("error in the users route or controller", err);
+
+    res.status(500).send("something went wrong in the server...");
 });
 
 export default router;
