@@ -20,7 +20,7 @@ Body: JSON object with a users property containing an array of user objects. Eac
 _id: (Mongoose generated ID)
 name: User's name (string)
 email: User's email address (string)
-password: User's password (string) (Note: Sending password in response might not be secure. Consider alternative approaches)
+password: User's password (string) 
 Example:
 
 GET /
@@ -32,17 +32,17 @@ JSON
       "_id": "6362f2d1234567890abcde12",
       "name": "John Doe",
       "email": "johndoe@example.com",
-      "password": "1234"  // (Not recommended practice)
+      "password": "1234"  
     },
     {
       "_id": "6362f2d1234567890abcde13",
       "name": "Jane Smith",
       "email": "janesmith@example.com",
-      "password": "1234"  // (Not recommended practice)
+      "password": "1234"  
     }
   ]
 }
-Use code with caution.
+
 
 2. Get User by ID
 
@@ -68,16 +68,15 @@ JSON
   "_id": "6362f2d1234567890abcde12",
   "name": "John Doe",
   "email": "johndoe@example.com",
-  "password": "1234"  // (Not recommended practice)
+  "password": "1234"  
 }
-Use code with caution.
+
 
 Response Example (Failure - User Not Found):
 JSON
 {
   "message": "User not found"
 }
-Use code with caution.
 
 3. Add Single User
 
@@ -108,7 +107,6 @@ POST /single
     "password": "password123"
   }
 }
-Use code with caution.
 
 Response Example (Success):
 JSON
@@ -116,9 +114,9 @@ JSON
   "_id": "6362f2d1234567890abcdef14",
   "name": "New User",
   "email": "newuser@example.com",
-  "password": "password123"  // (Not recommended practice)
+  "password": "password123"  
 }
-Use code with caution.
+
 
 4. Add Multiple Users
 
