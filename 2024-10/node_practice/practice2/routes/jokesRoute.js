@@ -1,19 +1,19 @@
 import express from 'express';
 // import fs from 'fs';
 import Joke from '../models/jokeModel.js';
-import { getJoke, getJokes, getIdsByContent, addJoke } from '../controllers/jokesController.js';
+import { getJoke, getJokes, getIdsByContent, addJoke, getJokesWithCreator } from '../controllers/jokesController.js';
 
 const router = express.Router();
 
 
-router.get('/:id', getJoke, (req, res) =>{
-    try{
-        res.json(res.joke);
-    }
-    catch (error){
-        next(error);
-    }
-});
+// router.get('/:id', getJoke, (req, res) =>{
+//     try{
+//         res.json(res.joke);
+//     }
+//     catch (error){
+//         next(error);
+//     }
+// });
 
 router.get('/', getJokes, (req, res) => {
     try{
@@ -24,8 +24,9 @@ router.get('/', getJokes, (req, res) => {
     }
 });
 
-router.post('/single', addJoke, async (req, res) => {
-});
+router.get('/populate', getJokesWithCreator);
+
+router.post('/single', addJoke);
 
 router.post('/many', async (req, res) => {
     const { jokes } = req.body;

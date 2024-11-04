@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Joke from '../models/jokeModel.js';
+const defaultUserId = '6727b218559bb528f3ec439c';
 
 export async function getJoke(req, res, next){
     const { id } = req.params;
@@ -30,6 +31,16 @@ export const getJokes = async (req, res, next) => {
     }
 }
 
+export const getJokesWithCreator = async function(req, res, next){
+    try{
+        const jokes = await Joke.find().populate("createdBy");
+        res.json(jokes);
+        next();
+    } catch(error){
+        next(error);
+    }
+}
+
 export async function getIdsByContent(req, res, next){
     const { setup, punchline } = req.body.joke;
     // console.log("@ss");
@@ -51,6 +62,7 @@ export async function addJoke(req, res, next){
         const joke = new Joke({
         setup: req.body.setup,
         punchline: req.body.punchline,
+        createdBy: defaultUserId
         });
         const newJoke = await joke.save();
         res.status(201).json(newJoke);
