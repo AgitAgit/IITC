@@ -33,7 +33,7 @@ export const getJokes = async (req, res, next) => {
 
 export const getJokesWithCreator = async function(req, res, next){
     try{
-        const jokes = await Joke.find().populate("createdBy");
+        const jokes = await Joke.find({createdBy:{$exists:true}}).populate("createdBy");
         res.json(jokes);
         next();
     } catch(error){
@@ -62,7 +62,7 @@ export async function addJoke(req, res, next){
         const joke = new Joke({
         setup: req.body.setup,
         punchline: req.body.punchline,
-        createdBy: defaultUserId
+        createdBy: req.body.createdBy || defaultUserId
         });
         const newJoke = await joke.save();
         res.status(201).json(newJoke);
