@@ -1,0 +1,10 @@
+populate{
+    similar to sql join
+    example Joke.find({}).populate('owner','fName lName');
+}
+
+the connecting field in the example he gave was a mongo id,
+and the data type in the schema definition specified that
+
+
+userSchema.set('toJSON', {virtuals:true});
