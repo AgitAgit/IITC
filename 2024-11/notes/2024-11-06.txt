@@ -1,0 +1,5 @@
+mongoose
+schema.pre
+schema.virtual
+schema.statics
+schema.post
