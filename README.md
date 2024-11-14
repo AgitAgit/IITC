@@ -1,3 +1,6 @@
+# IITC
+A review of the assignments given to me from the IITC full-stack web development bootcamp.
+
 ## Frontend-mentor:
 ### [Interactive rating component](https://agitagit.github.io/IITC/2024-10/interactive-rating-component-main)
 
