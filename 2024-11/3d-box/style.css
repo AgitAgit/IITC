@@ -13,3 +13,29 @@ perspective:
 div:before{}
 div:after{}
 */
+* {
+    box-sizing: border-box;
+}
+.main-container{
+    padding:2rem;
+    background-color: bisque;
+}
+
+.outer-box {
+    perspective: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    height: 500px;
+
+    border: 1px solid red;
+}
+
+.inner-box {
+    width: 250px;
+    height: 250px;
+    transform: translateZ(0);
+    
+    border:1px solid blue;
+}
