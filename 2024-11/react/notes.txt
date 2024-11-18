@@ -1,0 +1,6 @@
+-children property of the props object
+
+-conditional rendering
+
+-module css (ComponentName.module.css)(import style from '...')(className={styles.component-name})
+
