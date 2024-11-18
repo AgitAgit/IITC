@@ -1,0 +1,9 @@
+ul {
+    display:grid;
+    grid-template-columns: repeat(auto, 250px);
+    gap:1rem;
+}
+
+li {
+    list-style-type: none;
+}
