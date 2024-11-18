@@ -14,7 +14,6 @@ function Pokeball(){
         }
     }
 
-    
     useEffect(() => {
         fetchData();
     }, [])
