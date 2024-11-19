@@ -1,9 +1,7 @@
-ul {
+.mini-pokemon-grid {
     display:grid;
-    grid-template-columns: repeat(auto, 250px);
+    grid-template-columns: repeat(auto, minmax(var(--mini-pokemon-width, 1fr)));
     gap:1rem;
-}
-
-li {
-    list-style-type: none;
+    justify-content: center;
+    align-items: center;
 }

@@ -11,3 +11,5 @@
 -
 const formData = new FormData(e.target)
 const formObj = Object.fromEntries(formData.entries())
+
+-lazy image display

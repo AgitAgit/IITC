@@ -1,5 +1,6 @@
 .card {
-    
+    height: var(--mini-pokemon-height);
+    width: var(--mini-pokemon-width);
 }
 
 .fire {

@@ -9,6 +9,10 @@
   --poison-background: purple;
   --ground-background: brown;
   --fairy-background: pink;
+
+  /*sizes*/
+  --mini-pokemon-width: 140px;
+  --mini-pokemon-height: 140px;
 }
 
 /* :root {
