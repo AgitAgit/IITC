@@ -34,7 +34,7 @@ export default function Pokemon({name, url}){
 
         { pokemon && (
                 <div className={styles[`${pokemon.types[0].type.name}`]}>
-                    <header>name, types
+                    <header>name, types. first type:{pokemon.types[0].type.name}
                     
                     </header>
                     <div>

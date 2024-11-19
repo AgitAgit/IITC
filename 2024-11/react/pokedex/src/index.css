@@ -1,3 +1,16 @@
+:root {
+  /* color palette */
+  --fire-background:red;
+  --water-background:aqua;
+  --grass-background: green;
+  --electric-background: yellow;
+  --bug-background: var(--grass-background);
+  --normal-background: gray;
+  --poison-background: purple;
+  --ground-background: brown;
+  --fairy-background: pink;
+}
+
 /* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

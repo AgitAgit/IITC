@@ -9,7 +9,7 @@ const Pokedex = () => {
 
     async function fetchData(){
         try{//could add pagination later, using limit and offset if it's available in the api.
-            const { data : { results }} = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=10');
+            const { data : { results }} = await axios.get('https://pokeapi.co/api/v2/pokemon?limit=40');
             // console.log(results);
             setPokemons(results);
         } catch (error){
