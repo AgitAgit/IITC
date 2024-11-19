@@ -1,6 +1,6 @@
 .mini-pokemon-grid {
     display:grid;
-    grid-template-columns: repeat(auto, minmax(var(--mini-pokemon-width, 1fr)));
+    grid-template-columns: repeat(auto-fit, var(--mini-pokemon-width, 1fr));
     gap:1rem;
     justify-content: center;
     align-items: center;
