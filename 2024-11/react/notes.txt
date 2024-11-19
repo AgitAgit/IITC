@@ -4,3 +4,6 @@
 
 -module css (ComponentName.module.css)(import style from '...')(className={styles.component-name})
 
+-MUI library "sx prop" to edit a component's css.
+
+-MUI modal(dialog)
