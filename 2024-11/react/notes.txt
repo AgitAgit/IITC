@@ -7,3 +7,7 @@
 -MUI library "sx prop" to edit a component's css.
 
 -MUI modal(dialog)
+
+-
+const formData = new FormData(e.target)
+const formObj = Object.fromEntries(formData.entries())
