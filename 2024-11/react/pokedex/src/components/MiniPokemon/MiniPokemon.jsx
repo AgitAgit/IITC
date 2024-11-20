@@ -19,7 +19,8 @@ export default function MiniPokemon({ name, url }){
     async function fetchData() {
         try{
             const data = await axios.get(url);
-            // setPokemon(data.data);
+            // console.log("data",data);
+            if(utils.isPokemon(data)) setPokemon(data.data);
             // console.log(name, data.data);
         } catch (error){
             console.log(error);
@@ -30,6 +31,10 @@ export default function MiniPokemon({ name, url }){
         return pokemon?.types.map((type, index) => {
             return <span key={index} className={styles.typeDiv}>{utils.capitalizeWord(type.type.name)}</span>
         });
+    }
+
+    function checkFetch(){
+
     }
 
     useEffect( () => {
@@ -45,14 +50,13 @@ export default function MiniPokemon({ name, url }){
             <img src={pokeballImg} className={styles.pokeballImg} />
             { ( pokemon ?
                 // <div className={styles[`${pokemon.types[0].type.name}`]}>
-                <div>
-
+                <div onClick={console.log("pokemon attempted to render...", pokemon)}>
                     <div>
-                        <span className={styles.heading}>{utils.capitalizeWord(pokemon?.name)}</span>
-                        <div>{() => { if (pokemon) getPokemonTypes(pokemon)}}</div>
+                        <span className={styles.heading}>{utils.capitalizeWord(pokemon.name)}</span>
+                        <div>{getPokemonTypes(pokemon)}</div>
                     </div>
                     
-                    <img src={pokemon?.sprites.other.dream_world.front_default} className={styles.sprite}/>
+                    <img src={pokemon.sprites.other.dream_world.front_default} className={styles.sprite}/>
 
                 </div>
                 :
