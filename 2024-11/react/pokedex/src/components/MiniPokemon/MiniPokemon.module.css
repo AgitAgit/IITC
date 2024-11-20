@@ -10,6 +10,15 @@
     position: relative;
 }
 
+.loading-gif {
+    height: 40%;
+    aspect-ratio: 1/1;
+    position:absolute;
+    transform:translate(-50%, -50%);
+    top:50%;
+    left:50%;
+}
+
 .heading {
     font-size: 2rem;    
 }

@@ -1,4 +1,5 @@
 .mini-pokemon-grid {
+    max-width: 1180px;
     display:grid;
     grid-template-columns: repeat(auto-fit, var(--mini-pokemon-width, 1fr));
     gap:1rem;
