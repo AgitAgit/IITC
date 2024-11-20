@@ -1,7 +1,9 @@
 import styles from './MiniPokemon.module.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+
 import pokeballImg from './../../assets/pokeball_background.png';
+import utils from '../../utils/utils';
 
 export default function MiniPokemon({ name, url }){
     const [pokemon, setPokemon] = useState(null);
@@ -17,30 +19,39 @@ export default function MiniPokemon({ name, url }){
         try{
             const data = await axios.get(url);
             setPokemon(data.data);
-            setCardClass(previousCardClass => `${previousCardClass} ${styles[`${pokemon.types[0].type.name}`]}`)
-            console.log(name, data.data);
+            // console.log(name, data.data);
         } catch (error){
             console.log(error);
         }
     }
     
+    function getPokemonTypes(pokemon){
+        return pokemon.types.map((type, index) => {
+            return <span key={index} className={styles.typeDiv}>{utils.capitalizeWord(type.type.name)}</span>
+        });
+    }
+
     useEffect( () => {
         fetchData();
     },[])
+    
+    useEffect(() => {
+        if(pokemon) setCardClass(previousCardClass => `${previousCardClass} ${styles[`${pokemon.types[0].type.name}`]}`)
+    }, [pokemon])
 
     return ( 
         <div className={cardClass}>
             <img src={pokeballImg} className={styles.pokeballImg} />
             { ( pokemon &&
-                <div className={styles[`${pokemon.types[0].type.name}`]}>
+                // <div className={styles[`${pokemon.types[0].type.name}`]}>
+                <div>
 
                     <div>
-                        <h2>{pokemon.name}</h2>
+                        <span className={styles.heading}>{utils.capitalizeWord(pokemon.name)}</span>
+                        <div>{getPokemonTypes(pokemon)}</div>
                     </div>
-                    <div>
-                        image area
-                        <img src={pokemon.sprites.other.dream_world.front_default} className={styles.sprite}/>
-                    </div>
+                    
+                    <img src={pokemon.sprites.other.dream_world.front_default} className={styles.sprite}/>
 
                 </div>
             )}

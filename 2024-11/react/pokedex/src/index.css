@@ -1,3 +1,8 @@
+@font-face {
+  font-family: oswald;
+  src: url('./assets/fonts/Oswald/Oswald-VariableFont_wght.ttf');
+}
+
 * {
   box-sizing:border-box;
   padding: 0;
@@ -6,24 +11,25 @@
 
 :root {
   /* color palette */
-  --fire-background:red;
-  --water-background:aqua;
-  --grass-background: green;
-  --electric-background: yellow;
+  --fire-background:hsl(0, 86%, 69%);
+  --water-background:hsl(208, 94%, 73%);
+  --grass-background: hsl(164, 100%, 71%);
+  --electric-background: hsl(43, 97%, 73%);
   --bug-background: var(--grass-background);
   --normal-background: gray;
-  --poison-background: purple;
+  --poison-background: rgba(128, 0, 128, 0.71);
   --ground-background: brown;
   --fairy-background: pink;
 
   /*sizes*/
-  --mini-pokemon-width: 140px;
-  --mini-pokemon-height: 140px;
+  --mini-pokemon-width: 280px;
+  /* --mini-pokemon-height: 120px; */
 }
 
 body {
   background-color: rgba(173, 216, 230, 0.466);
   /* background-color: whitesmoke; */
+  font-family: oswald;
 }
 
 /* :root {
