@@ -13,3 +13,5 @@ const formData = new FormData(e.target)
 const formObj = Object.fromEntries(formData.entries())
 
 -lazy image display
+
+-react-router-dom BrowserRouter, Routes, Route, useParams
