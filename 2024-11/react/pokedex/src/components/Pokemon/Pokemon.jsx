@@ -20,8 +20,8 @@ export default function Pokemon({ pokemon, pokeballImg }){
                 <img src={ pokeballImg } className={ styles['pokeball-image']} />
                 <div className={styles['top-div']}>
                     <header>
-                        <div className={ styles['name'] }> { Utils.capitalizeWord(pokemon.name) }</div>
-                        { Utils.getPokemonTypes(pokemon) }
+                        <div className={ styles['name'] }> { Utils.capitalizeWord(pokemon.name) } </div>
+                        <div className={ styles['types-div'] }> { Utils.getPokemonTypes(pokemon) } </div>
                     </header>
                 </div>
 

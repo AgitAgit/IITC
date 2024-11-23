@@ -10,6 +10,15 @@
     justify-content: space-between;
 }
 
+.name {
+    font-size: 1.8rem;
+}
+
+.types-div{
+    display:flex;
+    gap:0.5rem;
+}
+
 .pokeball-image {
     position: absolute;
     z-index: 0;
@@ -20,11 +29,12 @@
 }
 
 .top-div {
+    padding:2rem 1rem 1rem 1rem;
     color:white;
 }
 
 .poke-image {
-    height:60%;
+    height:50%;
     position:absolute;
     transform: translate(-50%, -100%);
     top:10%;
