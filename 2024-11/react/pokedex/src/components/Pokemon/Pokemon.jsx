@@ -2,6 +2,7 @@ import styles from './Pokemon.module.css';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
+import backArrow from '../../assets/Images/backArrow.svg';
 import Utils from '../../utils/Utils';
 
 //Add a function that "rotates" the sprite.
@@ -17,9 +18,13 @@ export default function Pokemon({ pokemon, pokeballImg }){
     
     return(
         <div className={ `${styles.card} ${styles[`${pokemon.types[0].type.name}`]}` }>
-                <img src={ pokeballImg } className={ styles['pokeball-image']} />
+                <img src={ pokeballImg } className={ styles['pokeball-image'] } />
                 <div className={styles['top-div']}>
                     <header>
+                        <div className={ styles['back-and-like-div'] }>
+                            <img src={ backArrow } className={ styles['back-arrow'] }/>
+                            <button className={ styles['like-button'] }>🤍</button>
+                        </div>
                         <div className={ styles['name'] }> { Utils.capitalizeWord(pokemon.name) } </div>
                         <div className={ styles['types-div'] }> { Utils.getPokemonTypes(pokemon) } </div>
                     </header>

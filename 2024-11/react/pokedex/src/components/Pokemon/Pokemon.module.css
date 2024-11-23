@@ -14,6 +14,27 @@
     font-size: 1.8rem;
 }
 
+.back-and-like-div {
+    display:flex;
+    justify-content: space-between;
+}
+
+.back-arrow {
+    width:1.5rem;
+    transform:rotateX(180deg);
+}
+
+.back-arrow:hover {
+    scale:1.10;
+}
+
+.back-and-like-div button {
+    border: none;
+    font-size: 1.5rem;
+    background: none;
+    color:white;
+}
+
 .types-div{
     display:flex;
     gap:0.5rem;
