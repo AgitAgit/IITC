@@ -5,11 +5,7 @@ import { useState, useEffect } from 'react';
 import backArrow from '../../assets/Images/backArrow.svg';
 import Utils from '../../utils/Utils';
 
-//Add a function that "rotates" the sprite.
-//loading="lazy" to the img element
-
-//Should receive the pokemon object from MiniPokemon as it fetches it anyway...
-export default function Pokemon({ pokemon, pokeballImg }){
+export default function Pokemon({ pokemon, pokeballImg, handleBackClick }){
     //abilities[{ability:{ name, url},...},...],
     //sprites{front_default, back_default},
     //stats[{ base_stat, effort, stat:{name, url}},...]
@@ -22,8 +18,8 @@ export default function Pokemon({ pokemon, pokeballImg }){
                 <div className={styles['top-div']}>
                     <header>
                         <div className={ styles['back-and-like-div'] }>
-                            <img src={ backArrow } className={ styles['back-arrow'] }/>
-                            <button className={ styles['like-button'] }>🤍</button>
+                            <img src={ backArrow } className={ styles['back-arrow'] } onClick={ handleBackClick } />
+                            <button className={ styles['like-button'] } >🤍</button>
                         </div>
                         <div className={ styles['name'] }> { Utils.capitalizeWord(pokemon.name) } </div>
                         <div className={ styles['types-div'] }> { Utils.getPokemonTypes(pokemon) } </div>

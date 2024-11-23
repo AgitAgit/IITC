@@ -10,6 +10,11 @@
     justify-content: space-between;
 }
 
+.top-div {
+    padding:1rem 1rem 1rem 1rem;
+    color:white;
+}
+
 .name {
     font-size: 1.8rem;
 }
@@ -28,11 +33,15 @@
     scale:1.10;
 }
 
-.back-and-like-div button {
+.like-button {
     border: none;
     font-size: 1.5rem;
     background: none;
     color:white;
+}
+
+.like-button:hover {
+    scale:1.10;
 }
 
 .types-div{
@@ -49,10 +58,6 @@
     opacity: 0.3;
 }
 
-.top-div {
-    padding:2rem 1rem 1rem 1rem;
-    color:white;
-}
 
 .poke-image {
     height:50%;

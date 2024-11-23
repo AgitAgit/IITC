@@ -54,7 +54,7 @@ export default function PokeModal( { pokemon, pokeballImg }) {
         sx={modalStyle}
       >
         <Box sx={style}>
-          <Pokemon pokemon={ pokemon } pokeballImg={ pokeballImg }/>
+          <Pokemon pokemon={ pokemon } pokeballImg={ pokeballImg } handleBackClick={ handleClose }/>
         </Box>
         {/* <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">

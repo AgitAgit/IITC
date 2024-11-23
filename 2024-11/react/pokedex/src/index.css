@@ -11,15 +11,16 @@
 
 :root {
   /* color palette */
-  --fire-background:hsl(0, 86%, 69%);
-  --water-background:hsl(208, 94%, 73%);
-  --grass-background: hsl(164, 100%, 71%);
-  --electric-background: hsl(43, 97%, 73%);
-  --bug-background: var(--grass-background);
-  --normal-background: gray;
-  --poison-background: rgba(128, 0, 128, 0.71);
-  --ground-background: brown;
-  --fairy-background: pink;
+  --background-opacity: 0.75;
+  --fire-background:hsl(0, 86%, 69%, var(--background-opacity));
+  --water-background:hsl(208, 94%, 73%, var(--background-opacity));
+  --grass-background: hsl(164, 100%, 71%, var(--background-opacity));
+  --electric-background: hsl(43, 97%, 73%, var(--background-opacity));
+  --bug-background: var(--grass-background, var(--background-opacity));
+  --normal-background: rgba(128, 128, 128, var(--background-opacity));
+  --poison-background: rgba(128, 0, 128, var(--background-opacity));
+  --ground-background: rgba(165, 42, 42, var(--background-opacity));
+  --fairy-background: rgba(255, 192, 203, var(--background-opacity));
 
   /*sizes*/
   --mini-pokemon-width: 280px;
