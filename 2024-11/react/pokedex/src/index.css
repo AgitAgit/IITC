@@ -24,6 +24,7 @@
   /*sizes*/
   --mini-pokemon-width: 280px;
   /* --mini-pokemon-height: 120px; */
+  --general-border-radius: 1rem;
 }
 
 body {

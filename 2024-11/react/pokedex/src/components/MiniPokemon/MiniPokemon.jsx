@@ -65,7 +65,7 @@ export default function MiniPokemon({ name, url }){
                         <img src={pokemon.sprites.other.dream_world.front_default} className={styles.sprite}/>
 
                     </div>
-                    <PokeModal />
+                    <PokeModal pokemon={ pokemon }/>
                 </>
                 : (errorFetching ? 
                     <div className={styles['error-div']}>Something went wrong...<button onClick={refreshPage}>Refresh page</button></div>

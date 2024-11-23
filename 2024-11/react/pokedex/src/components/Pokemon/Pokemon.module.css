@@ -1,8 +1,37 @@
 .card{
-    border-radius: 1rem;
-    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    position: relative;
     width:250px;
     height:400px;
+    border-radius: var(--general-border-radius);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    overflow: hidden;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.top-div {
+    color:white;
+}
+
+.poke-image {
+    height:60%;
+    position:absolute;
+    transform: translate(-50%, -100%);
+    top:10%;
+    left:50%;
+}
+
+.data-div {
+    position:relative;
+    border-radius: var(--general-border-radius);
+    height:55%;
+    color:black;
+    background-color: white;
+}
+
+.inner-data-div {
+    margin: 2rem 1rem 2rem 1rem;
 }
 
 .fire {
@@ -40,4 +69,3 @@
 .fairy {
     background-color: var(--fairy-background);
 }
-
