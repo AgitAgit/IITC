@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import loadingGif from './../../assets/loading_gif.gif';
 import pokeballImg from './../../assets/pokeball_background.png';
-import utils from '../../utils/utils';
+import Utils from '../../utils/Utils.jsx';
 import PokeModal from '../PokeModal/PokeModal.jsx';
 
 export default function MiniPokemon({ name, url }){
@@ -23,19 +23,13 @@ export default function MiniPokemon({ name, url }){
         try{
             const data = await axios.get(url);
             // console.log("data",data);
-            if(utils.isPokemon(data)) setPokemon(data.data);
+            if(Utils.isPokemon(data)) setPokemon(data.data);
             else{
                 setTimeout(() => setErrorFetching(true), 2000);
             } 
         } catch (error){
             console.log(error);
         }
-    }
-    
-    function getPokemonTypes(pokemon){
-        return pokemon?.types.map((type, index) => {
-            return <span key={index} className={styles.typeDiv}>{utils.capitalizeWord(type.type.name)}</span>
-        });
     }
 
     useEffect( () => {
@@ -58,14 +52,14 @@ export default function MiniPokemon({ name, url }){
                 <>
                     <div>
                         <div>
-                            <span className={styles.heading}>{utils.capitalizeWord(pokemon.name)}</span>
-                            <div>{getPokemonTypes(pokemon)}</div>
+                            <span className={styles.heading}>{Utils.capitalizeWord(pokemon.name)}</span>
+                            <div>{ Utils.getPokemonTypes(pokemon) }</div>
                         </div>
                         
                         <img src={pokemon.sprites.other.dream_world.front_default} className={styles.sprite}/>
 
                     </div>
-                    <PokeModal pokemon={ pokemon }/>
+                    <PokeModal pokemon={ pokemon } pokeballImg={ pokeballImg }/>
                 </>
                 : (errorFetching ? 
                     <div className={styles['error-div']}>Something went wrong...<button onClick={refreshPage}>Refresh page</button></div>

@@ -1,13 +1,22 @@
 .card{
     position: relative;
     width:250px;
-    height:400px;
+    height:500px;
     border-radius: var(--general-border-radius);
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
     overflow: hidden;
     display:flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+.pokeball-image {
+    position: absolute;
+    z-index: 0;
+    right: -10px;
+    bottom:50%;
+    height:30%;
+    opacity: 0.3;
 }
 
 .top-div {
@@ -23,6 +32,7 @@
 }
 
 .data-div {
+    z-index: 1;
     position:relative;
     border-radius: var(--general-border-radius);
     height:55%;

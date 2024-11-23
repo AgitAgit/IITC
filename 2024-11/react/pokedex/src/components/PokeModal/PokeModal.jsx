@@ -18,14 +18,14 @@ const style = {
   p: 0
 };
 
-export default function PokeModal( { pokemon }) {
+export default function PokeModal( { pokemon, pokeballImg }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      <Button onClick={handleOpen}>Expand</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -33,7 +33,7 @@ export default function PokeModal( { pokemon }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Pokemon pokemon={ pokemon }/>
+          <Pokemon pokemon={ pokemon } pokeballImg={ pokeballImg }/>
         </Box>
         {/* <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
