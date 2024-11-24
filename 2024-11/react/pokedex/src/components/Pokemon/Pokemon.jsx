@@ -30,6 +30,9 @@ export default function Pokemon({ pokemon, pokeballImg, handleBackClick }){
                     <img src={pokemon.sprites.other.dream_world.front_default} className={styles['poke-image']} />
                     
                     <div className={ styles['inner-data-div'] }>
+                        <div className={styles['tabs-div']}>
+                            About, Base stats, Evolutions, moves
+                        </div>
                         <div>
                             stats section: hp, attack, defense, speed
                         </div>
