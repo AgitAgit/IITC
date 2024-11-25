@@ -6,6 +6,8 @@ import { useState, useEffect, useRef } from 'react';
 import backArrow from '../../assets/Images/backArrow.svg';
 import Utils from '../../utils/Utils';
 
+//I can refer to multiple dom elements using ref={ (element) => {ref_variable.current[i]} }
+
 export default function Pokemon({ pokemon, pokeballImg, handleBackClick }){
     const [currentTab, setCurrentTab] = useState();
     const aboutButton = useRef();
