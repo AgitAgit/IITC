@@ -1,5 +1,3 @@
-
-
 const initialState = {
     todos: [
         { id: 123456, text: "first todo", completed: false }
