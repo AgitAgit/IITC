@@ -1,0 +1,25 @@
+-store, reducer, dispatch, useDispatch, selector, useSelector
+
+-redux itself is a js library. It is used in react.
+
+
+<Provider store={store}>
+    <SomeElement />
+</Provider>
+
+//this is the store
+import { createStore } from 'redux';
+import todosReducer from './reducers/TodoReducer';
+
+export const store = createStore(todosReducer);
+
+todosReducer holds the handler functions
+
+todosReducer receives the current state and an "action" object specifying
+what to change in that state.
+
+the dispatch receives and "action" object. The action object may receive some payload.
+
+the dispatch searches for the closest ancestor provider and passes the "action" to it's reducer.
+
+the reducer then updates the state according to the action passed and it's payload(if present).
