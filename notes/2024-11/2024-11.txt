@@ -21,3 +21,6 @@ const formObj = Object.fromEntries(formData.entries())
 -react-router-dom: BrowserRouter, Routes, Route, useParams, Link,
 -react-router-dom: useNavigate, useSearchParams
 
+-custom hooks
+
+-arguments object
