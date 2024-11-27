@@ -7,6 +7,7 @@ import MiniPokemon from '../MiniPokemon/MiniPokemon.jsx';
 
 const Pokedex = () => {
     const [ pokemons, setPokemons ] = useState(null);
+    const [ userPokemons, setUserPokemons ] = useState(null);
 
     async function fetchData(){
         try{//could add pagination later, using limit and offset if it's available in the api.
@@ -20,6 +21,10 @@ const Pokedex = () => {
 
     useEffect( () => {
         fetchData();
+
+        if(localStorage.getItem('userPokemons')){
+            setUserPokemons(JSON.parse(localStorage.getItem('userPokemons')));
+        }
     }, [])
 
     return (
