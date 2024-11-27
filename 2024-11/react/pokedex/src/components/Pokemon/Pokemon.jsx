@@ -9,15 +9,17 @@ import Utils from '../../utils/Utils';
 //I can refer to multiple dom elements using ref={ (element) => {ref_variable.current[i]} }
 
 export default function Pokemon({ pokemon, pokeballImg, handleBackClick }){
-    const [currentTab, setCurrentTab] = useState();
+    const [currentTab, setCurrentTab] = useState(null);
     const aboutButton = useRef();
     //abilities[{ability:{ name, url},...},...],
     //sprites{front_default, back_default},
     //stats[{ base_stat, effort, stat:{name, url}},...]
     //types[{ slot, type:{name, url}},...]
     //height, weight, id, name, base_experience
+    //moves
 
     useEffect(() => {
+        console.log(pokemon);
         handleTabClick(aboutButton.current);
     },[])
 
@@ -51,7 +53,45 @@ export default function Pokemon({ pokemon, pokeballImg, handleBackClick }){
                             <button className={styles.tab} onClick={(event) => handleTabClick(event.target)}>Base stats</button>
                             <button className={styles.tab} onClick={(event) => handleTabClick(event.target)}>Moves</button>
                         </div>
-                        <div>
+
+                        {( currentTab?.textContent === 'About' && 
+                            <pre className={styles['stats-div']}>
+                                {`Abilities:\n`}
+                                <span>{pokemon.abilities[0]?.ability.name}</span>
+                                <br></br>
+                                <span>{pokemon.abilities[1]?.ability.name}</span>
+                                <br></br>
+                                <br></br>
+                                Attributes:
+                                <br></br>
+                                Weight:{`${pokemon.weight}\n`}
+                                Height:{`${pokemon.height}`}
+                            </pre> 
+                        )}
+
+                        {( currentTab?.textContent === 'Base stats' && 
+                            <div className={styles['stats-div']}>
+                                { pokemon.stats.map(stat => (
+                                    <div key={`${pokemon.name}${stat.stat.name}`} className={styles['stat-div']}>
+                                        {/* <label htmlFor={stat.stat.name}>{`${stat.stat.name}:${stat.base_stat}`}</label> */}
+                                        <div className={styles['stat-text']}>
+                                            <span>{stat.stat.name}</span>
+                                            <span>{stat.base_stat}</span>
+                                        </div>
+                                        <progress id={stat.stat.name} value={stat.base_stat} max={100}></progress>
+                                        <br></br>
+                                    </div>
+                                )) }
+                            </div> 
+                        )}
+
+                        {( currentTab?.textContent === 'Moves' && 
+                            <div className={styles['stats-div']}>
+                                { pokemon.moves.slice(0,10).map(move => <div key={move.move.name}>{move.move.name}</div>) }
+                            </div> 
+                        )}
+                        
+                        {/* <div>
                             stats section: hp, attack, defense, speed
                         </div>
                         <div>
@@ -59,7 +99,7 @@ export default function Pokemon({ pokemon, pokeballImg, handleBackClick }){
                         </div>
                         <footer>
                             weight, height, base experience
-                        </footer>
+                        </footer> */}
                     </div>
                 </div>
         </div>
