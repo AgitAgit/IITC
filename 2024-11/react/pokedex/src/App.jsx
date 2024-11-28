@@ -4,7 +4,7 @@ import viteLogo from '/vite.svg'
 
 import Pokedex from './components/Pokedex/Pokedex.jsx';
 import AddPokemonForm from './components/AddPokemonForm/AddPokemonForm.jsx';
-
+//delete this comment
 function App() {
   
   return (
