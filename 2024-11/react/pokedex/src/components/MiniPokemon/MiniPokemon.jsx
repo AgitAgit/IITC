@@ -7,10 +7,14 @@ import pokeballImg from './../../assets/pokeball_background.png';
 import Utils from '../../utils/Utils.jsx';
 import PokeModal from '../PokeModal/PokeModal.jsx';
 
-export default function MiniPokemon({ name, url }){
+export default function MiniPokemon({ name, url, readyPokemon=null }){
     const [pokemon, setPokemon] = useState(null);
     const [cardClass, setCardClass] = useState(`${styles.card}`);
     const [ errorFetching, setErrorFetching ] = useState(false);
+
+    // let pokemonImageSource;
+    // if(readyPokemon) pokemonImageSource = readyPokemon.imageUrl;
+    // if(pokemon) pokemonImageSource = pokemon?.sprites.other.dream_world.front_default;
 
     //abilities[{ability:{ name, url},...},...],
     //sprites{front_default, back_default},
@@ -33,7 +37,10 @@ export default function MiniPokemon({ name, url }){
     }
 
     useEffect( () => {
-        fetchData();
+        if(readyPokemon){
+            setPokemon(readyPokemon);
+        }
+        else fetchData();
     },[])
     
     useEffect(() => {
