@@ -16,8 +16,13 @@ export default {
         }
         return true;
     },
-    getLatestPokemonId: ()=>{
-        
+    getLatestPokemonSerialNum: ()=>{
+        let userPokemons = localStorage.getItem('userPokemons');
+        if(userPokemons){
+            userPokemons = JSON.parse(userPokemons);
+            return userPokemons[userPokemons.length - 1].serialNum;
+        }
+        return null;
     },
     createUserPokemon: (name, imageUrl, types, stats, abilities, baseExperience, weight, height) => {
         //1. generate pokemon object
@@ -25,7 +30,21 @@ export default {
         //2. validate fields
         if(!this.validatePokemon(pokemon)) return;
         //3. assign unique id
-
+        const lastSerialNum = this.getLatestPokemonSerialNum();
+        if(lastSerialNum){
+            pokemon.serialNum = lastSerialNum + 1;
+            pokemon.id = `userPokemon-${lastSerialNum + 1}`;
+        }
+        else{
+            pokemon.serialNum = 1;
+            pokemon.id = 'userPokemon-1';
+        }
         //4. add to user pokemons
+        this.addUserPokemon(pokemon);
+    },
+    getUserPokemons: () => {
+        let userPokemons = localStorage.getItem('userPokemons');
+        if(userPokemons) return JSON.parse(userPokemons);
+        else return null;
     }
 }
