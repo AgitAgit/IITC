@@ -1,0 +1,4 @@
+//getting FormData from the submit form event
+const form = event.target;
+const formData = new FormData(form);
+const formDataObject = Object.fromEntries(formData.entries());
