@@ -2,15 +2,17 @@ import userPokemons from "../../utils/userPokemons";
 
 export default function() {
 //name, imageUrl, types, stats, abilities, baseExperience, weight, height
-    async function handleFormSubmission(event, form){
+    function handleFormSubmission(event, form){
         event.preventDefault();
         const formData = new FormData(form);
-        // Convert FormData to an object using Object.fromEntries()
         const formDataObject = Object.fromEntries(formData.entries());
-        console.log(form);
-        console.log(formData);
-        console.log(formData.entries());
+        // console.log(form);
+        // console.log(formData);
+        // console.log(formData.entries());
         console.log(formDataObject);
+        // const { name, imageUrl, baseExperience, weight, height, type1, type2, hp, attack, defense, specialAttack, specialDefense, speed, ability1, ability2 } = formDataObject;
+        const pokemon = {...formDataObject};
+        console.log("pokemon", pokemon);
     }
     
     return <form onSubmit={(event) => handleFormSubmission(event, event.target)}>
@@ -59,11 +61,11 @@ export default function() {
         </div>
         <div>
             <label htmlFor="">{'special attack'}</label>
-            <input name="special-attack"></input>
+            <input name="specialAttack"></input>
         </div>
         <div>
             <label htmlFor="">{'special defense'}</label>
-            <input name="special-defense"></input>
+            <input name="specialDefense"></input>
         </div>
         <div>
             <label htmlFor="">{'speed'}</label>
@@ -76,7 +78,7 @@ export default function() {
         </div>
         <div>
             <label htmlFor="">{'ability 2'}</label>
-            <input name="abilitiy2"></input>
+            <input name="ability2"></input>
         </div>
 
         <button>create pokemon</button>
