@@ -1,21 +1,33 @@
+import { useRef } from 'react';
 import userPokemons from "../../utils/userPokemons";
 
 export default function() {
+    const formRef = useRef();
+
 //name, imageUrl, types, stats, abilities, baseExperience, weight, height
     function handleFormSubmission(event, form){
         event.preventDefault();
+        //get form data and convert to readable form:
         const formData = new FormData(form);
         const formDataObject = Object.fromEntries(formData.entries());
-        // console.log(form);
-        // console.log(formData);
-        // console.log(formData.entries());
-        console.log(formDataObject);
-        // const { name, imageUrl, baseExperience, weight, height, type1, type2, hp, attack, defense, specialAttack, specialDefense, speed, ability1, ability2 } = formDataObject;
-        const pokemon = {...formDataObject};
+        const { name, imageUrl, baseExperience, weight, height, type1, type2, hp, attack, defense, specialAttack, specialDefense, speed, ability1, ability2 } = formDataObject;
+        //simulate the api object format:
+        const pokemon = { name, imageUrl, baseExperience, weight, height, abilities:[ { ability: { name:ability1}}, { ability: { name:ability2}}], stats:[ {base_stat:hp, stat:{ name:'hp' }}, {base_stat:attack, stat:{ name:'attack' }}, {base_stat:defense, stat:{ name:'defense' }}, {base_stat:specialAttack, stat:{ name:'special-attack' }}, {base_stat:specialDefense, stat:{ name:'special-defense' }},{base_stat:speed, stat:{ name:'speed' }}], types:[{type:{name:type1}},{type:{name:type2}}], moves:[]};
         console.log("pokemon", pokemon);
+        userPokemons.createUserPokemon(name, imageUrl, pokemon.types, pokemon.stats, pokemon.abilities, baseExperience, weight, height, pokemon.moves);
+        console.log("current user pokemons:",userPokemons.getUserPokemons());
     }
     
-    return <form onSubmit={(event) => handleFormSubmission(event, event.target)}>
+    function handleAutoFill(){
+        const inputs = formRef.current.querySelectorAll('input');
+        const name = inputs[0].value;
+        inputs.forEach(input => {
+            if(name !== "") input.value = name;
+            else input.value = "a";
+        })
+    }
+
+    return <form onSubmit={(event) => handleFormSubmission(event, event.target)} ref={formRef}>
         <div>
             <label htmlFor="">{'name'}</label>
             <input name="name"></input>
@@ -81,6 +93,7 @@ export default function() {
             <input name="ability2"></input>
         </div>
 
-        <button>create pokemon</button>
+        <button type="submit">create pokemon</button>
+        <button onClick={(event) => {event.preventDefault(); handleAutoFill();}}>autofill delete later</button>
     </form>
 }
