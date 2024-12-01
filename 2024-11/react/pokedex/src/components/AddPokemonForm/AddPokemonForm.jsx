@@ -1,3 +1,4 @@
+import styles from './AddPokemonForm.module.css';
 import { useRef } from 'react';
 import userPokemons from "../../utils/userPokemons";
 
@@ -27,73 +28,76 @@ export default function() {
         })
     }
 
-    return <form onSubmit={(event) => handleFormSubmission(event, event.target)} ref={formRef}>
-        <div>
-            <label htmlFor="">{'name'}</label>
-            <input name="name"></input>
+    return <form onSubmit={(event) => handleFormSubmission(event, event.target)} ref={formRef} className={styles['add-pokemon-form']}>
+        <div className={styles['input-div']}>
+            <div className={styles['column-div']}>
+                <div>
+                    <label htmlFor="">{'name'}</label>
+                    <input name="name"></input>
+                </div>
+                <div>
+                    <label htmlFor="">{'image URL'}</label>
+                    <input name="imageUrl"></input>
+                </div>
+                <div>
+                    <label htmlFor="">{'base experience'}</label>
+                    <input name="baseExperience"></input>
+                </div>
+                <div>
+                    <label htmlFor="">{'weight'}</label>
+                    <input name="weight"></input>
+                </div>
+                <div>
+                    <label htmlFor="">{'height'}</label>
+                    <input name="height"></input>
+                </div>
+                <div>
+                    <label htmlFor="">{'type 1'}</label>
+                    <input name="type1"></input>
+                </div>
+                <div>
+                    <label htmlFor="">{'type 2'}</label>
+                    <input name="type2"></input>
+                </div>
+            </div>
+            <div className={styles['column-div']}>
+                <div>
+                    <label htmlFor="">{'hp'}</label>
+                    <input name="hp"></input>
+                </div>
+                <div>
+                    <label htmlFor="">{'attack'}</label>
+                    <input name="attack"></input>
+                </div>
+                <div>
+                    <label htmlFor="">{'defense'}</label>
+                    <input name="defense"></input>
+                </div>
+                <div>
+                    <label htmlFor="">{'special attack'}</label>
+                    <input name="specialAttack"></input>
+                </div>
+                <div>
+                    <label htmlFor="">{'special defense'}</label>
+                    <input name="specialDefense"></input>
+                </div>
+                <div>
+                    <label htmlFor="">{'speed'}</label>
+                    <input name="speed"></input>
+                </div>
+                <div>
+                    <label htmlFor="">{'ability 1'}</label>
+                    <input name="ability1"></input>
+                </div>
+                <div>
+                    <label htmlFor="">{'ability 2'}</label>
+                    <input name="ability2"></input>
+                </div>
+            </div>
         </div>
-        <div>
-            <label htmlFor="">{'image URL'}</label>
-            <input name="imageUrl"></input>
+        <div className={styles['buttons-div']}>
+            <button type="submit">create pokemon</button>
+            <button onClick={(event) => {event.preventDefault(); handleAutoFill();}}>autofill delete later</button>
         </div>
-
-        <div>
-            <label htmlFor="">{'base experience'}</label>
-            <input name="baseExperience"></input>
-        </div>
-        <div>
-            <label htmlFor="">{'weight'}</label>
-            <input name="weight"></input>
-        </div>
-        <div>
-            <label htmlFor="">{'height'}</label>
-            <input name="height"></input>
-        </div>
-
-        <div>
-            <label htmlFor="">{'type 1'}</label>
-            <input name="type1"></input>
-        </div>
-        <div>
-            <label htmlFor="">{'type 2'}</label>
-            <input name="type2"></input>
-        </div>
-
-        <div>
-            <label htmlFor="">{'hp'}</label>
-            <input name="hp"></input>
-        </div>
-        <div>
-            <label htmlFor="">{'attack'}</label>
-            <input name="attack"></input>
-        </div>
-        <div>
-            <label htmlFor="">{'defense'}</label>
-            <input name="defense"></input>
-        </div>
-        <div>
-            <label htmlFor="">{'special attack'}</label>
-            <input name="specialAttack"></input>
-        </div>
-        <div>
-            <label htmlFor="">{'special defense'}</label>
-            <input name="specialDefense"></input>
-        </div>
-        <div>
-            <label htmlFor="">{'speed'}</label>
-            <input name="speed"></input>
-        </div>
-
-        <div>
-            <label htmlFor="">{'ability 1'}</label>
-            <input name="ability1"></input>
-        </div>
-        <div>
-            <label htmlFor="">{'ability 2'}</label>
-            <input name="ability2"></input>
-        </div>
-
-        <button type="submit">create pokemon</button>
-        <button onClick={(event) => {event.preventDefault(); handleAutoFill();}}>autofill delete later</button>
     </form>
 }
