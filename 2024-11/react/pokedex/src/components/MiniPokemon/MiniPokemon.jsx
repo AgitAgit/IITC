@@ -1,5 +1,6 @@
 import styles from './MiniPokemon.module.css';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import loadingGif from './../../assets/loading_gif.gif';
@@ -12,6 +13,8 @@ export default function MiniPokemon({ name, url, readyPokemon=null }){
     const [cardClass, setCardClass] = useState(`${styles.card}`);
     const [ errorFetching, setErrorFetching ] = useState(false);
 
+    const navigate = useNavigate();
+
     // let pokemonImageSource;
     // if(readyPokemon) pokemonImageSource = readyPokemon.imageUrl;
     // if(pokemon) pokemonImageSource = pokemon?.sprites.other.dream_world.front_default;
@@ -23,6 +26,13 @@ export default function MiniPokemon({ name, url, readyPokemon=null }){
     //height, weight, id, name, base_experience
 
     //High quality sprites: sprites.other.dream_world.front_default
+
+    function handleNavigateClick(event){
+        event.stopPropagation();
+
+        navigate(`/pokemon/${pokemon.id}`);
+    }
+
     async function fetchData() {
         try{
             const data = await axios.get(url);
@@ -67,6 +77,7 @@ export default function MiniPokemon({ name, url, readyPokemon=null }){
 
                     </div>
                     <PokeModal pokemon={ pokemon } pokeballImg={ pokeballImg }/>
+                    <button className={styles['navigate-button']} onClick={(event) => handleNavigateClick(event)}>Navigate</button>
                 </>
                 : (errorFetching ? 
                     <div className={styles['error-div']}>Something went wrong...<button onClick={refreshPage}>Refresh page</button></div>

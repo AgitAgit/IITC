@@ -1,4 +1,3 @@
-// import './Pokemon.module.css';
 import styles from './Pokemon.module.css';
 import axios from 'axios';
 import { useState, useEffect, useRef } from 'react';

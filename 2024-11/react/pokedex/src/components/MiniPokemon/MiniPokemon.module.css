@@ -58,6 +58,10 @@
     width:60%;
 }
 
+.navigate-button {
+    position: absolute;
+    z-index: 10;
+}
 
 .fire {
     background-color: var(--fire-background);
