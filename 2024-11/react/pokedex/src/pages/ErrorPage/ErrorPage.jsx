@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 
 
-function ErrorPage(){
+export default function ErrorPage(){
+    const navigate = useNavigate();
     return <>
         <h1>
         404 Page Not Found
         </h1>
-        <button></button>
+        <button onClick={() => navigate('/')}>Back to Home...</button>
     </>
 }
