@@ -1,4 +1,5 @@
 import styles from './SignupForm.module.css';
+import axios from 'axios';
 import { useState } from 'react';
 
 //username, password
@@ -11,11 +12,12 @@ export default function SignupForm(){
         const formDataObject = Object.fromEntries(formData.entries());
 
         const { username, password1, password2 } = formDataObject;
-
         if(password1 !== password2){
             setSignUpStatus("passwords don't match...");
             return null;
         }
+
+        const serverResponse = await axios.post('http://localhost:3000/api/users')
     }
 
     return (
