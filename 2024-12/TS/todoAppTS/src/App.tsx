@@ -10,6 +10,8 @@ export type Todo = {
   description?: string;
 }
 
+//suppose I wanted all objects of type Todo to have a toggleCompleted function with a certain behavior,
+//how could I do that? Class like in C#?
 const defaultTodos:Todo[] = [
   { id: "1", text: "do laundry", completed: true },
   { id: "2", text: "load dishwasher", description:"use detergent tablet", completed: true },
@@ -23,9 +25,25 @@ function App() {
     setTodos( todos => todos.filter((todo) => todo.id !== id))
   }
 
+  function setDone(id:string, value:boolean){
+    console.log("id:",id);
+    const indexToEdit = todos.findIndex(todo => todo.id = id);
+    if(indexToEdit === -1) return;
+    const updatedTodos = [...todos];
+    updatedTodos[indexToEdit].completed = true;
+    setTodos(updatedTodos);
+  }
+
+  function handleSubmit(event:React.FormEvent<HTMLFormElement>){
+    event.preventDefault();
+    const formData = new FormData(event.target as HTMLFormElement);
+    const formDataObject = Object.fromEntries(formData.entries());
+    console.log(formDataObject);
+  }
+
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         id:
         <input name='id'></input>
         text:
@@ -36,7 +54,7 @@ function App() {
         <input name='done' type="checkbox"></input>
         <button>Add</button>
       </form>
-      {todos.map((todo) => <TodoItem key={todo.id} todo={todo} handleDelete={handleDelete}/>)}
+      {todos.map((todo) => <TodoItem key={todo.id + todo.text} todo={todo} handleDelete={handleDelete} setDone={setDone}/>)}
     </>
   )
 }
