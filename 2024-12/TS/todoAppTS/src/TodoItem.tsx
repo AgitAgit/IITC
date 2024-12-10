@@ -12,7 +12,7 @@ export default function TodoItem( { todo, handleDelete, setDone }:TodoItemProps 
     return (
         <>
             <hr></hr>
-            <input type='checkbox' checked={todo.completed} onChange={() => {console.log("todo id:",todo.id); setDone(todo.id,false)}}></input>
+            <input type='checkbox' defaultChecked={todo.completed} onChange={() => {console.log("clicked todo id:",todo.id); setDone("1", !(todo.completed))}}></input>
             <p> {todo.text} </p>
             {todo.description && <p>Description:{todo.description}</p>}
             <button onClick={() => handleDelete(todo.id)}>Delete</button>

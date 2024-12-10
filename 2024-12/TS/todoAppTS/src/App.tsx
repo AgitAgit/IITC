@@ -26,10 +26,13 @@ function App() {
   }
 
   function setDone(id:string, value:boolean){
-    console.log("id:",id);
-    const indexToEdit = todos.findIndex(todo => todo.id = id);
+    // console.log("id:",id);
+    console.log(todos);
+    const indexToEdit = todos.findIndex((todo) => {return todo.id === id});
+    console.log("index to edit:", indexToEdit);
     if(indexToEdit === -1) return;
     const updatedTodos = [...todos];
+    console.log(updatedTodos);
     updatedTodos[indexToEdit].completed = value;
     setTodos(updatedTodos);
   }
@@ -54,7 +57,7 @@ function App() {
         <input name='done' type="checkbox"></input>
         <button>Add</button>
       </form>
-      {todos.map((todo) => <TodoItem key={todo.id + todo.text} todo={todo} handleDelete={handleDelete} setDone={setDone}/>)}
+      {todos.map((todo) => <TodoItem key={todo.id} todo={todo} handleDelete={handleDelete} setDone={setDone}/>)}
     </>
   )
 }

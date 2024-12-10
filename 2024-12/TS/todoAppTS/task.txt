@@ -1,0 +1,31 @@
+Requirements:
+Setup the Project:
+Initialize the project using Vite with the TypeScript template.
+
+Define Types:
+Create a Todo type/interface with the following properties:
+id - string 
+text - string
+completed - boolean
+description - string (optional)
+Features to Implement:
+
+Add Todos:
+    Include an input fields for typing a new todo.
+    Add a button to add the todo to the list.
+    Prevent adding empty or duplicate todos.
+
+Mark Todos as Completed:
+    Provide a checkbox to toggle the completed status of a todo.
+
+Delete Todos:
+        Include a delete button for each todo to remove it from the list.
+
+Filter Todos:
+    Add filtering options to view:
+        All Todos
+        Active Todos (not completed)
+        Completed Todos
+
+Clear Completed Todos:
+    Add a button to remove all completed todos at once.
