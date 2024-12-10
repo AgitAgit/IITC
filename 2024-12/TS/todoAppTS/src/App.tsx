@@ -30,7 +30,7 @@ function App() {
     const indexToEdit = todos.findIndex(todo => todo.id = id);
     if(indexToEdit === -1) return;
     const updatedTodos = [...todos];
-    updatedTodos[indexToEdit].completed = true;
+    updatedTodos[indexToEdit].completed = value;
     setTodos(updatedTodos);
   }
 
