@@ -21,6 +21,9 @@ const defaultTodos:Todo[] = [
 function App() {
   const [todos, setTodos] = useState(defaultTodos);
 
+  // const activeTodos = (derived state)
+  // const doneTodos = (derived state)
+
   function handleDelete(id:string) {
     setTodos( todos => todos.filter((todo) => todo.id !== id))
   }
@@ -37,11 +40,18 @@ function App() {
     setTodos(updatedTodos);
   }
 
+  function addTodo(id:string, text:string, completed:boolean, description?:string){
+    setTodos([...todos, {id, text, completed, description}]);
+  }
+
   function handleSubmit(event:React.FormEvent<HTMLFormElement>){
     event.preventDefault();
     const formData = new FormData(event.target as HTMLFormElement);
-    const formDataObject = Object.fromEntries(formData.entries());
-    console.log(formDataObject);
+    // const formDataObject = Object.fromEntries(formData.entries());
+    const { id, text, description, completed } = Object.fromEntries(formData.entries());
+    const completedBoolean = completed as string === "on";
+    const desc = description as string;
+    addTodo(id as string, text as string, completedBoolean, desc !== '' ? desc:undefined)
   }
 
   return (
@@ -54,7 +64,7 @@ function App() {
         description:
         <input name='description'></input>
         done:
-        <input name='done' type="checkbox"></input>
+        <input name='completed' type="checkbox"></input>
         <button>Add</button>
       </form>
       {todos.map((todo) => <TodoItem key={todo.id} todo={todo} handleDelete={handleDelete} setDone={setDone}/>)}
