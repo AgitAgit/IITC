@@ -20,9 +20,9 @@ const defaultTodos:Todo[] = [
 
 function App() {
   const [todos, setTodos] = useState(defaultTodos);
-
-  // const activeTodos = (derived state)
-  // const doneTodos = (derived state)
+  const [currentTodos, setCurrentTodos] = useState("todos");
+  const activeTodos = todos.filter(todo => todo.completed === false);
+  const doneTodos = todos.filter(todo => todo.completed === true);//all todos which are not in active todos
 
   function handleDelete(id:string) {
     setTodos( todos => todos.filter((todo) => todo.id !== id))
@@ -67,7 +67,16 @@ function App() {
         <input name='completed' type="checkbox"></input>
         <button>Add</button>
       </form>
-      {todos.map((todo) => <TodoItem key={todo.id} todo={todo} handleDelete={handleDelete} setDone={setDone}/>)}
+
+      <div>
+        <button onClick={() => setCurrentTodos("todos")}>todos</button>
+        <button onClick={() => setCurrentTodos("active")}>active todos</button>
+        <button onClick={() => setCurrentTodos("done")}>done todos</button>
+      </div>
+      
+      {currentTodos === "todos" && todos.map((todo) => <TodoItem key={todo.id} todo={todo} handleDelete={handleDelete} setDone={setDone}/>)}
+      {currentTodos === "active" && activeTodos.map((todo) => <TodoItem key={todo.id} todo={todo} handleDelete={handleDelete} setDone={setDone}/>)}
+      {currentTodos === "done" && doneTodos.map((todo) => <TodoItem key={todo.id} todo={todo} handleDelete={handleDelete} setDone={setDone}/>)}
     </>
   )
 }
