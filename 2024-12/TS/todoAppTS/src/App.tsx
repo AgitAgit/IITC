@@ -28,6 +28,10 @@ function App() {
     setTodos( todos => todos.filter((todo) => todo.id !== id))
   }
 
+  function deleteDone(){
+    setTodos( todos => todos.filter(todo => !todo.completed))
+  }
+
   function setDone(id:string, value:boolean){
     // console.log("id:",id);
     console.log(todos);
@@ -41,7 +45,11 @@ function App() {
   }
 
   function addTodo(id:string, text:string, completed:boolean, description?:string){
+    for(let i = 0; i < todos.length; i++){
+      if(todos[i].id === id) return false;//prevent duplicate id's
+    }
     setTodos([...todos, {id, text, completed, description}]);
+    return true;
   }
 
   function handleSubmit(event:React.FormEvent<HTMLFormElement>){
@@ -72,6 +80,7 @@ function App() {
         <button onClick={() => setCurrentTodos("todos")}>todos</button>
         <button onClick={() => setCurrentTodos("active")}>active todos</button>
         <button onClick={() => setCurrentTodos("done")}>done todos</button>
+        <button onClick={deleteDone}>delete done todos</button>
       </div>
       
       {currentTodos === "todos" && todos.map((todo) => <TodoItem key={todo.id} todo={todo} handleDelete={handleDelete} setDone={setDone}/>)}
