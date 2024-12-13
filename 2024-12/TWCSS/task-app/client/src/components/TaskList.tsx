@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
-import { type Task } from '../state/taskSlice.ts';
+import { deleteTask, type Task } from '../state/taskSlice.ts';
 
 function TaskList() {
     const tasks: Task[] = useSelector(state => state.task.tasks);
@@ -26,6 +26,7 @@ function TaskList() {
                         <option>{"In Progress"}</option>
                         <option>{"Complete"}</option>
                     </select>
+                    <button className='bg-red-500 rounded p-1' onClick={() => dispatch(deleteTask(task.id))}>Delete</button>
                     <hr />
                 </div>
             )}
