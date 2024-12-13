@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export type Task = {
+    id:string
     title:string
     description:string
     dueDate:Date
@@ -8,6 +9,11 @@ export type Task = {
     status: "Pending" | "In Progress" | "Completed"
 }
 
+const defaultTasks:Task[] = [
+    {id:"1", title:"task1", description:"task1 description", dueDate: new Date(), priority:"Low",status:"In Progress"},
+    {id:"2", title:"task2", description:"task2 description", dueDate: new Date(), priority:"High",status:"Completed"},
+    {id:"3", title:"task3", description:"task3 description", dueDate: new Date(), priority:"Medium",status:"Pending"}
+]
 //should I do something like that? can I force the addTask reducer
 //to accept only actions with payload of type Task using that?
 // type AddTaskAction = {
@@ -17,7 +23,7 @@ export type Task = {
 
 const taskSlice = createSlice({
     name: 'task',
-    initialState: { tasks:[] },
+    initialState: { tasks:[...defaultTasks] },
     reducers: {
         // increment: (state) => { state.count += 1 },
         // set: (state, action) => { state.count = action.payload }
