@@ -28,7 +28,14 @@ const taskSlice = createSlice({
         // increment: (state) => { state.count += 1 },
         // set: (state, action) => { state.count = action.payload }
         addTask:(state, action) => {
-            console.log(`addTask reducer called.\nstate:${state}\naction:${action}`);
+            try{//attempting to keep the tasks from getting objects other than tasks.
+                //{ id, title, description, dueDate, priority, status }
+                const newTask = action.payload;
+                //should add some validation for newTask here...
+                state.tasks.push(newTask);              
+            } catch (error){
+                console.log("taskSlice says:",error);
+            }
         },
         getTask:(state, action) => {
             console.log("getTask reducer called");
@@ -37,9 +44,7 @@ const taskSlice = createSlice({
             console.log("updateTask reducer called");
         },
         deleteTask:(state, action) => {
-            console.log("deleteTask reducer called");
-            console.log("state.tasks", state.tasks);
-            console.log("state.tasks", state.test);
+            state.tasks = state.tasks.filter(task => task.id !== action.payload);
         },
     }
 });
