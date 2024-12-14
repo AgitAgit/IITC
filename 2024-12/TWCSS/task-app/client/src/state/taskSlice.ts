@@ -32,6 +32,8 @@ const taskSlice = createSlice({
                 //{ id, title, description, dueDate, priority, status }
                 const newTask = action.payload;
                 //should add some validation for newTask here...
+                //shoudl make sure id is not duplicated before adding...
+                //the validation function should be the same for updateTask...
                 state.tasks.push(newTask);              
             } catch (error){
                 console.log("taskSlice says:",error);
@@ -42,6 +44,10 @@ const taskSlice = createSlice({
         },
         updateTask:(state, action) => {
             console.log("updateTask reducer called");
+            const updatedTask = action.payload;
+            const oldTaskIndex = state.tasks.findIndex(task => task.id === updatedTask.id);
+            if(oldTaskIndex === -1) return;
+            state.tasks.splice(oldTaskIndex, 1, updatedTask);
         },
         deleteTask:(state, action) => {
             state.tasks = state.tasks.filter(task => task.id !== action.payload);

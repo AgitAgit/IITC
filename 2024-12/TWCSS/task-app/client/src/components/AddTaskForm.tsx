@@ -54,7 +54,7 @@ function AddTaskForm() {
                 <option>{"Complete"}</option>
             </select>
             <br></br>
-            <button>Add</button>
+            <button className='bg-green-400 rounded p-1'>Add</button>
         </form>
     )
 }
