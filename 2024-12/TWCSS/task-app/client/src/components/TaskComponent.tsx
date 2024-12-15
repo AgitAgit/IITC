@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog"
 
 import EditTaskForm from './EditTaskForm.tsx';
+import TaskDetails from './TaskDetails.tsx';
 
 function TaskComponent({ id }) {
   const task = useSelector(state => state.task.tasks.find(task => task.id === id));
@@ -34,6 +35,16 @@ function TaskComponent({ id }) {
             <DialogDescription></DialogDescription>
           </DialogHeader>
           <EditTaskForm id={task.id}/>
+        </DialogContent>
+      </Dialog>
+      <Dialog>
+        <DialogTrigger className='bg-green-400 rounded p-1'>Details</DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle></DialogTitle>
+            <DialogDescription></DialogDescription>
+          </DialogHeader>
+          <TaskDetails id={task.id}/>
         </DialogContent>
       </Dialog>
       </div>

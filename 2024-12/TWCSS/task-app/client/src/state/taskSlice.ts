@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import comms from './communicationCenter.ts';
+
 export type Task = {
     id:string
     title:string
@@ -9,7 +11,8 @@ export type Task = {
     status: "Pending" | "In Progress" | "Completed"
 }
 
-const defaultTasks:Task[] = [
+const defaultTasks:Task[] =
+[
     {id:"1", title:"task1", description:"task1 description", dueDate: Date(), priority:"Low",status:"In Progress"},
     {id:"2", title:"task2", description:"task2 description", dueDate: Date(), priority:"High",status:"Completed"},
     {id:"3", title:"task3", description:"task3 description", dueDate: Date(), priority:"Medium",status:"Pending"}
