@@ -5,6 +5,12 @@ import io from "socket.io-client";
 
 const socket = io("http://localhost:3000");
 
+const defaultMessages:Message[] = []
+
+// for(let i = 0; i < 10; i++){
+//   defaultMessages.push({ by: "anon1", text:`default message${i}`})
+// }
+
 export interface Message {
   by: string;
   text: string;
@@ -43,7 +49,7 @@ export default function App() {
   function join(e: FormEvent) {
     e.preventDefault();
     if (username) {
-      socket.emit("join", username);
+      socket.emit("join", username, currentChatRoom);
       setIsJoined(true);
     }
   }
@@ -69,7 +75,7 @@ export default function App() {
             username={username}
             setUsername={setUsername}
             // currentChatRoom={currentChatRoom}
-            // setCurrentChatRoom={setCurrentChatRoom}
+            setCurrentChatRoom={setCurrentChatRoom}
             join={join}
           />
         ) : (

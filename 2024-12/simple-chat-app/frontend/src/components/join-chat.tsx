@@ -2,14 +2,22 @@ import { FormEvent } from "react";
 
 interface JoinChatProps {
   username: string;
+  setCurrentChatRoom: React.Dispatch<React.SetStateAction<string>>;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
   join: (e: FormEvent) => void;
 }
 
-export function JoinChat({ username, setUsername, join }: JoinChatProps) {
+export function JoinChat({ username, setUsername, join, setCurrentChatRoom }: JoinChatProps) {
   return (
     <>
-      <h1 className="text-xl font-bold border-b-2 pb-2 mb-4">Join Chat</h1>
+      <div className="font-bold border-b-2 pb-2 mb-4 flex justify-around">
+        <h1 className="text-xl">Join Chat</h1>
+        <select onChange={(event) => setCurrentChatRoom(event.target.value)}>
+          <option>General</option>
+          <option>FullyStuck</option>
+          <option>Room3000</option>
+        </select>
+      </div>
       <form onSubmit={join}>
         <input
           required

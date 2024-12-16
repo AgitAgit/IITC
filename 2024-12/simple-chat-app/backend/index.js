@@ -12,33 +12,41 @@ const io = socketIo(server, {
   },
 });
 
+const messageLogs = {
+  General:[],
+  FullyStuck:[],
+  Room3000:[]
+}
+
 // start a connection:
 io.on("connection", (socket) => {
   console.log("a client connected", socket.id);
 
   // Listen for join event
-  socket.on("join", (username) => {
-    console.log(`${username} joined chat`);
+  socket.on("join", (username, currentChatRoom) => {
+    console.log(`${username} joined chat:${currentChatRoom}`);
     socket.username = username; // Save username in socket object
+    socket.chat = currentChatRoom;
+    socket.join(currentChatRoom);
     // Broadcast message to all connected clients except the one who joined
-    socket.broadcast.emit("message", {
+    socket.to(currentChatRoom).emit("message", {
       by: "System",
-      text: `${socket.username} has joined the chat`,
+      text: `${socket.username} has joined the ${currentChatRoom} chat`,
     });
   });
 
   // Listen for message event
   socket.on("message", (messageText) => {
     console.log(messageText);
-    io.emit("message", {
+    io.to(socket.chat).emit("message", {
       by: socket.username,
       text: messageText,
     });
   });
 
   socket.on("user-typing-message", () => {
-    console.log("typing");
-    socket.broadcast.emit("user-typing-message", socket.username);
+    // console.log("typing");
+    socket.to(socket.chat).emit("user-typing-message", socket.username);
   });
 
   // end a connection:

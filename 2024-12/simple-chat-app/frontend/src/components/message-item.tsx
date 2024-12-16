@@ -7,7 +7,7 @@ interface MessageListProps {
 
 export function MessageList({ messages, username }: MessageListProps) {
   return (
-    <div className="space-y-1 mb-4">
+    <div className="h-28 space-y-1 mb-4 overflow-y-auto">
       {messages.map((message, index) => {
         const isSentByCurrentUser = message.by === username;
         return (
