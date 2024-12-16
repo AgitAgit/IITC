@@ -38,15 +38,23 @@ io.on("connection", (socket) => {
   // Listen for message event
   socket.on("message", (messageText) => {
     console.log(messageText);
-    io.to(socket.chat).emit("message", {
+    const messageObject = {
       by: socket.username,
-      text: messageText,
-    });
+      text: messageText
+    }
+    messageLogs[socket.chat].push(messageObject);
+    io.to(socket.chat).emit("message", messageObject);
+    console.log(messageLogs);
   });
 
   socket.on("user-typing-message", () => {
     // console.log("typing");
     socket.to(socket.chat).emit("user-typing-message", socket.username);
+  });
+
+  socket.on("request-context", () => {
+    const contextArr = [];//need to implement this with the latest messages.
+    socket.to(socket.id).emit('supply-context',contextArr);//last here---------------------------------------------------------------
   });
 
   // end a connection:
