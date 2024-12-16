@@ -68,6 +68,8 @@ export default function App() {
           <JoinChat
             username={username}
             setUsername={setUsername}
+            // currentChatRoom={currentChatRoom}
+            // setCurrentChatRoom={setCurrentChatRoom}
             join={join}
           />
         ) : (
