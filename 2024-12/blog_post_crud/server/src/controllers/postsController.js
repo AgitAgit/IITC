@@ -1,5 +1,7 @@
 const Post = require('../models/postModel.js');
 
+module.exports = { getAllPosts, getPostById, addPost }
+
 // GET /posts - Fetch all blog posts.
 async function getAllPosts(req, res, next){
     try {
@@ -23,6 +25,17 @@ async function addPost(req, res, next) {
         next(error);
     }
 }
+
 // GET /posts/:id - Fetch a single blog post by ID.
+async function getPostById(req, res, next){
+    try {
+        const { id } = req.params;
+        const posts = await Post.findOne({_id:id});
+        res.json(posts);
+    } catch (error) {
+        next(error);
+    }
+}
+
 // PUT /posts/:id - Update a blog post by ID.
 // DELETE /posts/:id - Delete a blog post by ID.
