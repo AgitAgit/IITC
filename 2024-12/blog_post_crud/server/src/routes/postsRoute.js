@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getAllPosts, addPost, getPostById } = require("../controllers/postsController.js");
+const { getAllPosts, addPost, getPostById, updatePostById, deletePostById } = require("../controllers/postsController.js");
 // GET /posts - Fetch all blog posts.
 router.get('/', getAllPosts);
 
@@ -11,6 +11,9 @@ router.post('/', addPost);
 router.get('/:id', getPostById);
 
 // PUT /posts/:id - Update a blog post by ID.
+router.put('/:id', updatePostById);
+
 // DELETE /posts/:id - Delete a blog post by ID.
+router.delete('/:id', deletePostById);
 
 module.exports = router;
