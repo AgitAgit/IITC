@@ -16,18 +16,11 @@ import ViewBlogPostPage from './pages/ViewBlogPostPage.tsx';
 const queryClient = new QueryClient()
 
 function App() {
-  const [ posts, setPosts ] = useState(null);
-  const [ counter, setCounter ] = useState(0);
+  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
-    async function getData(){
-      const data = await axios.get('http://localhost:3000/api/posts');
-      console.log(data.data);
-    }
-    getData();
-
     // console.log(`the component mounted with counter value of ${counter}`)
-    
+
     // return () => {
     //   console.log(`the component unmounted with counter value of ${counter}`)
     // }
@@ -36,16 +29,16 @@ function App() {
 
   return (
     <>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={ <HomePage /> } />
-          <Route path='/create' element={ <CreateBlogPostPage /> } />
-          <Route path='/view' element={ <ViewBlogPostPage /> } />
-          <Route path='/edit' element={ <EditBlogPostPage /> } />
-        </Routes>
-      </BrowserRouter>
-    </QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<HomePage />} />
+            <Route path='/create' element={<CreateBlogPostPage />} />
+            <Route path='/view' element={<ViewBlogPostPage />} />
+            <Route path='/edit' element={<EditBlogPostPage />} />
+          </Routes>
+        </BrowserRouter>
+      </QueryClientProvider>
     </>
   )
 }

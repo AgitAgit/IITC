@@ -21,7 +21,7 @@ export default function HomePage() {
       <div>
         HomePage
         <br></br>
-        {data && data.map(post => <Post title={post.title} content={post.content}></Post>)}
+        {data && data.map(post => <Post id={post._id} title={post.title} content={post.content}></Post>)}
       </div>
   )
 }
