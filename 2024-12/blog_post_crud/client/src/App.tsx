@@ -8,9 +8,9 @@ function App() {
   useEffect(() => {
     async function getData(){
       const data = await axios.get('http://localhost:3000/api/posts');
-      console.log(data);
-      console
+      console.log(data.data);
     }
+    getData();
   }, [])
 
   return (
