@@ -4,6 +4,7 @@ import axios from 'axios';
 
 function App() {
   const [ posts, setPosts ] = useState(null);
+  const [ counter, setCounter ] = useState(0);
 
   useEffect(() => {
     async function getData(){
@@ -11,11 +12,16 @@ function App() {
       console.log(data.data);
     }
     getData();
+
+    // console.log(`the component mounted with counter value of ${counter}`)
+    
+    // return () => {
+    //   console.log(`the component unmounted with counter value of ${counter}`)
+    // }
   }, [])
 
   return (
     <>
-
     </>
   )
 }

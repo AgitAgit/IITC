@@ -1,0 +1,8 @@
+useEffect can return a callback function
+that will be called upon the components unmount.
+The useEffect is called after mounting so it's handy obviously.
+
+react router dom
+redux toolkit
+
+tanstack useQuery
