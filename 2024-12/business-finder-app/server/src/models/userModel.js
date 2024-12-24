@@ -1,36 +1,19 @@
-const mongoose = require("mongoose");
+import { Schema, model } from "mongoose";
 
-//need to add post count or post ids to the user, followers and following.
-const userSchema = new mongoose.Schema(
-  {
-    username: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    password: {
-      type: String,
-      required: true,
-      unique: false,
-    },
-    plainPassword: {
-      type: String,
-      required: false
-    },
-    role: {
-      type: String,
-      enum: [],
-      required: false,
-      default: 'user'
-    }
-  },
-  {
-    timestamps: true,
-    versionKey: false,
-  }
-);
+const userSchema = new Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  plan: { type: String, enum: ["Standard", "Gold", "Platinum"], default: "Standard" },
+  savedBusinesses: [{ type: Schema.Types.ObjectId, ref: "Business" }],
+},
+{
+  timestamps:true,
+  versionKey:false
+});
 
-module.exports = mongoose.model("User", userSchema);
+export const User = model("User", userSchema);
+
 
 
 // profilePic: {
