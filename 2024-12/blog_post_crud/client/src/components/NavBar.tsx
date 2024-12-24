@@ -1,13 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const navItems = ['Home', 'Create', 'View', 'Edit'];
 
 export default function NavBar() {
+  const navigate = useNavigate();
+
   return (
     <div>
-        {/* <Link to={}></Link> */}
-        <button></button>
+        <button onClick={() => navigate('/')}>Home</button>
+        <button onClick={() => navigate('/create')}>Add Post</button>
     </div>
   )
 }

@@ -8,6 +8,7 @@ import {
   useQuery,
 } from '@tanstack/react-query';
 
+import NavBar from './components/NavBar.tsx';
 import HomePage from './pages/HomePage.tsx';
 import CreateBlogPostPage from './pages/CreateBlogPostPage.tsx';
 import EditBlogPostPage from './pages/EditBlogPostPage.tsx';
@@ -31,6 +32,7 @@ function App() {
     <>
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
+          <NavBar />
           <Routes>
             <Route path='/' element={<HomePage />} />
             <Route path='/create' element={<CreateBlogPostPage />} />
