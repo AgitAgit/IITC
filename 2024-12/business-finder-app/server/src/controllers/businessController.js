@@ -1,7 +1,7 @@
 const Business = require('./../models/businessModel');
 
 module.exports = {
-    getAllBusinesses,
+    getBusinesses,
     addBusiness,
     updateBusiness,
     deleteBusiness,
@@ -20,9 +20,10 @@ module.exports = {
 // }
 
 //business
-async function getAllBusinesses(req, res, next) {
+async function getBusinesses(req, res, next) {
     try {
-        const businesses = await Business.find();
+        const { limit, offset, name, description } = req.params;
+        const businesses = await Business.find().populate("owner","name email plan");
         res.json(businesses);
     } catch (error) {
         next(error);

@@ -19,15 +19,15 @@ router.get("/", getAllUsers);
 
 // router.get("/data/:id", authUser, getUserData);
 
-router.get("/:username", getUserByUsername);
+// router.get("/:username", getUserByUsername);
 
 router.post("/signup", addUser);
 
 router.post("/login", login);
 
-router.post("/logout", logout);
+// router.post("/logout", logout);
 
-router.patch("/", updateUserData)
+// router.patch("/", updateUserData)
 
 // router.delete("/:id", authUser, deleteUser);
 

@@ -8,7 +8,6 @@ const cors = require("cors");
 // const postsRouter = require("./routes/postsRoute.js");
 const businessRouter = require("./routes/businessRoute.js");
 const usersRouter = require("./routes/usersRoute.js");
-const authRouter = require("./routes/authRoute.js");
 
 dotenv.config();
 
@@ -38,11 +37,11 @@ app.use(
 app.use(json());
 
 // app.use("/api/posts", postsRouter);
-app.use("/business", businessRouter);
+app.use("/businesses", businessRouter);
+app.use("/auth", usersRouter);
 app.use("/users", usersRouter);
-app.use("/auth", authRouter);
 
-app.get("/api/status", (req, res) => {
+app.get("/status", (req, res) => {
     res.send({
         message: "Server is up3000",
     });

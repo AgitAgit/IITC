@@ -25,7 +25,10 @@ async function authUser(req, res, next) {
     try {
         let token;
         let decoded;
-        if(req.headers.jwtAuthorization){
+        if(req.body.token){
+          token = req.body.token;
+        }
+        else if(req.headers.jwtAuthorization){
             token = req.headers.jwtAuthorization;
         }
         else{

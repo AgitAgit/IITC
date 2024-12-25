@@ -59,12 +59,12 @@ async function login(req, res, next) {
     if (!isValid)
       return res.status(400).json({ message: "Invalid password...", login:false });
     const token = jwt.sign(
-      //generate a jwt token with payload containing the username, userId, and user role.
+      //generate a jwt token with payload containing the mongo id, name, email, and user plan. 
       {
         user: {
+          _id: storedUser._id,
           name: storedUser.name,
           email: storedUser.email, 
-          _id: storedUser._id,
           plan: storedUser.plan,
         },
       },
@@ -72,7 +72,9 @@ async function login(req, res, next) {
       { expiresIn: "1h" }
     );
     console.log("a user has logged in...");
-    res.status(200).json({ message: `User ${username} logged in successfully.`, login:true, user:storedUser });
+    res.status(200)
+    .cookie("jwt",token)
+    .json({ message: `User with email ${email} logged in successfully.`, login:true, user:storedUser, token:token });
     } catch (error) {
     next(error);
   }
