@@ -5,4 +5,5 @@ The useEffect is called after mounting so it's handy obviously.
 react router dom
 redux toolkit
 tailwindcss
+shadcn
 tanstack query
