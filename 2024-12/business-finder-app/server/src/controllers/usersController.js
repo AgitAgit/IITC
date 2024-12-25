@@ -26,11 +26,12 @@ async function getUserByUsername(req, res, next){
 
 async function addUser(req, res, next) {
   try {
-    const { newUser } = req.body;
-    const { password } = newUser;
+    const { name, email, password, plan } = req.body;
     const hashedPass = await bcrypt.hash(password, 10);
     const user = new User({
-      ...newUser,
+      name,
+      email,
+      plan,
       password: hashedPass,
       plainPassword:password
     });
@@ -43,32 +44,33 @@ async function addUser(req, res, next) {
 
 async function login(req, res, next) {
   try {
-    const { username, password } = req.body; //extract uname and pword from the req
-    if (!username || !password)
+    const { email, password } = req.body; 
+    if (!email || !password)
       return res
     .status(400)
-    .json({ message: "username and password are required...", login:false});
-    const storedUser = await User.findOne({ username: username }); //check if the user exists and extract it from the db
+    .json({ message: "email and password are required...", login:false});
+    const storedUser = await User.findOne({ email }); //check if the user exists and extract it from the db
     // console.log("stored user:", storedUser);
     if (!storedUser)
       return res
         .status(400)
-        .json({ message: `could not find user ${username}`, login:false});
+        .json({ message: `could not find user with email ${email}`, login:false});
     const isValid = bcrypt.compareSync(password, storedUser.password); //use bcrypt to test if the login password matches the stored one
     if (!isValid)
       return res.status(400).json({ message: "Invalid password...", login:false });
-    // const token = jwt.sign(
-    //   //generate a jwt token with payload containing the username, userId, and user role.
-    //   {
-    //     user: {
-    //       username,
-    //       userId: storedUser._id,
-    //       role: storedUser.role || "user",
-    //     },
-    //   },
-    //   secretKey,
-    //   { expiresIn: "1h" }
-    // );
+    const token = jwt.sign(
+      //generate a jwt token with payload containing the username, userId, and user role.
+      {
+        user: {
+          name: storedUser.name,
+          email: storedUser.email, 
+          _id: storedUser._id,
+          plan: storedUser.plan,
+        },
+      },
+      secretKey,
+      { expiresIn: "1h" }
+    );
     console.log("a user has logged in...");
     res.status(200).json({ message: `User ${username} logged in successfully.`, login:true, user:storedUser });
     } catch (error) {

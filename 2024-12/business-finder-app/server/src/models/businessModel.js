@@ -1,4 +1,4 @@
-import { Schema, model, Types } from "mongoose";
+const { Schema, model, Types } = require("mongoose");
 
 const businessSchema = new Schema({
   name: { type: String, required: true },
@@ -17,4 +17,5 @@ const businessSchema = new Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
-export const Business = model("Business", businessSchema);
+const Business = model("Business", businessSchema);
+module.exports = Business;
