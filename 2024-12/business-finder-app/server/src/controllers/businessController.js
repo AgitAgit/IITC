@@ -96,8 +96,8 @@ async function subscribeToBusiness(req, res, next) {
     try {
         const { _id } = req.user;
         const { id } = req.params;
-        const business = Business.findById(id);
-        if (business.subscribers.includes(_id)) {
+        const business = await Business.findById(id);
+        if (business.subscribers.includes(_id) || business.subscribers.includes(_id.toString())) {
             res.json({ message: "the user is already subscribed to this business" });
             return;
         }
@@ -112,7 +112,7 @@ async function unsubscribeFromBusiness(req, res, next) {
     try {
         const { _id } = req.user;
         const { id } = req.params;
-        const business = Business.findById(id);
+        const business = await Business.findById(id);
         business.subscribers = business.subscribers.filter(sub => sub !== _id)
         const result = await business.save();
         res.json(result);
