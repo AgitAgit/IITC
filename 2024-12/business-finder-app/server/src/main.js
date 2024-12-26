@@ -9,6 +9,8 @@ const cors = require("cors");
 const businessRouter = require("./routes/businessRoute.js");
 const usersRouter = require("./routes/usersRoute.js");
 
+const { seedDB } =  require("./utils/seed.js");
+
 dotenv.config();
 
 const uri = process.env.URI;
