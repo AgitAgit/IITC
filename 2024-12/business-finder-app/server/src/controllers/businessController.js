@@ -23,7 +23,7 @@ module.exports = {
 async function getBusinesses(req, res, next) {
     try {
         const { limit, offset, name, description } = req.params;
-        const businesses = await Business.find().populate("owner","name email plan");
+        const businesses = await Business.find().populate("owner", "name email plan");
         res.json(businesses);
     } catch (error) {
         next(error);
@@ -41,13 +41,23 @@ async function addBusiness(req, res, next) {
         next(error);
     }
 }
+
+//I'm fetching business twice here, which is wasteful.
+//also, the business might get deleted between the first and second fetch.
 async function updateBusiness(req, res, next) {
     try {
-        const { _id } = req.user._id;
+        const { _id } = req.user;
         const { id } = req.params;
         const { name, description, category } = req.body;
-        if (_id !== id) {
-            res.status(400).json({ message: "you are not the owner of this business!" });
+        const business = await Business.findById(id);
+        if(!business){
+            res.status(400).json({message:"can't find this business"})
+        }
+        const ownerId = business.owner.toString();
+        if (_id !== ownerId) {
+            console.log("_id:",_id);
+            console.log("ownerId:", ownerId);
+            res.status(400).json({ message: "you are not the owner of this business!"});
             return;
         }
         if (name === "" || description === "" || category === "") {
@@ -62,9 +72,16 @@ async function updateBusiness(req, res, next) {
 }
 async function deleteBusiness(req, res, next) {
     try {
-        const { _id } = req.user._id;
+        const { _id } = req.user;
         const { id } = req.params;
-        if (_id !== id) {
+        const business = await Business.findById(id);
+        if(!business){
+            res.status(400).json({message:"can't find this business"})
+        }
+        const ownerId = business.owner.toString();
+        if (_id !== ownerId) {
+            console.log("_id:", _id);
+            console.log("ownerId:",ownerId);
             res.status(400).json({ message: "you are not the owner of this business!" });
             return;
         }
@@ -77,7 +94,7 @@ async function deleteBusiness(req, res, next) {
 //subscriptions
 async function subscribeToBusiness(req, res, next) {
     try {
-        const { _id } = req.user._id;
+        const { _id } = req.user;
         const { id } = req.params;
         const business = Business.findById(id);
         if (business.subscribers.includes(_id)) {
@@ -93,7 +110,7 @@ async function subscribeToBusiness(req, res, next) {
 }
 async function unsubscribeFromBusiness(req, res, next) {
     try {
-        const { _id } = req.user._id;
+        const { _id } = req.user;
         const { id } = req.params;
         const business = Business.findById(id);
         business.subscribers = business.subscribers.filter(sub => sub !== _id)
@@ -106,7 +123,7 @@ async function unsubscribeFromBusiness(req, res, next) {
 //reviews
 async function addReview(req, res, next) {
     try {
-        const { _id } = req.user._id;
+        const { _id } = req.user;
         const { id } = req.params;
         const { comment } = req.body;
         const business = Business.findById(id);
@@ -120,7 +137,7 @@ async function addReview(req, res, next) {
 async function getReviewsByBusinessId(req, res, next) {
     try {
         const { id } = req.params;
-        const reviews = await Business.findOne({_id:id},{reviews:1});
+        const reviews = await Business.findOne({ _id: id }, { reviews: 1 });
         res.json(reviews);
     } catch (error) {
         next(error);
