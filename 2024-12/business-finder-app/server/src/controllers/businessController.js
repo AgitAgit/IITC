@@ -126,8 +126,8 @@ async function addReview(req, res, next) {
         const { _id } = req.user;
         const { id } = req.params;
         const { comment } = req.body;
-        const business = Business.findById(id);
-        business.reviews.push({ userId: _id, comment });
+        const business = await Business.findById(id);
+        business.reviews.push({ userId: _id.toString(), comment });
         const result = await business.save();
         res.json(result);
     } catch (error) {
@@ -137,7 +137,7 @@ async function addReview(req, res, next) {
 async function getReviewsByBusinessId(req, res, next) {
     try {
         const { id } = req.params;
-        const reviews = await Business.findOne({ _id: id }, { reviews: 1 });
+        const reviews = await Business.findOne({ _id: id }, { reviews: 1 }).populate("reviews.userId", "name");
         res.json(reviews);
     } catch (error) {
         next(error);
