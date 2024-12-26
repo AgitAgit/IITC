@@ -24,22 +24,24 @@ const generateUsers = async function () {
 }
 
 const clearUsers = async function () {
-    const result = await User.deleteMany({ user: { $ne: "user1" } })
+    const result = await User.deleteMany({ name: { $ne: "user1" } })
 }
 
 const seedUsers = async function () {
-    const newUsers = generateUsers();
+    const newUsers = await generateUsers();
+    console.log("new users---------------------",newUsers);
     await User.insertMany(newUsers);
 }
 
 const generateBusinesses = async function () {
     const users = await User.find();
+    console.log("users---------------------------",users);
     const businesses = [];
     const businessOwnersIndex = 4;
     for (let i = 1; i < businessOwnersIndex; i++) {
         const newBusiness = {
-            name: faker.company.companyName(),
-            description: faker.company.bs(),
+            name: faker.company.name(),
+            description: faker.company.catchPhrase(),
             category: categories[Math.floor(Math.random() * categories.length)],
             owner: users[i]._id,
             subscribers:[users[businessOwnersIndex + (Math.floor(Math.random() * (users.length - businessOwnersIndex - 1)))]._id],//find a random user whose not a business owner

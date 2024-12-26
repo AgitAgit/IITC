@@ -20,8 +20,9 @@ const PORT = process.env.PORT || 3000;
 
 mongoose
     .connect(uri)
-    .then(() => {
+    .then(async () => {
         console.log("Connected to database. Checking documents...");
+        // await seedDB();
     })
     .catch((error) => {
         console.error(
