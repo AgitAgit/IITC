@@ -113,7 +113,7 @@ async function unsubscribeFromBusiness(req, res, next) {
         const { _id } = req.user;
         const { id } = req.params;
         const business = await Business.findById(id);
-        business.subscribers = business.subscribers.filter(sub => sub !== _id)
+        business.subscribers = business.subscribers.filter(sub => {return sub !== _id && sub.toString() !== _id.toString()});
         const result = await business.save();
         res.json(result);
     } catch (error) {

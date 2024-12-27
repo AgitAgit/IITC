@@ -16,8 +16,7 @@ DONE-add addReview, get reviews routes to business routes DONE
 
 DONE-add reviews to the seed DONE
 
--add subscribe/unsubscribe from business routes (subscribe works, unsubscribe still needs work?)
-
+DONE-add subscribe/unsubscribe from business routes DONE
 
 -implement filtering in the getBusinesses function
 

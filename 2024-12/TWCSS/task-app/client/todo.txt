@@ -1,0 +1,8 @@
+DONE. fix the task component's select elements so they will show the newest value on re-render.
+Perhaps replace the select with a label? I want the editing to be separate from the display?
+This seems the easier fix and it fits better with the current approach anyway. DONE.
+
+Separate the add form into a button that opens a modal or something.
+
+Style:
+Add task background color by priority

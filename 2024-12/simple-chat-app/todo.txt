@@ -1,0 +1,4 @@
+frontend:
+-need to edit App.join so it will join a specific room depending on current room.
+(later I could modify the whole deal so multiple rooms will be created concurrently and
+switched between based on tabs or something)

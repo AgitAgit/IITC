@@ -1,0 +1,3 @@
+Finishing touches and applying past feedback:
+-Make phone "back" button behave as expected by the user
+-Apply "lazy loading" to the images
