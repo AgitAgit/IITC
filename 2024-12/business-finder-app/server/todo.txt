@@ -1,0 +1,24 @@
+DONE-add sign up, sign in and get all users routes and test them with postman.DONE.
+
+DONE-stick the user to the incoming request at the authentication stage.DONE.
+
+-add LOGOUT route and functionality(how do I invalidate a token?)
+
+DONE-add getBusinesses, addBusiness routes DONE
+
+DONE -add updateBusiness, deleteBusiness routes DONE
+
+DONE-seed the db with users and businesses DONE
+    DONE-create an insert users function and clear users(except the test user)DONE
+    DONE-create an insert businesses and clear businesses functions.DONE
+
+DONE-add addReview, get reviews routes to business routes DONE
+
+DONE-add reviews to the seed DONE
+
+-add subscribe/unsubscribe from business routes (subscribe works, unsubscribe still needs work?)
+
+
+-implement filtering in the getBusinesses function
+
+-add images to businesses

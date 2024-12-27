@@ -1,0 +1,3 @@
+-Create a dataCenter module to collect data fetching to one place.
+
+-Implement lazy loading of images.
