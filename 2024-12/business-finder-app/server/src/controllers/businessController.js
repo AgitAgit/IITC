@@ -22,8 +22,17 @@ module.exports = {
 //business
 async function getBusinesses(req, res, next) {
     try {
-        const { limit, offset, name, description } = req.params;
-        const businesses = await Business.find().populate("owner", "name email plan");
+        const { limit, offset, name, description } = req.query;
+        console.log(name);
+        const query = {};
+        if(name) query.name = { $regex: new RegExp(name, 'i')};
+        if(description) query.description = { $regex: new RegExp(description, 'i')};
+
+        const businesses = await Business
+        .find(query)
+        .limit(limit ? limit : 0)
+        .skip(offset ? offset : 0)
+        .populate("owner", "name email plan")
         res.json(businesses);
     } catch (error) {
         next(error);

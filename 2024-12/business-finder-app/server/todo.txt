@@ -20,4 +20,4 @@ DONE-add subscribe/unsubscribe from business routes DONE
 
 -implement filtering in the getBusinesses function
 
--add images to businesses
+-add images to businesses?
