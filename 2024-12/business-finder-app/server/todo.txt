@@ -2,8 +2,6 @@ DONE-add sign up, sign in and get all users routes and test them with postman.DO
 
 DONE-stick the user to the incoming request at the authentication stage.DONE.
 
--add LOGOUT route and functionality(how do I invalidate a token?)
-
 DONE-add getBusinesses, addBusiness routes DONE
 
 DONE -add updateBusiness, deleteBusiness routes DONE
@@ -18,6 +16,8 @@ DONE-add reviews to the seed DONE
 
 DONE-add subscribe/unsubscribe from business routes DONE
 
--implement filtering in the getBusinesses function
+DONE-implement filtering in the getBusinesses function DONE
 
--add images to businesses?
+-add LOGOUT route and functionality(how do I invalidate a token?)
+
+-add images to businesses? can be added later...
