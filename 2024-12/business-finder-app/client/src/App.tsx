@@ -8,21 +8,28 @@ import {
   useQuery,
 } from '@tanstack/react-query';
 
+import NavBar from './components/NavBar';
+import HomePage from './pages/homePage';
+import SearchPage from './pages/SearchPage';
+
+const queryClient = new QueryClient();
+
 function App() {
 
   return (
     <>
-      {/* <QueryClientProvider client={queryClient}>
+      <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <NavBar />
           <Routes>
             <Route path='/' element={<HomePage />} />
-            <Route path='/create' element={<CreateBlogPostPage />} />
-            <Route path='/view' element={<ViewBlogPostPage />} />
-            <Route path='/edit' element={<EditBlogPostPage />} />
+            <Route path='/search' element={<SearchPage />} />
+            <Route path='/create' element={<>create page</>} />
+            <Route path='/view' element={<>view page</>} />
+            <Route path='/edit' element={<>edit page</>} />
           </Routes>
         </BrowserRouter>
-      </QueryClientProvider> */}
+      </QueryClientProvider>
     </>
   )
 }

@@ -1,1 +1,3 @@
-this is the todo.txt file
+-create a home page where users can browse businesses without signing in
+    -fetch business data with tanstack and log it
+    -create a businessCard and businessPage
