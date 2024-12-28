@@ -8,8 +8,8 @@ import {
   useQuery,
 } from '@tanstack/react-query';
 
-import NavBar from './components/NavBar';
-import HomePage from './pages/homePage';
+import NavBar from './components/NavBar.tsx';
+import HomePage from './pages/HomePage';
 import SearchPage from './pages/SearchPage';
 
 const queryClient = new QueryClient();
