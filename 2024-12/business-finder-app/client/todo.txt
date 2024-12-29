@@ -3,3 +3,11 @@
 -create a home page where users can browse businesses without signing in
     DONE-fetch business data with tanstack and log it DONE
     -create a businessCard and businessPage
+
+
+-add business creation page
+    -add option for business image link or choose from default images grid/carousel
+
+
+FINISHING TOUCHES:
+-turn the navbar css to a module css to avoid conflicting class names

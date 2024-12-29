@@ -1,3 +1,10 @@
+.logo{
+    font-size: larger;
+}
+.logo:hover{
+    cursor:pointer;
+}
+
 .drop-down-element{
 
 }
