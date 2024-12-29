@@ -11,6 +11,14 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 import MyModal from './MyModal';
 
@@ -24,18 +32,21 @@ export default function NavBar() {
   const searchRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const [businessModal, setBusinessModal] = useState(false);
+  const [loggedUser, setLoggedUser] = useState(null);
+  const [userToken, setUserToken] = useState(null);
+  const [loginMode, setLoginMode] = useState(true);
 
   function handleSearchClick() {
     if (!(searchRef && searchRef.current)) return;
     const searchInput = searchRef.current.value;
     navigate('/search', { state: { searchInput } });
   }
-  
-  function handleInputChange(){//debounce for handleSearchClick
+
+  function handleInputChange() {//debounce for handleSearchClick
     clearTimeout(searchTimer);
-    searchTimer = setTimeout(() => {handleSearchClick()}, 500);
+    searchTimer = setTimeout(() => { handleSearchClick() }, 500);
   }
-  
+
   return (
     <div>
       <div className='flex justify-around pt-1 pb-1'>
@@ -55,7 +66,28 @@ export default function NavBar() {
             <DropdownMenuItem className='drop-down-element'>Subscription</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-        <button className={`${style.button}`}>Log In</button>
+        <DropdownMenu>
+          <DropdownMenuTrigger className={`${style.button}`}>Log In 👇</DropdownMenuTrigger>
+          <DropdownMenuContent className='bg-white'>
+            {/* <DropdownMenuLabel>My Account</DropdownMenuLabel> */}
+            <div className='flex p-1'>
+                {loginMode && <div>{`>`}</div>}
+                <button className={`${style.button}`} onClick={() => setLoginMode(true)}>Log In</button>
+                <button className={`${style.button} ml-auto`} onClick={() => setLoginMode(false)}>Sign up</button>
+                {!loginMode && <div>{`<`}</div>}
+            </div>
+            <DropdownMenuSeparator />
+            {/* <DropdownMenuItem></DropdownMenuItem> */}
+            <div>
+              <label>email:</label>
+              <input></input>
+              <br></br>
+              <label>password:</label>
+              <input type='password'></input>
+            </div>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        {/* <button className={`${style.button}`}>Log In</button> */}
         <button className={`${style.button}`}>My Elpy</button>
       </div>
       {/* <div></div> */}

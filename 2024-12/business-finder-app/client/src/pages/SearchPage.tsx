@@ -10,9 +10,16 @@ import Pagination from '@/components/Pagination';
 
 function SearchPage() {
     const [businesses, setBusinesses] = useState(null);
-    const [currentLimit, setCurrentLimit] = useState(20);
-    const [currentPage, setCurrentPage] = useState(1);
-    const currentOffset = currentLimit * currentPage - currentLimit;
+    const [currentLimit, setCurrentLimit] = useState(0);//preparation for pagination
+    const [currentPage, setCurrentPage] = useState(1);//preparation for pagination
+    const [resultsPerPage, setResultsPerPage] = useState(20)//preparation for pagination
+    const currentOffset = currentLimit * currentPage - currentLimit;//preparation for pagination
+    let totalResults = 0;//preparation for pagination
+    let totalPages = 1;//preparation for pagination
+    if(businesses && businesses.length > 0) {//preparation for pagination
+        totalResults = businesses.length//preparation for pagination
+        totalPages = Math.ceil(totalResults / resultsPerPage);//preparation for pagination
+    };
     const location = useLocation();
     const { searchInput } = location.state;
     
@@ -42,7 +49,7 @@ function SearchPage() {
             <div>
                 {businesses && `results count: ${businesses.length}`}
                 <br></br>
-                <Pagination totalPages={} currentPage={} onPageChange={handlePageChange}/>
+                <Pagination totalPages={totalPages} currentPage={currentPage} onPageChange={handlePageChange}/>
                 <br></br>
                 <div>
                     {businesses && businesses.map(business => <BusinessCard key={business._id} businessInfo={business} />)}

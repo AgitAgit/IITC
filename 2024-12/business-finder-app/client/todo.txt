@@ -1,3 +1,9 @@
+Important features:
+-give the user option to add businesses (bonus: limit according to his plan)
+-give the user an option to edit/delete his business
+-Save businesses to user profile
+-Give user updates whenever a business is updated/deleted(Bonus:when commented on)
+
 -create a navbar inspired by the yelp navbar;
 
 -create a home page where users can browse businesses without signing in
