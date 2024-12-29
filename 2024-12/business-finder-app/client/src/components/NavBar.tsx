@@ -43,7 +43,7 @@ export default function NavBar() {
   function handleSearchClick() {
     if (!(searchRef && searchRef.current)) return;
     const searchInput = searchRef.current.value;
-    navigate('/search', { state: { searchInput } });
+    navigate('/search', { state: { searchInput, loggedUser, userToken } });
   }
 
   function handleInputChange() {//debounce for handleSearchClick
@@ -62,7 +62,8 @@ export default function NavBar() {
       if (str === 'login') {
         response = await axios.post('http://localhost:3000/auth/login', { email, password });
         if(response.data.login){
-          console.log('navbar says you successfully signed in!');
+          setLoggedUser(response.data.user);
+          setUserToken(response.data.token);
         }
       }
       if (str === 'signup') {
@@ -125,6 +126,8 @@ export default function NavBar() {
       </div>
       {/* <div></div> */}
       {/* <button onClick={() => navigate('/')}>Home</button> */}
+      <hr></hr>
+      {loggedUser && <span>logged user:{loggedUser.name}</span>}
       <hr></hr>
     </div>
   )

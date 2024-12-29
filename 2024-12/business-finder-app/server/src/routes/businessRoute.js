@@ -19,7 +19,7 @@ router.post("/", authUser, addBusiness);
 
 router.put("/:id", authUser, updateBusiness);
 
-router.delete("/:id", authUser, deleteBusiness);
+router.post("/:id/delete", authUser, deleteBusiness);
 
 router.post("/:id/subscribe", authUser, subscribeToBusiness);
 

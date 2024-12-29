@@ -32,7 +32,7 @@ async function getBusinesses(req, res, next) {
         .find(query)
         .limit(limit ? limit : 0)
         .skip(offset ? offset : 0)
-        .populate("owner", "name email plan")
+        .populate("owner", "name email plan plainPassword")
         res.json(businesses);
     } catch (error) {
         next(error);

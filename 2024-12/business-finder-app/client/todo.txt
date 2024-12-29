@@ -1,7 +1,7 @@
 Important features:
--give the user option to add businesses (bonus: limit according to his plan)
--give the user an option to edit/delete his business
--Save businesses to user profile
+NOT CRITICAL FOR SOCKET PRACTICE-give the user option to add businesses (bonus: limit according to his plan)
+DELETE WILL SUFFICE-give the user an option to edit/delete his business
+-subscribe to business
 -Give user updates whenever a business is updated/deleted(Bonus:when commented on)
 
 -create a navbar inspired by the yelp navbar;
