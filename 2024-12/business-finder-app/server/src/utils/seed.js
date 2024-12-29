@@ -7,9 +7,12 @@ const plans = ["Standard", "Gold", "Platinum"];
 const categories = ["Commerce", "Maintenance", "Finance", "Health", "Recreation", "General"];
 const extraBit = [", So, it's great!", ", So, it's great!", ", So, it's great!", ". L O V E D it", ". L O V E D it", ". L O V E D it", ". quack", ". great success!", ", I find it offensive..."]
 
+const UserAmount = 1000;
+const BusinessAmount = 100;
+
 const generateUsers = async function () {
     const users = await Promise.all(
-        Array.from({ length: 40 }).map(async () => {
+        Array.from({ length: UserAmount }).map(async () => {
             const plainPassword = faker.internet.password(6);
             const password = await bcrypt.hash(plainPassword, 10);
             return {
@@ -38,7 +41,7 @@ const generateBusinesses = async function () {
     const users = await User.find();
     // console.log("users---------------------------", users);
     const businesses = [];
-    const businessOwnersIndex = 8;
+    const businessOwnersIndex = BusinessAmount;
     for (let i = 1; i < businessOwnersIndex; i++) {
         const newBusiness = {
             name: faker.company.name(),
@@ -57,7 +60,7 @@ const generateReviews = async function () {
     const businesses = await Business.find();
     businesses.forEach( business => {
         for(let i = 0; i < Math.ceil(Math.random() * 10); i++){
-            console.log("@ss");
+            // console.log("@ss");
             const review = {
                 userId: users[Math.floor(Math.random() * users.length)]._id,
                 comment: `${faker.company.catchPhraseDescriptor()} ${faker.company.catchPhraseNoun()}${extraBit[Math.floor(Math.random() * extraBit.length)]}`
