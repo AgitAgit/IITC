@@ -52,12 +52,10 @@ async function login(req, res, next) {
     const storedUser = await User.findOne({ email }); //check if the user exists and extract it from the db
     // console.log("stored user:", storedUser);
     if (!storedUser)
-      return res
-        .status(400)
-        .json({ message: `could not find user with email ${email}`, login:false});
+      return res.json({ message: `could not find user with email ${email}`, login:false});
     const isValid = bcrypt.compareSync(password, storedUser.password); //use bcrypt to test if the login password matches the stored one
     if (!isValid)
-      return res.status(400).json({ message: "Invalid password...", login:false });
+      return res.json({ message: "Invalid password...", login:false });
     const token = jwt.sign(
       //generate a jwt token with payload containing the mongo id, name, email, and user plan. 
       {

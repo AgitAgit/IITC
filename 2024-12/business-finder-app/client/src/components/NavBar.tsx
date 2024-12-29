@@ -2,6 +2,7 @@ import './NavBar.css';
 import React from 'react'
 import { useState, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 import {
   DropdownMenu,
@@ -30,6 +31,9 @@ const style = {
 export default function NavBar() {
   let searchTimer = null;
   const searchRef = useRef<HTMLInputElement>(null);
+  const loginEmailRef = useRef<HTMLInputElement>(null);
+  const loginPasswordRef = useRef<HTMLInputElement>(null);
+
   const navigate = useNavigate();
   const [businessModal, setBusinessModal] = useState(false);
   const [loggedUser, setLoggedUser] = useState(null);
@@ -45,6 +49,29 @@ export default function NavBar() {
   function handleInputChange() {//debounce for handleSearchClick
     clearTimeout(searchTimer);
     searchTimer = setTimeout(() => { handleSearchClick() }, 500);
+  }
+
+  async function handleLoginClick(str: string) {
+    try {
+      let response;
+      const email = loginEmailRef.current.value;
+      const password = loginPasswordRef.current.value;
+      if (email === '' || password === '') {
+        return;
+      }
+      if (str === 'login') {
+        response = await axios.post('http://localhost:3000/auth/login', { email, password });
+        if(response.data.login){
+          console.log('navbar says you successfully signed in!');
+        }
+      }
+      if (str === 'signup') {
+        response = await axios.post('http://localhost:3000/auth/signup', { name: email, email, password });
+      }
+      console.log(`navbar says ${str} attemp result:`, response.data);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -68,22 +95,28 @@ export default function NavBar() {
         </DropdownMenu>
         <DropdownMenu>
           <DropdownMenuTrigger className={`${style.button}`}>Log In 👇</DropdownMenuTrigger>
-          <DropdownMenuContent className='bg-white'>
+          <DropdownMenuContent className='bg-white p-3'>
             {/* <DropdownMenuLabel>My Account</DropdownMenuLabel> */}
+            <label>Mode:</label>
             <div className='flex p-1'>
-                {loginMode && <div>{`>`}</div>}
-                <button className={`${style.button}`} onClick={() => setLoginMode(true)}>Log In</button>
-                <button className={`${style.button} ml-auto`} onClick={() => setLoginMode(false)}>Sign up</button>
-                {!loginMode && <div>{`<`}</div>}
+              {loginMode && <div>{`>`}</div>}
+              <button className={`${style.button}`} onClick={() => setLoginMode(true)}>Log In</button>
+              <button className={`${style.button} ml-auto`} onClick={() => setLoginMode(false)}>Sign up</button>
+              {!loginMode && <div>{`<`}</div>}
             </div>
             <DropdownMenuSeparator />
             {/* <DropdownMenuItem></DropdownMenuItem> */}
             <div>
               <label>email:</label>
-              <input></input>
+              <input ref={loginEmailRef} className={`${style.button}`}></input>
               <br></br>
               <label>password:</label>
-              <input type='password'></input>
+              <input ref={loginPasswordRef} type='password' className={`${style.button}`}></input>
+              <br></br>
+              <div className='flex'>
+                {loginMode && <button onClick={() => handleLoginClick('login')} className={`${style.button} mr-auto`}>Log In</button>}
+                {!loginMode && <button onClick={() => handleLoginClick('signup')} className={`${style.button} ml-auto`}>Sign Up</button>}
+              </div>
             </div>
           </DropdownMenuContent>
         </DropdownMenu>
