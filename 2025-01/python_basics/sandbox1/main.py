@@ -59,6 +59,66 @@
 # words = [word.upper() for word in ['product', 'preview', 'card']]
 # print(words)
 
-fruits = {'apple':2,'banana':1}
-print(fruits.items())
-print(fruits)
+# fruits = {'apple':2,'banana':1}
+# print(fruits.items())
+# print(fruits)
+
+# a = 3000
+# print(f"duck {a}")
+
+# a = {'x':10}
+# b = {'y':7}
+# a.update(b)
+# print(a)
+
+# baba = { 'a':1, 'b':2, 'c':3 }
+
+# print(baba.keys())
+
+# if 'b' in baba.keys():
+#     print("baba")
+# else:
+#     print("b")
+
+
+# baba2 = [('a',1),('b',2),('c',3)]
+# for key, value in baba2:
+#     print(f"key:{key} value:{value}")
+
+# babaItems = baba.items()
+
+# print(babaItems)
+# for item in babaItems:
+#     print(item)
+
+# fruits = ["banana", "apple", "samsung"]
+# fruits.reverse()
+# print(fruits)
+
+fruits = ["banana", "apple", "samsung"]
+cars = ["car1","car2","car3"]
+
+list2 = [ a for b in [fruits, cars] for a in b ]
+# print(list2)
+riddleSet = set()
+riddleArr = []
+
+for i in range(len(list2)):
+    riddleArr.append("")
+    for j in range(len(list2[i]) - 1):
+        char = list2[i][j]
+        if not (char  in riddleSet):
+            riddleArr[i] += char
+            # riddleArr.append(char)
+        riddleSet.add(char)
+# print(list2)
+# print(riddleArr)
+
+# print(riddleSet)
+        
+
+# arr1 = [ [fruits, cars], [cars, fruits]]
+
+# arr2 = [a for x in arr1 for y in x for z in y for a in z]
+# print(arr2)
+
