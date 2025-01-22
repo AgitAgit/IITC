@@ -55,6 +55,10 @@
 
 # print(colors)
 
-words = [word.upper() for word in ['hello', 'world', 'python']]
-words = [word.upper() for word in ['product', 'preview', 'card']]
-print(words)
+# words = [word.upper() for word in ['hello', 'world', 'python']]
+# words = [word.upper() for word in ['product', 'preview', 'card']]
+# print(words)
+
+fruits = {'apple':2,'banana':1}
+print(fruits.items())
+print(fruits)
