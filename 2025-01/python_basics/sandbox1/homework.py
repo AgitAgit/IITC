@@ -42,3 +42,30 @@ print("hello " + username)
 # print("The sum of numbers from 0 to ", str(a), " is ", str(b))
 
 
+# nums = [5,3,5,7,5]
+
+# count = 0
+
+# for num in nums:
+#     if(num == 5):
+#         count += 1
+# print(count)
+
+# fruitsTuple = ("apple", "banana", "mist")
+# print(fruitsTuple[1])
+
+# stamTuple = (10, 20, 30)
+
+# print(stamTuple)
+
+# stamList = list(stamTuple)
+
+# print(stamList)
+
+# stamList.append(40)
+
+# print(stamList)
+
+# stamTuple = tuple(stamList)
+
+# print(stamTuple)
