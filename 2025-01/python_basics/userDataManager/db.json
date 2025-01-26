@@ -1,1 +1,1 @@
-{"users": ["user1", "user2", {"name": "user3000", "email": "babamail", "extraField": "vishnu"}, {"name": "user3000", "email": "babamail", "extraField": "vishnu"}], "other": [{"baba": "3000"}, {"duck": "3000"}]}
+{"users": [{"name": "a", "email": "a", "extra_details": ["a"]}]}

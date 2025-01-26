@@ -5,12 +5,18 @@ def hello():
 
 def printContent():
     file = user_ops.returnDBContent()
-    for key, value in file.items():
-        print(f"\nkey:{key}\nvalue:{value}")
+    if(file):
+        for key, value in file.items():
+            print(f"\nkey:{key}\nvalue:{value}")
 
-def testAddUser():
-    printContent()
-    user_ops.addUser("user3000","babamail", extraField="vishnu")
-    printContent()
+def promptAddUser():
+    name = input("enter name:")
+    email = input("enter email:")
+    extraDetails = input("enter extra details, separated by commas:")
+    extraDetails = extraDetails.split(",")
+    extraDetails = [value.strip() for value in extraDetails]
+    user_ops.addUser(*extraDetails, name=name, email=email)
 
-testAddUser()
+promptAddUser()
+printContent()    
+
