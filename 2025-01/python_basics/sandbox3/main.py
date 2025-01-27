@@ -35,19 +35,19 @@ class SuperHero:
 class BankAccount:
     def __init__(self, owner):
         self.owner = owner
-        self.balance = 0
+        self.__balance = 0
     
     def deposit(self, sum):
-        self.balance += sum
+        self.__balance += sum
     def withdraw(self, sum):
-        self.balance -= sum
+        self.__balance -= sum
     def checkBalance(self):
-        print(f"\nCurrent balance: {self.balance}")
-        return self.balance
+        print(f"\nCurrent balance: {self.__balance}")
+        return self.__balance
 
 class SavingsAccount(BankAccount):
     def deposit(self, sum):
-        self.balance += sum * 1.02
+        self._BankAccount__balance += sum * 1.02
 
 user_input = ''
 current_account = {}
