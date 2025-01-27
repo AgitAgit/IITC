@@ -45,11 +45,14 @@ class BankAccount:
         print(f"\nCurrent balance: {self.balance}")
         return self.balance
 
+class SavingsAccount(BankAccount):
+    def deposit(self, sum):
+        self.balance += sum * 1.02
 
 user_input = ''
 current_account = {}
 user_input = input("Enter your name:")
-current_account = BankAccount(user_input)
+current_account = SavingsAccount(user_input)
 while(user_input != "exit"):
     user_input = input("\nTo stop, enter exit.\nTo display balance, enter 1.\nTo deposit, enter 2.\nTo withdraw, enter 3.\n")
     if(user_input == "1"):
