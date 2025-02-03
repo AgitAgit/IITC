@@ -26,7 +26,7 @@ for element in elements:
     print(new_element.text)
     print(2*shufersal_funcs.get_product_price(element))
 
-# time.sleep(3)
+time.sleep(1)
 driver.quit()
 
 #//tagName[@AttributeName="Value"]
