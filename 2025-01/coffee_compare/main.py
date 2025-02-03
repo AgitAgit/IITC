@@ -11,19 +11,22 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
+import utils
+import shufersal_funcs
+
 driver = webdriver.Chrome()
 driver.get("https://www.shufersal.co.il/online/he/%D7%A7%D7%98%D7%92%D7%95%D7%A8%D7%99%D7%95%D7%AA/%D7%A1%D7%95%D7%A4%D7%A8%D7%9E%D7%A8%D7%A7%D7%98/%D7%9E%D7%A9%D7%A7%D7%90%D7%95%D7%AA-%D7%90%D7%9C%D7%9B%D7%95%D7%94%D7%95%D7%9C-%D7%95%D7%99%D7%99%D7%9F/%D7%A7%D7%A4%D7%94-%D7%95%D7%AA%D7%94/%D7%A7%D7%A4%D7%94-%D7%A9%D7%97%D7%95%D7%A8/c/A130507")
 driver.maximize_window()
 elements = driver.find_elements(By.XPATH, "//li[@data-product-name]")
-def reverse_print(elements):
-    for element in elements:
-        word = element.get_attribute("data-product-name")
-        new_word = ''
-        for i in range(len(word)):
-            new_word += word[-(1 + i)]
-        print(new_word)
 
-time.sleep(3)
+for element in elements:
+    new_element = element.find_element(By.XPATH,'.//div[@class="flex-line"]')
+    print("\n\n-------------------------------------------")
+    # print(reverse_string(element.text))
+    print(new_element.text)
+    print(2*shufersal_funcs.get_product_price(element))
+
+# time.sleep(3)
 driver.quit()
 
 #//tagName[@AttributeName="Value"]
