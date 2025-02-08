@@ -58,8 +58,8 @@ function countOccurrences(num, arr) {
 
 // console.log(countOccurrences(7, [7, 7, 6.9999999999999999]))
 
-function concatWithComma(arr){
-    return arr.reduce((accumulator, current, index) => 
+function concatWithComma(arr) {
+    return arr.reduce((accumulator, current, index) =>
         index === 0 ? accumulator += current : accumulator += `, ${current}`, "")
 }
 
@@ -68,7 +68,7 @@ function concatWithComma(arr){
 // console.log(concatWithComma([]))
 // console.log(concatWithComma(["baba", "Unimog", "ba"]))
 
-function pairs(arr){
+function pairs(arr) {
     return arr.reduce((accumulator, current) => {
         accumulator[current[0]] = current[1]
         return accumulator;
@@ -77,7 +77,25 @@ function pairs(arr){
 
 // console.log(pairs([["baba", "baba"], ["duck", "debug"]]))
 
-function reverse(str){
+function reverse(str) {
     const arr = Array.from(str);
-
+    return arr.reduceRight((accumulator, current) => accumulator + current, '');
 }
+
+// console.log(reverse("baba"))
+// console.log(reverse("123"))
+
+function over18(arr) {
+    return arr.reduce((accumulator, current) => {
+        if (current["age"] > 18) accumulator.push(current["name"])
+        return accumulator;
+    }, [])
+}
+const people = [
+    { name: "Alice", age: 17 },
+    { name: "Bob", age: 20 },
+    { name: "Charlie", age: 19 },
+    { name: "David", age: 16 },
+];
+console.log(people);
+console.log(over18(people))
