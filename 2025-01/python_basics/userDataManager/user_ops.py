@@ -11,6 +11,7 @@ def returnDBContent():
     except:
         print("could not retrieve db content...")
         return None
+
 def validateUser(user):
     if not bool(user.get("name") and user.get("email")): 
         return False
