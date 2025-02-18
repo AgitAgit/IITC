@@ -36,6 +36,52 @@ const string_array = my_generic_func("bbb")
 const number_array = my_generic_func(3)
 
 string_array[0].toUpperCase()
-string_array[0].toFixed()
+// string_array[0].toFixed()
 number_array[0].toFixed()
 
+
+/**
+ * implement custom array methods (see myMap inclass example, ignore TS):
+ *
+ * 1. forEach - retrun nothing
+ * 2. filter - array
+ * 3. find - item | null
+ * 4. findIndex - number | -1 (in case we dont find any)
+ * 5. every - boolean
+ * 6. some - boolean
+ * 7. includes - boolean
+ * 8. Bonus: Reduce - see docs.
+ * 9. whetver you like...
+ */
+
+Array.prototype.myForEach = function(callbackFunc:(element:any, index?:number, array?:any[]) => void){
+  for(let i = 0; i < this.length; i++){
+    callbackFunc(this[i])
+  }
+}
+
+const myArr = [1, 2, 3];
+// myArr.myForEach((element) => {
+//   console.log(element)
+// })
+
+//seems to me like the generics is meaningless here
+Array.prototype.myGenericForEach = function<T>(callbackFunc:(element:T, index?:number, array?:T[]) => void){
+  for(let i = 0; i < this.length; i++){
+    callbackFunc(this[i])
+  }
+}
+type FilterCallbackFunc<T> = (element:T, index?:number, array?:T[]) => T
+Array.prototype.myGenericFilter = function<T>(callbackFunc:FilterCallbackFunc<T>){
+  const result = []
+  for(let i = 0; i < this.length; i++){
+    if(callbackFunc(this[i])){
+      result.push(this[i])
+    }
+  }
+  return result;
+}
+
+const numbers = [1, 2, 3, 4, 5, 6]
+const filteredNumbers = numbers.myGenericFilter((element) => element % 2 === 0)
+console.log(filteredNumbers)
