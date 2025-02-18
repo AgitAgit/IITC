@@ -85,3 +85,6 @@ Array.prototype.myGenericFilter = function<T>(callbackFunc:FilterCallbackFunc<T>
 const numbers = [1, 2, 3, 4, 5, 6]
 const filteredNumbers = numbers.myGenericFilter((element) => element % 2 === 0)
 console.log(filteredNumbers)
+
+// Array.prototype.myGenericFilter = function<T>(callbackFunc:FilterCallbackFunc<T>){...
+// I am trying to add a function to the prototype of Array in TS, but TS says Property 'myGenericFilter' does not exist on type 'any[]'.ts(2339)
