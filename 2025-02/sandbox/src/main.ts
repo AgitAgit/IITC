@@ -71,7 +71,7 @@ Array.prototype.myGenericForEach = function<T>(callbackFunc:(element:T, index?:n
     callbackFunc(this[i])
   }
 }
-type FilterCallbackFunc<T> = (element:T, index?:number, array?:T[]) => T
+type FilterCallbackFunc<T> = (element:T, index?:number, array?:T[]) => boolean
 Array.prototype.myGenericFilter = function<T>(callbackFunc:FilterCallbackFunc<T>){
   const result = []
   for(let i = 0; i < this.length; i++){
@@ -82,9 +82,29 @@ Array.prototype.myGenericFilter = function<T>(callbackFunc:FilterCallbackFunc<T>
   return result;
 }
 
+declare global {
+  interface Array<T> {
+    myGenericFilter(callbackFunc: FilterCallbackFunc<T>): T[];
+    myGenericFind(callbackFunc:FilterCallbackFunc<T>):T | null;
+  }
+}
+
 const numbers = [1, 2, 3, 4, 5, 6]
 const filteredNumbers = numbers.myGenericFilter((element) => element % 2 === 0)
-console.log(filteredNumbers)
+// console.log(filteredNumbers)
 
 // Array.prototype.myGenericFilter = function<T>(callbackFunc:FilterCallbackFunc<T>){...
 // I am trying to add a function to the prototype of Array in TS, but TS says Property 'myGenericFilter' does not exist on type 'any[]'.ts(2339)
+
+Array.prototype.myGenericFind = function<T>(callbackFunc:FilterCallbackFunc<T>){
+  for(let i = 0; i < this.length; i++){
+    if(callbackFunc(this[i])) return this[i];
+  }
+  return null;
+}
+
+const findArr = [{baba:false, duck:true}, {baba:false, duck:true}, {baba:true, duck:false}, {baba:false, duck:true}]
+
+const obj1 = findArr.myGenericFind( (element) => element.baba === true)
+const obj11 = findArr.find((element) => element.baba === true)
+// console.log(obj1, obj11)
